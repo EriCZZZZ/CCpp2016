@@ -1,0 +1,6 @@
+#ifndef SHELL_GLOBAL_CONFIG_H
+#define SHELL_GLOBAL_CONFIG_H
+
+#define SHELL_CIRCLE_RADIUS 5
+#define SHELL_FILL_COLOR Red
+#endif
