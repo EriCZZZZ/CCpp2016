@@ -1,4 +1,8 @@
 #include "Fighter.h"
+Fighter::Fighter(int x, int y)
+{
+  fighterGraphics.setPosition(x, y);
+}
 void Fighter::setPoint(int index, sf::Vertex targetVertex)
 {
   if(index < 0 || index - 1 >= FIGHTER_COORDINATE_NUMBER)
@@ -11,23 +15,23 @@ void Fighter::setPoint(int index, sf::Vertex targetVertex)
     return;
   }
 }
-void Fighter::setPostion(int indexX, int indexY)
+void Fighter::setPosition(int indexX, int indexY)
 {
-  fighterGraphics.setPostion(indexX, indexY);
+  fighterGraphics.setPosition(indexX, indexY);
 }
 sf::Vertex Fighter::getVertex()
 {
   return fighterGraphics.getPosition();
 }
-FighterGraphics *toDraw()
+FighterGraphics *Fighter::toDraw()
 {
-  return &FighterGraphics;
+  return &fighterGraphics;
 }
 void Fighter::reviseHP(int deltaHP)
 {
   if(HP >= deltaHP)
   {
-    HP -= deltaHP;
+    HP += deltaHP;
   }
   else
   {

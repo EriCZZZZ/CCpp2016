@@ -5,20 +5,20 @@
 #include "../classGraphics/FighterGraphics.h"
 #include "../classShell/Shell.h"
 
-class Fighter : public FighterOperation
+class Fighter
 {
-private:
+protected:
   bool fighterOwner;
   unsigned HP;
-  // bool isShellReady;
   FighterGraphics fighterGraphics;
 public:
+  Fighter(int x, int y);
   virtual Shell *createShell() = 0;
   virtual void move(int deltaX, int deltaY) = 0;
   void setPoint(int index, sf::Vertex targetVertex);
-  void setPostion(int indesX, int indexY);
+  void setPosition(int indexX, int indexY);
   sf::Vertex getVertex();
   FighterGraphics *toDraw();
-  reviseHP(int deltaHP);
+  void reviseHP(int deltaHP);
 };
 #endif

@@ -13,4 +13,10 @@
 
 #define FIGHTER_ENEMY 1
 #define FIGHTER_PLAYER 0
+
+#define FIGHTER_HP_MAX 100
+#define FIGHTER_CREATE_SHELL_CORRECTED_VALUE_X 25
+
+#define FIGHTER_PLAYER_FILL_COLOR sf::Color::Magenta
+#define FIGHTER_PLAYER_OUTLINE_COLOR sf::Color::Red
 #endif
