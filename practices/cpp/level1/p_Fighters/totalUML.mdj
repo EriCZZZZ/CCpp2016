@@ -14969,8 +14969,8 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": -256,
-											"top": -160,
+											"left": -16,
+											"top": 16,
 											"width": 0,
 											"height": 13,
 											"autoResize": false,
@@ -14993,8 +14993,8 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": 181,
-											"top": 783,
+											"left": 301,
+											"top": 871,
 											"width": 79,
 											"height": 13,
 											"autoResize": false,
@@ -15018,8 +15018,8 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": -256,
-											"top": -160,
+											"left": -16,
+											"top": 16,
 											"width": 72,
 											"height": 13,
 											"autoResize": false,
@@ -15043,8 +15043,8 @@
 											"showShadow": true,
 											"containerChangeable": false,
 											"containerExtending": false,
-											"left": -256,
-											"top": -160,
+											"left": -16,
+											"top": 16,
 											"width": 0,
 											"height": 13,
 											"autoResize": false,
@@ -15062,8 +15062,8 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": 176,
-									"top": 776,
+									"left": 296,
+									"top": 864,
 									"width": 89,
 									"height": 25,
 									"autoResize": false,
@@ -15098,8 +15098,8 @@
 									"showShadow": true,
 									"containerChangeable": false,
 									"containerExtending": false,
-									"left": -128,
-									"top": -80,
+									"left": -8,
+									"top": 8,
 									"width": 10,
 									"height": 10,
 									"autoResize": false
@@ -15114,8 +15114,8 @@
 							"showShadow": true,
 							"containerChangeable": true,
 							"containerExtending": false,
-							"left": 176,
-							"top": 776,
+							"left": 296,
+							"top": 864,
 							"width": 89,
 							"height": 25,
 							"autoResize": false,
@@ -16567,6 +16567,100 @@
 							"propertyLabel": {
 								"$ref": "AAAAAAFUZwUi1b4kdPs="
 							}
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAFUZwutz8TvKhQ=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"left": 8,
+							"top": 728,
+							"width": 198,
+							"height": 40,
+							"autoResize": false,
+							"text": "./classFighter/FighterFactory.h",
+							"wordWrap": true
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAFUZwwxfMaYhAQ=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "AAAAAAFUZwutz8TvKhQ="
+							},
+							"tail": {
+								"$ref": "AAAAAAFUXayMZHYh3aM="
+							},
+							"lineStyle": 0,
+							"points": "120:671;120:728"
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAFUZwx64coRjZ4=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"left": 328,
+							"top": 752,
+							"width": 231,
+							"height": 40,
+							"autoResize": false,
+							"text": "/classFighter/PlayerFighterFactory.h",
+							"wordWrap": true
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAFUZwz45MvkQdo=",
+							"_parent": {
+								"$ref": "AAAAAAFF+qBtyKM79qY="
+							},
+							"visible": true,
+							"enabled": true,
+							"lineColor": "#000000",
+							"fillColor": "#ffffff",
+							"fontColor": "#000000",
+							"font": "Arial;13;0",
+							"showShadow": true,
+							"containerChangeable": false,
+							"containerExtending": false,
+							"head": {
+								"$ref": "AAAAAAFUZwx64coRjZ4="
+							},
+							"tail": {
+								"$ref": "AAAAAAFUXa+d5INuJW8="
+							},
+							"lineStyle": 0,
+							"points": "496:665;496:752"
 						}
 					]
 				},
