@@ -14,6 +14,7 @@ public:
   void setPosition(int indexX, int indexY);
   void setDeltaVector(sf::Vector2f vector);
   void move();
+  sf::Vertex getVertex();
   ShellGraphics *toDraw();
 };
 #endif

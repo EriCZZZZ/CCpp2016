@@ -5,6 +5,7 @@ FighterGraphics::FighterGraphics()
   fighterVertices[1] = sf::Vertex(sf::Vector2f(FIGHTER_COORDINATE_2_X, FIGHTER_COORDINATE_2_Y));
   fighterVertices[2] = sf::Vertex(sf::Vector2f(FIGHTER_COORDINATE_3_X, FIGHTER_COORDINATE_3_Y));
   fighterVertices[3] = sf::Vertex(sf::Vector2f(FIGHTER_COORDINATE_4_X, FIGHTER_COORDINATE_4_Y));
+  setOrigin(FIGHTER_COORDINATE_ORIGIN_X, FIGHTER_COORDINATE_ORIGIN_Y);
 }
 void FighterGraphics::setPoint(int index, sf::Vertex targetVertex)
 {

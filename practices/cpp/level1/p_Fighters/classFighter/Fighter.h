@@ -19,6 +19,6 @@ public:
   void setPosition(int indexX, int indexY);
   sf::Vertex getVertex();
   FighterGraphics *toDraw();
-  void reviseHP(int deltaHP);
+  bool reviseHP(int deltaHP);
 };
 #endif

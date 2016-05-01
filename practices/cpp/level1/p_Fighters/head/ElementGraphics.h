@@ -2,6 +2,7 @@
 #define ELEMENT_GRAPHICS_H
 
 #include <SFML/Graphics.hpp>
+#include "GameConfig.h"
 
 class ElementGraphics : public sf::Drawable, public sf::Transformable
 {

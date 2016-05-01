@@ -11,7 +11,11 @@ void Shell::move()
 {
   shell.move(deltaVector.x, deltaVector.y);
 }
-ShellGraphics *Shell::toDraw()
+sf::Vertex Shell::getVertex()
+{
+  return ShellGraphics.getPosition();
+}
+void ShellGraphics *Shell::toDraw()
 {
   return &shell;
 }

@@ -4,7 +4,7 @@
 #include "FighterFactory.h"
 #include "PlayerFighter.h"
 
-class PlayerFighterFactory
+class PlayerFighterFactory : public FighterFactory
 {
 public:
   Fighter *createFighter(int indexX, int indexY);

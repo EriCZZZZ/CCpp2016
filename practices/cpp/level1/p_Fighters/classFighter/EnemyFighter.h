@@ -3,8 +3,11 @@
 
 #include "Fighter.h"
 
-class EnmeyFighter : public Fighter
+class EnemyFighter : public Fighter
 {
-  
-}
+public:
+  EnemyFighter(int x, int y);
+  Shell *createShell();
+  void move(int deltaX, int deltaY);
+};
 #endif

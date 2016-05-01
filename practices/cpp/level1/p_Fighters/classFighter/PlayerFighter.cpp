@@ -8,7 +8,7 @@ PlayerFighter::PlayerFighter(int x, int y) : Fighter(x, y)
 Shell *PlayerFighter::createShell()
 {
   auto newShell = new Shell;
-  newShell->setPosition(getVertex().position.x + FIGHTER_CREATE_SHELL_CORRECTED_VALUE_X, getVertex().position.y);
+  newShell->setPosition(getVertex().position.x, getVertex().position.y + FIGHTER_CREATE_SHELL_CORRECTED_VALUE_PLAYER_Y);
   newShell->setDeltaVector(sf::Vector2f(0, -1));
   return newShell;
 }
