@@ -1,9 +1,4 @@
 #include "AllShell.h"
-AllShell::AllShell(CollisionJudge *collisionJudgeMachine, std::vector<int> &gameStatus)
-{
-  AllShell::collisionJudgeMachine = collisionJudgeMachine;
-  AllShell::gameStatus = gameStatus;
-}
 void AllShell::newShell(Shell *shell)
 {
   allShell.push_back(shell);
@@ -12,27 +7,39 @@ void AllShell::operate(sf::RenderWindow *window, std::mutex *mt)
 {
   while(gameStatus[ID_GAME_STATUS] == GAME_STATUS_GOING)
   {
-    while(mt->try_lock())
+    while(1)
     {
+      mt->lock();
       if(gameStatus[ID_ALL_SHELL] == GAME_STATUS_DONE)
       {
+        mt->unlock();
         continue;
       }
-      for(auto it = allShell.begin(); it != allShell.end(); it++)
+      else
       {
-        (*it)->move();
-        if((collisionJudgeMachine->judge((*it)->getVertex.position.x, (*it)->getVertex.position.y)) == COLLISION_KNOCKED)
-        {
-          allShell.erase(it);
-          it--;
-        }
-        else
-        {
-          window->draw(((*it)->toDraw()));
-        }
+        break;
+      }
+    }
+    for(auto it = allShell.begin(); it != allShell.end();)
+    {
+      (*it)->move();
+      int tempY = (*it)->getVertex().position.y;
+      if(tempY < 0 || tempY > 720)
+      {
+        delete *it;
+        allShell.erase(it);
+      }
+      else
+      {
+        window->draw(*((*it)->toDraw()));
+        it++;
       }
     }
     gameStatus[ID_ALL_SHELL] = GAME_STATUS_DONE;
     mt->unlock();
   }
+}
+std::vector<Shell *> &AllShell::shellVector()
+{
+  return std::ref(allShell);
 }

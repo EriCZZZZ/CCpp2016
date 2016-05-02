@@ -1,42 +1,52 @@
-include "Player.h"
-Player::Player(AllShell *shellContainer, std::std::vector<<int> &gameStatus;)
+#include "Player.h"
+
+#ifdef DEBUG
+#include <iostream>
+#endif
+
+Player::Player(AllShell *shellContainer, std::vector<int> &gameStatus) : gameStatus(gameStatus)
 {
-  playerFighter = PlayerFighterFactory.createFighter(500, 700);
+  PlayerFighterFactory *tempFactory = new PlayerFighterFactory;
+  playerFighter = tempFactory->createFighter(500, 650);
   Player::shellContainer = shellContainer;
-  Player::gameStatus = gameStatus;
 }
 void Player::operate(sf::RenderWindow *window, std::mutex *mt)
-
+{
   while(gameStatus[ID_GAME_STATUS] == GAME_STATUS_GOING)
   {
-    while(mt->try_lock())
+    while(1)
     {
+      mt->lock();
       if(gameStatus[ID_PLAYER] == GAME_STATUS_DONE)
       {
         mt->unlock();
         continue;
       }
-      if(sf::Keyboard::isKeyPressed(PLAYER_LEFT))
-      {
-        playerFighter->move(PLAYER_DELTA_LEFT, 0);
-      }
-      else if(sf::Keyboard::isKeyPressed(PLAYER_RIGHT))
-      {
-        playerFighter->move(PLAYER_DELTA_RIGHT);
-      }
-      else if(sf::Keyboard::isKeyPressed(PLAYER_FIRE))
-      {
-        auto tempShell = playerFighter->createShell();
-        shellContainer->newShell(tempShell);
-      }
       else
       {
-        ;
+        break;
       }
-      window->draw(*(palyerFighter->toDraw()))
-      gameStatus[ID_PLAYER] == GAME_STATUS_DONE;
-      mt->unlock();
     }
+    if(sf::Keyboard::isKeyPressed(PLAYER_LEFT))
+    {
+      playerFighter->move(PLAYER_DELTA_LEFT, 0);
+    }
+    else if(sf::Keyboard::isKeyPressed(PLAYER_RIGHT))
+    {
+      playerFighter->move(PLAYER_DELTA_RIGHT, 0);
+    }
+    else if(sf::Keyboard::isKeyPressed(PLAYER_FIRE))
+    {
+      auto tempShell = playerFighter->createShell();
+      shellContainer->newShell(tempShell);
+    }
+    else
+    {
+      ;
+    }
+    window->draw(*(playerFighter->toDraw()));
+    gameStatus[ID_PLAYER] = GAME_STATUS_DONE;
+    mt->unlock();
   }
 }
 bool Player::collision(int ShellIndexX, int ShellIndexY)

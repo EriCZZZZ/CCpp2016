@@ -8,8 +8,8 @@
 #define ID_ALL_SHELL 3
 #define ID_SCORE 4
 
-#define GAME_STATUS_STOP 1
-#define GAME_STATUS_GOING 0
+#define GAME_STATUS_STOP 0
+#define GAME_STATUS_GOING 1
 
 #define GAME_STATUS_DONE 1
 #define GAME_STATUS_UNDONE 0

@@ -8,8 +8,8 @@
 class Player : public Operation
 {
 private:
-  PlayerFighter *playerFighter;
-  Allshell *shellContainer;
+  Fighter *playerFighter;
+  AllShell *shellContainer;
   std::vector<int> &gameStatus;
   bool collisionJudge(int x1, int y1, int x2, int y2);
 public:

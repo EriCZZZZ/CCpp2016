@@ -13,9 +13,9 @@ void Shell::move()
 }
 sf::Vertex Shell::getVertex()
 {
-  return ShellGraphics.getPosition();
+  return shell.getPosition();
 }
-void ShellGraphics *Shell::toDraw()
+ShellGraphics *Shell::toDraw()
 {
   return &shell;
 }

@@ -11,8 +11,10 @@ class CollisionJudge
 private:
   Player *player;
   Enemy *enemy;
+  AllShell *allShell;
+  bool judge(int shellIndexX, int shellIndexY);
 public:
-  CollisionJudge(Player *player, Enemy *enemy);
-  bool judge(int shellIndexX, shellIndexY);
+  CollisionJudge(Player *player, Enemy *enemy, AllShell *allShell);
+  void judgeAll();
 };
 #endif

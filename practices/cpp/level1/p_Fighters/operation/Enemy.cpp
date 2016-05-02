@@ -1,26 +1,43 @@
 #include "Enemy.h"
-Enemy::Enemy(AllShell *shellContainer, std::vector<int> &gameStatus)
+
+#ifdef DEBUG
+#include <iostream>
+#endif
+
+Enemy::Enemy(AllShell *shellContainer, std::vector<int> &gameStatus) : gameStatus(gameStatus)
 {
   Enemy::shellContainer = shellContainer;
-  Enemy::gameStatus = gameStatus;
 }
 void Enemy::operate(sf::RenderWindow *window, std::mutex *mt)
 {
-  while(mt->try_lock())
+  while(gameStatus[ID_GAME_STATUS] == GAME_STATUS_GOING)
   {
-    if(gameStatus[ID_ENEMY] == GAME_STATUS_DONE)
+    while(1)
     {
-      mt->unlock();
-      continue;
+      #ifdef DEBUG
+      std::cout << "========enemy==========" << std::endl;
+      #endif
+      mt->lock();
+      if(gameStatus[ID_ENEMY] == GAME_STATUS_DONE)
+      {
+        mt->unlock();
+        continue;
+      }
+      else
+      {
+        break;
+      }
     }
     if(enemyFighter.size() < ENEMY_MAX_NUMBER_FIGHTER)
     {
       EnemyFighterFactory tempFactory;
-      while(enemyfighter.size() < ENEMY_MAX_NUMBER_FIGHTER)
+      while(enemyFighter.size() < ENEMY_MAX_NUMBER_FIGHTER)
       {
-        enemyFighter.push_back(tempFactory.createFighter(createRAndomIndex(), 0));
+        auto temp = tempFactory.createFighter(createRandomIndex(), 50);
+        enemyFighter.push_back(temp);
       }
     }
+
     for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
     {
       (*it)->move(createRandomMoveVector(), createRandomMoveVector());
@@ -38,12 +55,16 @@ void Enemy::operate(sf::RenderWindow *window, std::mutex *mt)
       }
       else if(tempX >= 1050)
       {
-        (*it)->setPositon(1050, tempY);
+        (*it)->setPosition(1050, tempY);
       }
-      shellContainer->newShell((*it)->createShell());
+      // ==== create shell
+      if(createRandomFire() == 50)
+        shellContainer->newShell((*it)->createShell());
       window->draw(*((*it)->toDraw()));
       it++;
     }
+    gameStatus[ID_ENEMY] = GAME_STATUS_DONE;
+    mt->unlock();
   }
 }
 bool Enemy::collision(int ShellIndexX, int ShellIndexY)
@@ -57,6 +78,7 @@ bool Enemy::collision(int ShellIndexX, int ShellIndexY)
     {
       if(((*it)->reviseHP(COLLISION_HP_DELTA)) == COLLISION_FIGHTER_DEAD)
       {
+        delete *it;
         enemyFighter.erase(it);
         flag = COLLISION_KNOCKED;
         it--;
@@ -81,13 +103,18 @@ bool Enemy::collisionJudge(int x1, int y1, int x2, int y2)
     return COLLISION_UNKNOCKED;
   }
 }
-int createRandomIndex()
+int Enemy::createRandomIndex()
 {
   srand(clock());
-  return (100 + (rand() % 800));
+  return (300 + (rand() % 1000));
 }
-int createRandomMoveVector()
+int Enemy::createRandomMoveVector()
 {
   srand(clock());
-  return (-1 + (rand() % 2));
+  return (-2 + (rand() % 5));
+}
+int Enemy::createRandomFire()
+{
+  srand(clock());
+  return rand() % 100;
 }
