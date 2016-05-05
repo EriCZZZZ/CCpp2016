@@ -4,47 +4,28 @@
 #include <iostream>
 #endif
 
-Player::Player(AllShell *shellContainer, std::vector<int> &gameStatus) : gameStatus(gameStatus)
+Player::Player(AllShell *shellContainer)
 {
   PlayerFighterFactory *tempFactory = new PlayerFighterFactory;
   playerFighter = tempFactory->createFighter(500, 650);
   Player::shellContainer = shellContainer;
 }
-void Player::operate(sf::RenderWindow *window, std::mutex *mt)
+void Player::operate(sf::RenderWindow *window)
 {
-  while(gameStatus[ID_GAME_STATUS] == GAME_STATUS_GOING)
+  if(sf::Keyboard::isKeyPressed(PLAYER_LEFT))
   {
-    while(1)
-    {
-      mt->lock();
-      if(gameStatus[ID_PLAYER] == GAME_STATUS_DONE)
-      {
-        mt->unlock();
-        continue;
-      }
-      else
-      {
-        break;
-      }
-    }
-    if(sf::Keyboard::isKeyPressed(PLAYER_LEFT))
-    {
-      playerFighter->move(PLAYER_DELTA_LEFT, 0);
-    }
-    if(sf::Keyboard::isKeyPressed(PLAYER_RIGHT))
-    {
-      playerFighter->move(PLAYER_DELTA_RIGHT, 0);
-    }
-    if(sf::Keyboard::isKeyPressed(PLAYER_FIRE))
-    {
-      auto tempShell = playerFighter->createShell();
-      shellContainer->newShell(tempShell);
-    }
-    
-    window->draw(*(playerFighter->toDraw()));
-    gameStatus[ID_PLAYER] = GAME_STATUS_DONE;
-    mt->unlock();
+    playerFighter->move(PLAYER_DELTA_LEFT, 0);
   }
+  if(sf::Keyboard::isKeyPressed(PLAYER_RIGHT))
+  {
+    playerFighter->move(PLAYER_DELTA_RIGHT, 0);
+  }
+  if(sf::Keyboard::isKeyPressed(PLAYER_FIRE))
+  {
+    auto tempShell = playerFighter->createShell();
+    shellContainer->newShell(tempShell);
+  }
+  window->draw(*(playerFighter->toDraw()));
 }
 bool Player::collision(int ShellIndexX, int ShellIndexY)
 {
@@ -54,7 +35,7 @@ bool Player::collision(int ShellIndexX, int ShellIndexY)
   {
     if(playerFighter->reviseHP(COLLISION_HP_DELTA) == COLLISION_FIGHTER_DEAD)
     {
-      gameStatus[ID_GAME_STATUS] = GAME_STATUS_STOP;
+      // gameStatus[ID_GAME_STATUS] = GAME_STATUS_STOP;
     }
     return COLLISION_KNOCKED;
   }

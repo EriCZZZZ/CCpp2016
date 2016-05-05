@@ -9,11 +9,9 @@ class AllShell : public Operation
 {
 private:
   std::vector<Shell *> allShell;
-  std::vector<int> &gameStatus;
 public:
-  AllShell(std::vector<int> &gameStatus) : gameStatus(gameStatus) {}
   void newShell(Shell *shell);
-  void operate(sf::RenderWindow *window, std::mutex *mt);
+  void operate(sf::RenderWindow *window);
   std::vector<Shell *> &shellVector();
 };
 #endif

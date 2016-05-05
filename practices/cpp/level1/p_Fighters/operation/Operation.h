@@ -10,7 +10,7 @@
 class Operation
 {
 public:
-  virtual void operate(sf::RenderWindow *window, std::mutex *mt) = 0;
+  virtual void operate(sf::RenderWindow *window) = 0;
 };
 
 #endif

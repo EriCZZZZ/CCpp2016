@@ -4,30 +4,12 @@
 #include <iostream>
 #endif
 
-Enemy::Enemy(AllShell *shellContainer, std::vector<int> &gameStatus) : gameStatus(gameStatus)
+Enemy::Enemy(AllShell *shellContainer)
 {
   Enemy::shellContainer = shellContainer;
 }
-void Enemy::operate(sf::RenderWindow *window, std::mutex *mt)
+void Enemy::operate(sf::RenderWindow *window)
 {
-  while(gameStatus[ID_GAME_STATUS] == GAME_STATUS_GOING)
-  {
-    while(1)
-    {
-      #ifdef DEBUG
-      std::cout << "========enemy==========" << std::endl;
-      #endif
-      mt->lock();
-      if(gameStatus[ID_ENEMY] == GAME_STATUS_DONE)
-      {
-        mt->unlock();
-        continue;
-      }
-      else
-      {
-        break;
-      }
-    }
     if(enemyFighter.size() < ENEMY_MAX_NUMBER_FIGHTER)
     {
       EnemyFighterFactory tempFactory;
@@ -63,14 +45,11 @@ void Enemy::operate(sf::RenderWindow *window, std::mutex *mt)
       window->draw(*((*it)->toDraw()));
       it++;
     }
-    gameStatus[ID_ENEMY] = GAME_STATUS_DONE;
-    mt->unlock();
-  }
 }
 bool Enemy::collision(int ShellIndexX, int ShellIndexY)
 {
   bool flag = COLLISION_UNKNOCKED;
-  for(auto it = enemyFighter.begin(); it != enemyFighter.end(); it++)
+  for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
   {
     int enemyFighterIndexX = (*it)->getVertex().position.x;
     int enemyFighterIndexY = (*it)->getVertex().position.y;
@@ -80,13 +59,19 @@ bool Enemy::collision(int ShellIndexX, int ShellIndexY)
       {
         delete *it;
         enemyFighter.erase(it);
-        flag = COLLISION_KNOCKED;
-        it--;
+        #ifdef DEBUG
+        std::cout << "boommmmm" << std::endl;
+        #endif
       }
       else
       {
-        ;//DO NOTHING
+        it++;
       }
+      flag = COLLISION_KNOCKED;
+    }
+    else
+    {
+      it++;
     }
   }
   return flag;
@@ -116,5 +101,5 @@ int Enemy::createRandomMoveVector()
 int Enemy::createRandomFire()
 {
   srand(clock());
-  return rand() % 100;
+  return rand() % 1000;
 }

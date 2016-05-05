@@ -10,11 +10,10 @@ class Player : public Operation
 private:
   Fighter *playerFighter;
   AllShell *shellContainer;
-  std::vector<int> &gameStatus;
   bool collisionJudge(int x1, int y1, int x2, int y2);
 public:
-  Player(AllShell *shellContainer, std::vector<int> &gameStatus);
-  void operate(sf::RenderWindow *window, std::mutex *mt);
+  Player(AllShell *shellContainer);
+  void operate(sf::RenderWindow *window);
   bool collision(int ShellIndexX, int ShellIndexY);
 };
 #endif
