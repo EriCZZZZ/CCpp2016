@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "./operation/Player.h"
 #include "./operation/Enemy.h"
 #include "./operation/AllShell.h"
@@ -16,6 +17,12 @@
 
 int main()
 {
+  sf::SoundBuffer buffer;
+  buffer.loadFromFile("./source/BGM.wav");
+  sf::Sound sound;
+  sound.setBuffer(buffer);
+  sound.play();
+
   sf::RenderWindow window(sf::VideoMode(1080, 720), "SFML");
   AllShell* allShell = new AllShell();
   Player* player = new Player(allShell);
@@ -45,7 +52,7 @@ int main()
     }
     collisionJudge.judgeAll();
     window.display();
-    std::this_thread::sleep_for(std::chrono::microseconds(10));
+    std::this_thread::sleep_for(std::chrono::microseconds(5000));
   }
   return 0;
 }

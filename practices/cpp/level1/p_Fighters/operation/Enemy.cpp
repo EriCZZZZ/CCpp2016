@@ -22,7 +22,7 @@ void Enemy::operate(sf::RenderWindow *window)
 
     for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
     {
-      (*it)->move(createRandomMoveVector(), createRandomMoveVector());
+      (*it)->move(createRandomMoveVector(), 1);
       int tempX = (*it)->getVertex().position.x;
       int tempY = (*it)->getVertex().position.y;
       if(tempY <= 0 || tempY >= 700)

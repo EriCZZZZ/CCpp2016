@@ -9,7 +9,7 @@ Shell *PlayerFighter::createShell()
 {
   auto newShell = new Shell;
   newShell->setPosition(getVertex().position.x, getVertex().position.y + FIGHTER_CREATE_SHELL_CORRECTED_VALUE_PLAYER_Y);
-  newShell->setDeltaVector(sf::Vector2f(0, -1));
+  newShell->setDeltaVector(sf::Vector2f(0, -3));
   return newShell;
 }
 void PlayerFighter::move(int deltaX, int deltaY)

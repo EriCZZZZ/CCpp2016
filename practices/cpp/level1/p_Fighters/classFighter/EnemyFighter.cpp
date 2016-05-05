@@ -10,7 +10,7 @@ Shell *EnemyFighter::createShell()
 {
   auto newShell = new Shell;
   newShell->setPosition(getVertex().position.x, getVertex().position.y + FIGHTER_CREATE_SHELL_CORRECTED_VALUE_ENEMY_Y);
-  newShell->setDeltaVector(sf::Vector2f(0, 1));
+  newShell->setDeltaVector(sf::Vector2f(0, 3));
   return newShell;
 }
 void EnemyFighter::move(int deltaX, int deltaY)

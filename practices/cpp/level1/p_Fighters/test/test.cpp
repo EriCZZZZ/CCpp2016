@@ -1,18 +1,20 @@
-#include <thread>
-#include <mutex>
-#include <chrono>
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "test.h"
+#include <SFML/Audio.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/Main.hpp>
+#include <SFML/Config.hpp>
 
 int main()
 {
-  bool flag = 0;
   sf::RenderWindow window(sf::VideoMode(1000, 1000), "sfml");
-  std::mutex mt;
-  mt.lock();
-  shapeClass tempShape;
-  std::thread t1(&shapeClass::showShape, &tempShape, &window, &mt, &flag);
+  sf::SoundBuffer buffer;
+  buffer.loadFromFile("../source/BGM.wav");
+  // sf::Music music;
+  // music.openFromFile("aaa");
+  sf::Texture texture;
+  texture.loadFromFile("aaa");
   while(window.isOpen())
   {
     sf::Event event;
@@ -24,26 +26,8 @@ int main()
       }
     }
     window.clear(sf::Color::Black);
-    mt.unlock();
-    std::cout << "1" << std::endl;
-    while(1)
-    {
-      mt.lock();
-      if(flag == 0)
-      {
-        mt.unlock();
-        continue;
-      }
-      else
-      {
-        break;
-      }
-    }
-    std::cout << "2" << std::endl;
-    flag = 0;
+
     window.display();
-    std::cout << "3" << std::endl;
-    std::this_thread::sleep_for(std::chrono::microseconds(10000));
   }
   return 0;
 }

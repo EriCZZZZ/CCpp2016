@@ -36,6 +36,14 @@ bool Player::collision(int ShellIndexX, int ShellIndexY)
     if(playerFighter->reviseHP(COLLISION_HP_DELTA) == COLLISION_FIGHTER_DEAD)
     {
       // gameStatus[ID_GAME_STATUS] = GAME_STATUS_STOP;
+      #ifdef DEBUG
+      std::cout << "Aaa~" << std::endl;
+      #endif
+    }
+    else
+    {
+      //to show HP-decrease
+      ;
     }
     return COLLISION_KNOCKED;
   }
