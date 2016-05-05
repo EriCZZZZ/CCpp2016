@@ -25,17 +25,15 @@ int main()
   sound.play();
 
   sf::RenderWindow window(sf::VideoMode(1080, 720), "SFML");
-  AllShell* allShell = new AllShell();
-  Player* player = new Player(allShell);
-  Enemy* enemy = new Enemy(allShell);
-  #ifdef DEBUG
-  std::cout << player << " " << enemy << std::endl;
-  #endif
+  AllShell* allShell = new AllShell(&window);
+  Player* player = new Player(allShell, &window);
+  Enemy* enemy = new Enemy(allShell, &window);
   CollisionJudge collisionJudge(player, enemy, allShell);
   std::vector<Operation *> gameOperation;
-  gameOperation.push_back(allShell);
   gameOperation.push_back(player);
   gameOperation.push_back(enemy);
+  gameOperation.push_back(allShell);
+
   while(window.isOpen())
   {
     sf::Event event;
@@ -49,7 +47,7 @@ int main()
     window.clear(sf::Color::Black);
     for(auto it = gameOperation.begin(); it != gameOperation.end(); it++)
     {
-      (*it)->operate(&window);
+      (*it)->operate();
     }
     collisionJudge.judgeAll();
     window.display();

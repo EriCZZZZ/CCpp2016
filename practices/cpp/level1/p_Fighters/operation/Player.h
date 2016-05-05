@@ -10,10 +10,11 @@ class Player : public Operation
 private:
   Fighter *playerFighter;
   AllShell *shellContainer;
+  sf::RenderWindow *window;
   bool collisionJudge(int x1, int y1, int x2, int y2);
 public:
-  Player(AllShell *shellContainer);
-  void operate(sf::RenderWindow *window);
+  Player(AllShell *shellContainer, sf::RenderWindow *window);
+  void operate();
   bool collision(int ShellIndexX, int ShellIndexY);
 };
 #endif

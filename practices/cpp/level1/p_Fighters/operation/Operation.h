@@ -10,7 +10,7 @@
 class Operation
 {
 public:
-  virtual void operate(sf::RenderWindow *window) = 0;
+  virtual void operate() = 0;
 };
 
 #endif

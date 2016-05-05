@@ -6,13 +6,14 @@
 #include <iostream>
 #endif
 
-Player::Player(AllShell *shellContainer)
+Player::Player(AllShell *shellContainer, sf::RenderWindow *window)
 {
+  Player::window = window;
   PlayerFighterFactory *tempFactory = new PlayerFighterFactory;
   playerFighter = tempFactory->createFighter(500, 650);
   Player::shellContainer = shellContainer;
 }
-void Player::operate(sf::RenderWindow *window)
+void Player::operate()
 {
   if(sf::Keyboard::isKeyPressed(PLAYER_LEFT))
   {

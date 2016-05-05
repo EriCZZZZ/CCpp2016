@@ -1,9 +1,14 @@
 #include "AllShell.h"
+
+#ifdef DEBUG
+#include <iostream>
+#endif
+
 void AllShell::newShell(Shell *shell)
 {
   allShell.push_back(shell);
 }
-void AllShell::operate(sf::RenderWindow *window)
+void AllShell::operate()
 {
   for(auto it = allShell.begin(); it != allShell.end();)
   {

@@ -9,9 +9,11 @@ class AllShell : public Operation
 {
 private:
   std::vector<Shell *> allShell;
+  sf::RenderWindow *window;
 public:
+  AllShell(sf::RenderWindow *window) : window(window) {}
   void newShell(Shell *shell);
-  void operate(sf::RenderWindow *window);
+  void operate();
   std::vector<Shell *> &shellVector();
 };
 #endif
