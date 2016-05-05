@@ -31,19 +31,16 @@ void Player::operate(sf::RenderWindow *window, std::mutex *mt)
     {
       playerFighter->move(PLAYER_DELTA_LEFT, 0);
     }
-    else if(sf::Keyboard::isKeyPressed(PLAYER_RIGHT))
+    if(sf::Keyboard::isKeyPressed(PLAYER_RIGHT))
     {
       playerFighter->move(PLAYER_DELTA_RIGHT, 0);
     }
-    else if(sf::Keyboard::isKeyPressed(PLAYER_FIRE))
+    if(sf::Keyboard::isKeyPressed(PLAYER_FIRE))
     {
       auto tempShell = playerFighter->createShell();
       shellContainer->newShell(tempShell);
     }
-    else
-    {
-      ;
-    }
+    
     window->draw(*(playerFighter->toDraw()));
     gameStatus[ID_PLAYER] = GAME_STATUS_DONE;
     mt->unlock();
