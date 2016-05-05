@@ -21,6 +21,7 @@ int main()
   buffer.loadFromFile("./source/BGM.wav");
   sf::Sound sound;
   sound.setBuffer(buffer);
+  sound.setLoop(true);
   sound.play();
 
   sf::RenderWindow window(sf::VideoMode(1080, 720), "SFML");

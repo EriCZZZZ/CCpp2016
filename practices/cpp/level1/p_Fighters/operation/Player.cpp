@@ -1,5 +1,7 @@
 #include "Player.h"
 
+#include <SFML/Audio.hpp>
+
 #ifdef DEBUG
 #include <iostream>
 #endif
@@ -36,6 +38,11 @@ bool Player::collision(int ShellIndexX, int ShellIndexY)
     if(playerFighter->reviseHP(COLLISION_HP_DELTA) == COLLISION_FIGHTER_DEAD)
     {
       // gameStatus[ID_GAME_STATUS] = GAME_STATUS_STOP;
+      sf::SoundBuffer bufferDead;
+      bufferDead.loadFromFile("./source/attacked.wav");
+      sf::Sound soundDead;
+      soundDead.setBuffer(bufferDead);
+      soundDead.play();
       #ifdef DEBUG
       std::cout << "Aaa~" << std::endl;
       #endif
