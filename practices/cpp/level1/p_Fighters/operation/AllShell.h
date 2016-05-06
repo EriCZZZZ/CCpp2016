@@ -4,6 +4,7 @@
 #include "Operation.h"
 #include "../classShell/Shell.h"
 #include <functional>
+#include "../head/GameConfig.h"
 
 class AllShell : public Operation
 {

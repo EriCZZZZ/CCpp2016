@@ -10,18 +10,18 @@ Player::Player(AllShell *shellContainer, sf::RenderWindow *window)
 {
   Player::window = window;
   PlayerFighterFactory *tempFactory = new PlayerFighterFactory;
-  playerFighter = tempFactory->createFighter(500, 650);
+  playerFighter = tempFactory->createFighter(PLAYER_CREATE_FIGHTER_X, PLAYER_CREATE_FIGHTER_Y);
   Player::shellContainer = shellContainer;
 }
 void Player::operate()
 {
   if(sf::Keyboard::isKeyPressed(PLAYER_LEFT))
   {
-    playerFighter->move(PLAYER_DELTA_LEFT, 0);
+    playerFighter->move(PLAYER_DELTA_LEFT, PLAYER_DELTA_Y);
   }
   if(sf::Keyboard::isKeyPressed(PLAYER_RIGHT))
   {
-    playerFighter->move(PLAYER_DELTA_RIGHT, 0);
+    playerFighter->move(PLAYER_DELTA_RIGHT, PLAYER_DELTA_Y);
   }
   if(sf::Keyboard::isKeyPressed(PLAYER_FIRE))
   {
@@ -40,7 +40,7 @@ bool Player::collision(int ShellIndexX, int ShellIndexY)
     {
       // gameStatus[ID_GAME_STATUS] = GAME_STATUS_STOP;
       sf::SoundBuffer bufferDead;
-      bufferDead.loadFromFile("./source/attacked.wav");
+      bufferDead.loadFromFile(SOUND_DEAD);
       sf::Sound soundDead;
       soundDead.setBuffer(bufferDead);
       soundDead.play();

@@ -1,8 +1,8 @@
 #ifndef FIGHTER_GRAPHICS_H
 #define FIGHTER_GRAPHICS_H
 
-#include "../head/ElementGraphics.h"
-#include "../head/FighterGlobalConfig.h"
+#include "ElementGraphics.h"
+#include "../head/GameConfig.h"
 
 class FighterGraphics : public ElementGraphics
 {

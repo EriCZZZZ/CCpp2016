@@ -1,8 +1,8 @@
 #ifndef SHELL_GRAPHICS_H
 #define SHELL_GRAPHICS_H
 
-#include "../head/ElementGraphics.h"
-#include "../head/ShellGlobalConfig.h"
+#include "ElementGraphics.h"
+#include "../head/GameConfig.h"
 
 class ShellGraphics : public ElementGraphics
 {

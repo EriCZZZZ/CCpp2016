@@ -1,7 +1,7 @@
 #ifndef FIGHTER_H
 #define FIGHTER_H
 
-#include "../head/FighterGlobalConfig.h"
+#include "../head/GameConfig.h"
 #include "../classGraphics/FighterGraphics.h"
 #include "../classShell/Shell.h"
 

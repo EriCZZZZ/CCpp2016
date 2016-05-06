@@ -4,6 +4,7 @@
 #include "Operation.h"
 #include "../classFighter/PlayerFighterFactory.h"
 #include "AllShell.h"
+#include "../head/GameConfig.h"
 
 class Player : public Operation
 {

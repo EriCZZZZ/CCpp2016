@@ -6,9 +6,6 @@
 
 CollisionJudge::CollisionJudge(Player *player, Enemy *enemy, AllShell *allShell)
 {
-  #ifdef DEBUG
-  std::cout << player << " " << enemy << std::endl;
-  #endif
   CollisionJudge::player = player;
   CollisionJudge::enemy = enemy;
   CollisionJudge::allShell = allShell;

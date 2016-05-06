@@ -5,6 +5,7 @@
 
 #include "Operation.h"
 #include "../classFighter/EnemyFighterFactory.h"
+#include "../head/GameConfig.h"
 #include "AllShell.h"
 #include "ctime"
 #include "cstdlib"

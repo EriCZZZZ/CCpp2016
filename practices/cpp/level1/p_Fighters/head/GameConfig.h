@@ -1,5 +1,13 @@
 #ifndef GAME_CONFIG_H
 #define GAME_CONFIG_H
+// === screen size ===
+#define SCREEN_WIDTH 1080
+#define SCREEN_HEIGHT 720
+
+#define SCREEN_MOST_LEFT 0
+#define SCREEN_MOST_RIGHT SCREEN_WIDTH
+#define SCREEN_MOST_TOP 0
+#define SCREEN_MOST_BOTTOM SCREEN_HEIGHT
 
 // === fighter ===
 #define FIGHTER_COORDINATE_NUMBER 4
@@ -51,23 +59,27 @@
 #define PLAYER_DELTA_RIGHT 1
 #define PLAYER_DELTA_Y 0
 
-#define PLAYER_CREATE_FIGHTER_X 500
-#define PLAYER_CREATE_FIGHTER_Y 650
+#define PLAYER_CREATE_FIGHTER_X SCREEN_WIDTH / 2
+#define PLAYER_CREATE_FIGHTER_Y SCREEN_HEIGHT - FIGHTER_SIZE_CORRECTED_VALUE_Y
+
 // === Enemy ===
 #define ENEMY_MAX_NUMBER_FIGHTER 5
 #define ENEMY_CREATE_FIGHER_ORIGIN_Y 50
 
+#define ENEMY_MOVE_DELTA_X 0
 #define ENEMY_MOVE_DELTA_Y 1
 
 #define ENEMY_FIRE 1
 
 #define ENEMY_RANDOM_INDEX 1080
 #define ENEMY_RANDOM_FIRE 1000
+
 // === BOOM ===
 #define BOOM_SIZE_MAX 50
 #define BOOM_SIZE_ORIGIN 10
 #define BOOM_SIZE_DELTA 5
 
+#define BOOM_CONTAINER_MAX 50
 // === collision related config ===
 #define COLLISION_KNOCKED 1
 #define COLLISION_UNKNOCKED 0
@@ -78,14 +90,6 @@
 
 #define COLLISION_KNOCK_DISTANCE 600
 
-// === screen size ===
-#define SCREEN_WIDTH 1080
-#define SCREEN_HEIGHT 720
-
-#define SCREEN_MOST_LEFT 0
-#define SCREEN_MOST_RIGHT SCREEN_WIDTH
-#define SCREEN_MOST_TOP 0
-#define SCREEN_MOST_BOTTOM SCREEN_HEIGHT
 
 // === interval ===
 #define INTERVAL_MAIN 5000
@@ -94,5 +98,6 @@
 #define SOUND_BGM "./source/BGM.wav"
 #define SOUND_FIRE "./source/fire.wav"
 #define SOUND_BOOM "./source/boom.wav"
+#define SOUND_DEAD "./source/dead.wav"
 
 #endif

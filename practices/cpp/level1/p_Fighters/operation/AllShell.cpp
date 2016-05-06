@@ -14,7 +14,7 @@ void AllShell::operate()
   {
     (*it)->move();
     int tempY = (*it)->getVertex().position.y;
-    if(tempY < 0 || tempY > 720)
+    if(tempY < SCREEN_MOST_TOP || tempY > SCREEN_MOST_BOTTOM)
     {
       delete *it;
       allShell.erase(it);

@@ -2,7 +2,7 @@
 #define SHELL_H
 
 #include "../classGraphics/ShellGraphics.h"
-#include "../head/ShellGlobalConfig.h"
+#include "../head/GameConfig.h"
 
 class Shell
 {

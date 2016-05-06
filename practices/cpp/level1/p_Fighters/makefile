@@ -15,13 +15,13 @@ main.o : main.cpp ./operation/Player.o ./operation/Enemy.o \
 	g++ -c -g -std=c++11 -o main.o main.cpp
 
 ./classGraphics/FighterGraphics.o : ./classGraphics/FighterGraphics.cpp \
-	./head/FighterGlobalConfig.h
+	./head/GameConfig.h
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classGraphics/FighterGraphics.o\
 	 ./classGraphics/FighterGraphics.cpp
 
 ./classGraphics/ShellGraphics.o: ./classGraphics/ShellGraphics.cpp \
-	./head/ShellGlobalConfig.h
+	./head/GameConfig.h
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classGraphics/ShellGraphics.o \
 	./classGraphics/ShellGraphics.cpp
