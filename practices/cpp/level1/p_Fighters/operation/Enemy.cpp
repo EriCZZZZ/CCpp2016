@@ -134,7 +134,7 @@ bool Enemy::collisionJudge(int x1, int y1, int x2, int y2)
 int Enemy::createRandomIndex()
 {
   srand(clock());
-  return (300 + (rand() % 1000));
+  return (rand() % 1080);
 }
 int Enemy::createRandomMoveVector()
 {

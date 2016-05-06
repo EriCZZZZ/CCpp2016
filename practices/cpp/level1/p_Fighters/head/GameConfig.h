@@ -1,38 +1,98 @@
 #ifndef GAME_CONFIG_H
 #define GAME_CONFIG_H
 
-// === game status vector ===
-#define ID_GAME_STATUS 0
-#define ID_PLAYER 1
-#define ID_ENEMY 2
-#define ID_ALL_SHELL 3
-#define ID_SCORE 4
+// === fighter ===
+#define FIGHTER_COORDINATE_NUMBER 4
+#define FIGHTER_COORDINATE_1_X 30
+#define FIGHTER_COORDINATE_1_Y 50
+#define FIGHTER_COORDINATE_2_X 0
+#define FIGHTER_COORDINATE_2_Y 60
+#define FIGHTER_COORDINATE_3_X 30
+#define FIGHTER_COORDINATE_3_Y 0
+#define FIGHTER_COORDINATE_4_Y 60
+#define FIGHTER_COORDINATE_4_X 60
 
-#define GAME_STATUS_STOP 0
-#define GAME_STATUS_GOING 1
+#define FIGHTER_COORDINATE_ORIGIN_X 30
+#define FIGHTER_COORDINATE_ORIGIN_Y 30
 
-#define GAME_STATUS_DONE 1
-#define GAME_STATUS_UNDONE 0
+#define FIGHTER_ENEMY 1
+#define FIGHTER_PLAYER 0
 
-// === class-Player config ===
+#define FIGHTER_HP_MAX 100
+#define FIGHTER_HP_MIN 0
+
+#define FIGHTER_CREATE_SHELL_CORRECTED_VALUE_PLAYER_Y -30
+#define FIGHTER_CREATE_SHELL_CORRECTED_VALUE_ENEMY_Y 30
+
+#define FIGHTER_SIZE_CORRECTED_VALUE_X 30
+#define FIGHTER_SIZE_CORRECTED_VALUE_Y 30
+
+#define FIGHTER_PLAYER_FILL_COLOR sf::Color::Magenta
+#define FIGHTER_PLAYER_OUTLINE_COLOR sf::Color::Red
+
+#define FIGHTER_ENEMY_ROTATION 180
+
+// === shell ===
+#define SHELL_CIRCLE_RADIUS 5
+#define SHELL_FILL_COLOR Red
+#define SHELL_ORIGIN_COORDINATE_X SHELL_CIRCLE_RADIUS
+#define SHELL_ORIGIN_COORDINATE_Y SHELL_CIRCLE_RADIUS
+
+#define SHELL_SPEED_PLAYER_X 0
+#define SHELL_SPEED_PLAYER_Y 3
+#define SHELL_SPEED_ENEMY_X 0
+#define SHELL_SPEED_ENEMY_Y -3
+
+// === Player ===
 #define PLAYER_LEFT sf::Keyboard::Left
 #define PLAYER_RIGHT sf::Keyboard::Right
 #define PLAYER_FIRE sf::Keyboard::Space
 #define PLAYER_DELTA_LEFT -1
 #define PLAYER_DELTA_RIGHT 1
+#define PLAYER_DELTA_Y 0
+
+#define PLAYER_CREATE_FIGHTER_X 500
+#define PLAYER_CREATE_FIGHTER_Y 650
+// === Enemy ===
+#define ENEMY_MAX_NUMBER_FIGHTER 5
+#define ENEMY_CREATE_FIGHER_ORIGIN_Y 50
+
+#define ENEMY_MOVE_DELTA_Y 1
+
+#define ENEMY_FIRE 1
+
+#define ENEMY_RANDOM_INDEX 1080
+#define ENEMY_RANDOM_FIRE 1000
+// === BOOM ===
+#define BOOM_SIZE_MAX 50
+#define BOOM_SIZE_ORIGIN 10
+#define BOOM_SIZE_DELTA 5
 
 // === collision related config ===
 #define COLLISION_KNOCKED 1
 #define COLLISION_UNKNOCKED 0
 
-#define COLLISION_HP_DELTA -20
+#define COLLISION_HP_DELTA -10
 #define COLLISION_FIGHTER_DEAD 0
 #define COLLISION_FIGHTER_UNDEAD 1
 
-//The square of real-distance
 #define COLLISION_KNOCK_DISTANCE 600
 
-// === class-enemy config ===
-#define ENEMY_MAX_NUMBER_FIGHTER 5
+// === screen size ===
+#define SCREEN_WIDTH 1080
+#define SCREEN_HEIGHT 720
+
+#define SCREEN_MOST_LEFT 0
+#define SCREEN_MOST_RIGHT SCREEN_WIDTH
+#define SCREEN_MOST_TOP 0
+#define SCREEN_MOST_BOTTOM SCREEN_HEIGHT
+
+// === interval ===
+#define INTERVAL_MAIN 5000
+
+// === sound location ===
+#define SOUND_BGM "./source/BGM.wav"
+#define SOUND_FIRE "./source/fire.wav"
+#define SOUND_BOOM "./source/boom.wav"
 
 #endif
