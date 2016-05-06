@@ -35,9 +35,8 @@ void Enemy::operate()
     // std::cout << tempX << " " << tempY << std::endl;
     // #endif
 
-    if(tempY <= SCREEN_MOST_TOP || tempY >= SCREEN_MOST_BOTTOM)
+    if(tempY <= SCREEN_MOST_TOP || tempY >= SCREEN_MOST_BOTTOM - FIGHTER_SIZE_CORRECTED_VALUE_Y)
     {
-
       delete *it;
       enemyFighter.erase(it);
       continue;
