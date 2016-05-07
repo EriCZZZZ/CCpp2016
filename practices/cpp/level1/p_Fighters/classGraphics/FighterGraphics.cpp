@@ -15,6 +15,5 @@ void FighterGraphics::draw(sf::RenderTarget& target, sf::RenderStates states) co
 {
   states.transform *= getTransform();
   states.texture = &fighterTexture;
-  // target.draw(fighterVertices, states);
   target.draw(fighterVertices, FIGHTER_COORDINATE_NUMBER, sf::TrianglesFan, states);
 }

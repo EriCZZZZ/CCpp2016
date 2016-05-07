@@ -31,11 +31,7 @@ void Enemy::operate()
     int tempX = (*it)->getVertex().position.x;
     int tempY = (*it)->getVertex().position.y;
 
-    // #ifdef DEBUG
-    // std::cout << tempX << " " << tempY << std::endl;
-    // #endif
-
-    if(tempY <= SCREEN_MOST_TOP || tempY >= SCREEN_MOST_BOTTOM - FIGHTER_SIZE_CORRECTED_VALUE_Y)
+    if(tempY <= SCREEN_MOST_TOP || tempY >= SCREEN_MOST_BOTTOM)
     {
       delete *it;
       enemyFighter.erase(it);
@@ -43,11 +39,11 @@ void Enemy::operate()
     }
     if(tempX <= SCREEN_MOST_LEFT + FIGHTER_SIZE_CORRECTED_VALUE_X)
     {
-      (*it)->setPosition(SCREEN_MOST_LEFT, tempY);
+      (*it)->setPosition(SCREEN_MOST_LEFT + FIGHTER_SIZE_CORRECTED_VALUE_X, tempY);
     }
     else if(tempX >= SCREEN_MOST_RIGHT - FIGHTER_SIZE_CORRECTED_VALUE_X)
     {
-      (*it)->setPosition(SCREEN_MOST_RIGHT, tempY);
+      (*it)->setPosition(SCREEN_MOST_RIGHT - FIGHTER_SIZE_CORRECTED_VALUE_X, tempY);
     }
     // ==== create shell
     if(createRandomFire() == ENEMY_FIRE)

@@ -5,7 +5,7 @@ Fighter::Fighter(int x, int y)
 }
 void Fighter::setPoint(int index, sf::Vertex targetVertex)
 {
-  if(index < 0 || index - 1 >= FIGHTER_COORDINATE_NUMBER)
+  if(index < FIGHTER_COORDINATE_INDEX_MIN || index >= FIGHTER_COORDINATE_INDEX_MAX)
   {
     return;
   }
@@ -35,9 +35,9 @@ bool Fighter::reviseHP(int deltaHP)
   }
   else
   {
-    HP = 0;
+    HP = FIGHTER_HP_MIN;
   }
-  if(HP <= 0)
+  if(HP <= FIGHTER_HP_MIN)
   {
     return COLLISION_FIGHTER_DEAD;
   }

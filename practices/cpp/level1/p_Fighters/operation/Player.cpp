@@ -15,14 +15,23 @@ Player::Player(AllShell *shellContainer, sf::RenderWindow *window)
 }
 void Player::operate()
 {
+  int tempX = playerFighter->getVertex().position.x;
+
   if(sf::Keyboard::isKeyPressed(PLAYER_LEFT))
   {
-    playerFighter->move(PLAYER_DELTA_LEFT, PLAYER_DELTA_Y);
+    if(tempX + PLAYER_DELTA_LEFT >= SCREEN_MOST_LEFT + FIGHTER_SIZE_CORRECTED_VALUE_X)
+    {
+      playerFighter->move(PLAYER_DELTA_LEFT, PLAYER_DELTA_Y);
+    }
   }
   if(sf::Keyboard::isKeyPressed(PLAYER_RIGHT))
   {
-    playerFighter->move(PLAYER_DELTA_RIGHT, PLAYER_DELTA_Y);
+    if(tempX + PLAYER_DELTA_RIGHT <= SCREEN_MOST_RIGHT - FIGHTER_SIZE_CORRECTED_VALUE_X)
+    {
+      playerFighter->move(PLAYER_DELTA_RIGHT, PLAYER_DELTA_Y);
+    }
   }
+
   if(sf::Keyboard::isKeyPressed(PLAYER_FIRE))
   {
     auto tempShell = playerFighter->createShell();
