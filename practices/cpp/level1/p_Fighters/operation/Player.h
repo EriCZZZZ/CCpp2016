@@ -6,6 +6,7 @@
 #include "AllShell.h"
 #include "../head/GameConfig.h"
 #include "Status.h"
+#include <SFML/Audio.hpp>
 
 class Player : public Operation
 {
@@ -14,6 +15,12 @@ private:
   AllShell *shellContainer;
   Status *status;
   sf::RenderWindow *window;
+
+  sf::SoundBuffer *bufferFire;
+  sf::SoundBuffer *bufferAttacked;
+  std::vector<sf::Sound *> soundFire;
+  sf::Sound *soundAttacked;
+  void playFire();
   bool collisionJudge(int x1, int y1, int x2, int y2);
 public:
   Player(AllShell *shellContainer, sf::RenderWindow *window, Status *status);

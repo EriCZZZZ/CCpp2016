@@ -69,6 +69,8 @@
 #define PLAYER_CREATE_FIGHTER_X SCREEN_WIDTH / 2
 #define PLAYER_CREATE_FIGHTER_Y SCREEN_HEIGHT - FIGHTER_SIZE_CORRECTED_VALUE_Y
 
+#define PLAYER_FIRE_MAX 50
+
 // === Enemy ===
 #define ENEMY_MAX_NUMBER_FIGHTER 5
 #define ENEMY_CREATE_FIGHER_ORIGIN_Y 50
@@ -108,6 +110,7 @@
 #define SOUND_FIRE "./source/fire.wav"
 #define SOUND_BOOM "./source/boom.wav"
 #define SOUND_DEAD "./source/dead.wav"
+#define SOUND_ATTACKED "./source/dead.wav"
 
 // === font location ===
 #define FONT_PATH "./source/font.ttf"

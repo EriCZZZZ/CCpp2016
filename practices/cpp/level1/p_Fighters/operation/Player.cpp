@@ -1,7 +1,5 @@
 #include "Player.h"
 
-#include <SFML/Audio.hpp>
-
 #ifdef DEBUG
 #include <iostream>
 #endif
@@ -13,7 +11,15 @@ Player::Player(AllShell *shellContainer, sf::RenderWindow *window, Status *statu
   PlayerFighterFactory *tempFactory = new PlayerFighterFactory;
   playerFighter = tempFactory->createFighter(PLAYER_CREATE_FIGHTER_X, PLAYER_CREATE_FIGHTER_Y);
   Player::shellContainer = shellContainer;
+
+  bufferFire = new sf::SoundBuffer;
+  bufferAttacked = new sf::SoundBuffer;
+  bufferFire->loadFromFile(SOUND_FIRE);
+  bufferAttacked->loadFromFile(SOUND_ATTACKED);
+  soundAttacked = new sf::Sound;
+  soundAttacked->setBuffer(*bufferAttacked);
 }
+
 void Player::operate()
 {
   int tempX = playerFighter->getVertex().position.x;
@@ -37,6 +43,7 @@ void Player::operate()
   {
     auto tempShell = playerFighter->createShell();
     shellContainer->newShell(tempShell);
+    playFire();
   }
   window->draw(*(playerFighter->toDraw()));
 }
@@ -60,7 +67,8 @@ bool Player::collision(int ShellIndexX, int ShellIndexY)
     }
     else
     {
-      //add hp
+      soundAttacked->play();
+      
       status->addHP(COLLISION_HP_DELTA);
     }
     return COLLISION_KNOCKED;
@@ -80,5 +88,17 @@ bool Player::collisionJudge(int x1, int y1, int x2, int y2)
   else
   {
     return COLLISION_UNKNOCKED;
+  }
+}
+void Player::playFire()
+{
+  auto temp = new sf::Sound;
+  temp->setBuffer(*bufferFire);
+  soundFire.push_back(temp);
+  temp->play();
+  while(soundFire.size() > PLAYER_FIRE_MAX)
+  {
+    delete *(soundFire.begin());
+    soundFire.erase(soundFire.begin());
   }
 }

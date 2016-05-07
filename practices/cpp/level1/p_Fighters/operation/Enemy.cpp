@@ -94,7 +94,7 @@ void Enemy::playBoom()
   boomSound.push_back(temp);
   while(boomSound.size() > BOOM_CONTAINER_MAX)
   {
-    delete *boomSound.begin();
+    delete *(boomSound.begin());
     boomSound.erase(boomSound.begin());
   }
 }
