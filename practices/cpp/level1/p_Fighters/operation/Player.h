@@ -22,11 +22,12 @@ private:
   std::vector<sf::Sound *> soundFire;
   sf::Sound *soundAttacked;
   sf::Sound *soundDead;
-  
+
   void playFire();
   bool collisionJudge(int x1, int y1, int x2, int y2);
 public:
   Player(AllShell *shellContainer, sf::RenderWindow *window, Status *status);
+  ~Player();
   void operate();
   bool collision(int ShellIndexX, int ShellIndexY);
 };

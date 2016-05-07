@@ -4,6 +4,14 @@
 #include <iostream>
 #endif
 
+AllShell::~AllShell()
+{
+  for(auto it = allShell.begin(); it != allShell.end();)
+  {
+    delete *it;
+    allShell.erase(it);
+  }
+}
 void AllShell::newShell(Shell *shell)
 {
   allShell.push_back(shell);

@@ -55,6 +55,10 @@ void Game::play()
     else
     {
       deadText->operate();
+      if(sf::Keyboard::isKeyPressed(KEYBOARD_RETURN))
+      {
+        return;
+      }
     }
     window->display();
     std::this_thread::sleep_for(std::chrono::microseconds(INTERVAL_MAIN));

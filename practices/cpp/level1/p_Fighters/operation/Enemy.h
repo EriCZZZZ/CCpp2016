@@ -30,6 +30,7 @@ private:
   int createRandomFire();
 public:
   Enemy(AllShell *shellContainer, sf::RenderWindow *window, Status *status);
+  ~Enemy();
   void operate();
   bool collision(int ShellIndexX, int ShellIndexY);
 };

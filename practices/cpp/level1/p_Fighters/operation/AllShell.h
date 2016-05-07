@@ -13,6 +13,7 @@ private:
   sf::RenderWindow *window;
 public:
   AllShell(sf::RenderWindow *window) : window(window) {}
+  ~AllShell();
   void newShell(Shell *shell);
   void operate();
   std::vector<Shell *> &shellVector();

@@ -11,6 +11,7 @@ Player::Player(AllShell *shellContainer, sf::RenderWindow *window, Status *statu
   PlayerFighterFactory *tempFactory = new PlayerFighterFactory;
   playerFighter = tempFactory->createFighter(PLAYER_CREATE_FIGHTER_X, PLAYER_CREATE_FIGHTER_Y);
   Player::shellContainer = shellContainer;
+  delete tempFactory;
 
   bufferFire = new sf::SoundBuffer;
   bufferAttacked = new sf::SoundBuffer;
@@ -24,7 +25,19 @@ Player::Player(AllShell *shellContainer, sf::RenderWindow *window, Status *statu
   soundDead->setBuffer(*bufferDead);
   soundDead->setLoop(true);
 }
-
+Player::~Player()
+{
+  delete bufferFire;
+  delete bufferAttacked;
+  delete soundAttacked;
+  delete bufferDead;
+  delete soundDead;
+  for(auto it = soundFire.begin(); it != soundFire.end();)
+  {
+    delete *it;
+    soundFire.erase(it);
+  }
+}
 void Player::operate()
 {
   int tempX = playerFighter->getVertex().position.x;

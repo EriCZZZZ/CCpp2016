@@ -14,6 +14,25 @@ Enemy::Enemy(AllShell *shellContainer, sf::RenderWindow *window, Status *status)
   boomBuffer = new sf::SoundBuffer;
   boomBuffer->loadFromFile(SOUND_BOOM);
 }
+Enemy::~Enemy()
+{
+  delete boomBuffer;
+  for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
+  {
+    delete *it;
+    enemyFighter.erase(it);
+  }
+  for(auto it = boomCircle.begin(); it != boomCircle.end();)
+  {
+    delete *it;
+    boomCircle.erase(it);
+  }
+  for(auto it = boomSound.begin(); it != boomSound.end();)
+  {
+    delete *it;
+    boomSound.erase(it);
+  }
+}
 void Enemy::operate()
 {
   if(enemyFighter.size() < ENEMY_MAX_NUMBER_FIGHTER)

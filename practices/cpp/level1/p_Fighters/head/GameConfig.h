@@ -139,4 +139,7 @@
 #define DEAD_TEXT_CHARACTER_SIZE 50
 #define DEAD_TEXT_COLOR sf::Color::Red
 
+// === keyboard setting ===
+#define KEYBOARD_RETURN sf::Keyboard::Space
+
 #endif
