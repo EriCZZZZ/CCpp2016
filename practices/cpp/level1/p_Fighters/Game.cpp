@@ -18,6 +18,8 @@ Game::Game()
   soundBGM->setBuffer(*bufferBGM);
   soundBGM->setLoop(true);
   soundBGM->play();
+  //dead text
+  deadText = new DeadText(window);
 }
 Game::~Game()
 {
@@ -26,6 +28,7 @@ Game::~Game()
   delete player;
   delete enemy;
   delete collisionJudge;
+  delete deadText;
   delete window;
 }
 void Game::play()
@@ -41,11 +44,18 @@ void Game::play()
       }
     }
     window->clear(SCREEN_COLOR_BACKGROUND);
-    for(auto it = gameOperation.begin(); it != gameOperation.end(); it++)
+    if(status->checkGameStatus() == GAME_GOING)
     {
-      (*it)->operate();
+      for(auto it = gameOperation.begin(); it != gameOperation.end(); it++)
+      {
+        (*it)->operate();
+      }
+      collisionJudge->judgeAll();
     }
-    collisionJudge->judgeAll();
+    else
+    {
+      deadText->operate();
+    }
     window->display();
     std::this_thread::sleep_for(std::chrono::microseconds(INTERVAL_MAIN));
   }
