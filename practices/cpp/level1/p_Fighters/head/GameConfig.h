@@ -81,7 +81,7 @@
 #define ENEMY_FIRE 1
 
 #define ENEMY_RANDOM_INDEX 1080
-#define ENEMY_RANDOM_FIRE 1000
+#define ENEMY_RANDOM_FIRE 100
 
 #define ENEMY_ADD_SCORE 10
 
@@ -110,7 +110,7 @@
 #define SOUND_FIRE "./source/fire.wav"
 #define SOUND_BOOM "./source/boom.wav"
 #define SOUND_DEAD "./source/dead.wav"
-#define SOUND_ATTACKED "./source/dead.wav"
+#define SOUND_ATTACKED "./source/attacked.wav"
 
 // === font location ===
 #define FONT_PATH "./source/font.ttf"

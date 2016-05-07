@@ -18,8 +18,11 @@ private:
 
   sf::SoundBuffer *bufferFire;
   sf::SoundBuffer *bufferAttacked;
+  sf::SoundBuffer *bufferDead;
   std::vector<sf::Sound *> soundFire;
   sf::Sound *soundAttacked;
+  sf::Sound *soundDead;
+  
   void playFire();
   bool collisionJudge(int x1, int y1, int x2, int y2);
 public:

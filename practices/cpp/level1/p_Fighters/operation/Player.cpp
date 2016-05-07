@@ -18,6 +18,11 @@ Player::Player(AllShell *shellContainer, sf::RenderWindow *window, Status *statu
   bufferAttacked->loadFromFile(SOUND_ATTACKED);
   soundAttacked = new sf::Sound;
   soundAttacked->setBuffer(*bufferAttacked);
+  bufferDead = new sf::SoundBuffer;
+  bufferDead->loadFromFile(SOUND_DEAD);
+  soundDead = new sf::Sound;
+  soundDead->setBuffer(*bufferDead);
+  soundDead->setLoop(true);
 }
 
 void Player::operate()
@@ -55,11 +60,7 @@ bool Player::collision(int ShellIndexX, int ShellIndexY)
   {
     if(playerFighter->reviseHP(COLLISION_HP_DELTA) == COLLISION_FIGHTER_DEAD)
     {
-      sf::SoundBuffer bufferDead;
-      bufferDead.loadFromFile(SOUND_DEAD);
-      sf::Sound soundDead;
-      soundDead.setBuffer(bufferDead);
-      soundDead.play();
+      soundDead->play();
       status->setGameStatus(GAME_STOP);
       #ifdef DEBUG
       std::cout << "Aaa~" << std::endl;
@@ -68,7 +69,6 @@ bool Player::collision(int ShellIndexX, int ShellIndexY)
     else
     {
       soundAttacked->play();
-      
       status->addHP(COLLISION_HP_DELTA);
     }
     return COLLISION_KNOCKED;
