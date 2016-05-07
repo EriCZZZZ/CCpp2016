@@ -9,6 +9,8 @@
 #define SCREEN_MOST_TOP 0
 #define SCREEN_MOST_BOTTOM SCREEN_HEIGHT
 
+#define SCREEN_COLOR_BACKGROUND sf::Color::Black
+
 // === fighter ===
 #define FIGHTER_COORDINATE_NUMBER 4
 #define FIGHTER_COORDINATE_INDEX_MAX 3
@@ -79,6 +81,8 @@
 #define ENEMY_RANDOM_INDEX 1080
 #define ENEMY_RANDOM_FIRE 1000
 
+#define ENEMY_ADD_SCORE 10
+
 // === BOOM ===
 #define BOOM_SIZE_MAX 50
 #define BOOM_SIZE_ORIGIN 10
@@ -104,5 +108,26 @@
 #define SOUND_FIRE "./source/fire.wav"
 #define SOUND_BOOM "./source/boom.wav"
 #define SOUND_DEAD "./source/dead.wav"
+
+// === font location ===
+#define FONT_PATH "./source/font.ttf"
+#define FONT_SIZE 24
+#define FONT_COLOR sf::Color::White
+
+// === game status ===
+#define GAME_GOING 1
+#define GAME_STOP 0
+
+#define GAME_FONT_INDEX_PERCENT_X 0.03
+#define GAME_FONT_INDEX_PERCENT_Y 0.9
+
+#define GAME_HP_LENGTH 50
+#define GAME_HP_WIDTH 25
+#define GAME_HP_INDEX_PERCENT_X 0.2
+#define GAME_HP_INDEX_PERCENT_Y 0.9
+#define GAME_HP_FILL_FILL_COLOR FONT_COLOR
+#define GAME_HP_BORDER_FILL_COLOR SCREEN_COLOR_BACKGROUND
+#define GAME_HP_BORDER_BORDER_COLOR FONT_COLOR
+#define GAME_HP_BORDER_OUTLINE_THICKNESS 1
 
 #endif

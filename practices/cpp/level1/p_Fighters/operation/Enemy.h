@@ -7,15 +7,17 @@
 #include "../classFighter/EnemyFighterFactory.h"
 #include "../head/GameConfig.h"
 #include "AllShell.h"
+#include "Status.h"
 #include "ctime"
 #include "cstdlib"
 
 class Enemy : public Operation
 {
 private:
-  std::vector<Fighter *> enemyFighter;
-  AllShell *shellContainer;
   sf::RenderWindow *window;
+  AllShell *shellContainer;
+  Status *status;
+  std::vector<Fighter *> enemyFighter;
   std::vector<sf::CircleShape *> boomCircle;
   sf::SoundBuffer *boomBuffer;
   std::vector<sf::Sound *> boomSound;
@@ -27,7 +29,7 @@ private:
   int createRandomMoveVector();
   int createRandomFire();
 public:
-  Enemy(AllShell *shellContainer, sf::RenderWindow *window);
+  Enemy(AllShell *shellContainer, sf::RenderWindow *window, Status *status);
   void operate();
   bool collision(int ShellIndexX, int ShellIndexY);
 };

@@ -6,8 +6,9 @@
 #include <chrono>
 #endif
 
-Enemy::Enemy(AllShell *shellContainer, sf::RenderWindow *window)
+Enemy::Enemy(AllShell *shellContainer, sf::RenderWindow *window, Status *status)
 {
+  Enemy::status = status;
   Enemy::shellContainer = shellContainer;
   Enemy::window = window;
   boomBuffer = new sf::SoundBuffer;
@@ -67,7 +68,8 @@ bool Enemy::collision(int ShellIndexX, int ShellIndexY)
         createBoomCircle(enemyFighterIndexX, enemyFighterIndexY);
         delete *it;
         enemyFighter.erase(it);
-
+        //add score
+        status->addScore(ENEMY_ADD_SCORE);
         //play boom
         playBoom();
       }

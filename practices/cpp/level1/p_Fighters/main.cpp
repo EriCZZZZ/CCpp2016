@@ -5,6 +5,7 @@
 #include "./operation/AllShell.h"
 #include "./operation/CollisionJudge.h"
 #include "./head/GameConfig.h"
+#include "./operation/Status.h"
 
 #include <thread>
 #include <chrono>
@@ -25,14 +26,16 @@ int main()
   sound.play();
 
   sf::RenderWindow window(sf::VideoMode(1080, 720), "SFML");
+  Status* status = new Status(&window);
   AllShell* allShell = new AllShell(&window);
-  Player* player = new Player(allShell, &window);
-  Enemy* enemy = new Enemy(allShell, &window);
+  Player* player = new Player(allShell, &window, status);
+  Enemy* enemy = new Enemy(allShell, &window, status);
   CollisionJudge collisionJudge(player, enemy, allShell);
   std::vector<Operation *> gameOperation;
   gameOperation.push_back(player);
   gameOperation.push_back(enemy);
   gameOperation.push_back(allShell);
+  gameOperation.push_back(status);
 
   while(window.isOpen())
   {

@@ -6,8 +6,9 @@
 #include <iostream>
 #endif
 
-Player::Player(AllShell *shellContainer, sf::RenderWindow *window)
+Player::Player(AllShell *shellContainer, sf::RenderWindow *window, Status *status)
 {
+  Player::status = status;
   Player::window = window;
   PlayerFighterFactory *tempFactory = new PlayerFighterFactory;
   playerFighter = tempFactory->createFighter(PLAYER_CREATE_FIGHTER_X, PLAYER_CREATE_FIGHTER_Y);
@@ -47,20 +48,20 @@ bool Player::collision(int ShellIndexX, int ShellIndexY)
   {
     if(playerFighter->reviseHP(COLLISION_HP_DELTA) == COLLISION_FIGHTER_DEAD)
     {
-      // gameStatus[ID_GAME_STATUS] = GAME_STATUS_STOP;
       sf::SoundBuffer bufferDead;
       bufferDead.loadFromFile(SOUND_DEAD);
       sf::Sound soundDead;
       soundDead.setBuffer(bufferDead);
       soundDead.play();
+      status->setGameStatus(GAME_STOP);
       #ifdef DEBUG
       std::cout << "Aaa~" << std::endl;
       #endif
     }
     else
     {
-      //to show HP-decrease
-      ;
+      //add hp
+      status->addHP(COLLISION_HP_DELTA);
     }
     return COLLISION_KNOCKED;
   }
