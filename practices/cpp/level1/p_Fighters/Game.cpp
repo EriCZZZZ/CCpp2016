@@ -29,7 +29,6 @@ Game::~Game()
   delete enemy;
   delete collisionJudge;
   delete deadText;
-  delete window;
 }
 void Game::play()
 {
@@ -57,6 +56,7 @@ void Game::play()
       deadText->operate();
       if(sf::Keyboard::isKeyPressed(KEYBOARD_RETURN))
       {
+        delete window;
         return;
       }
     }
