@@ -2,7 +2,7 @@
 Game::Game()
 {
   window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "ERIC-FIGHTER");
-  status = new Status(window);
+  status = new Status(window, 3);
   allShell = new AllShell(window);
   player = new Player(allShell, window, status);
   enemy = new Enemy(allShell, window, status);
@@ -18,7 +18,7 @@ Game::Game()
   soundBGM->setBuffer(*bufferBGM);
   soundBGM->setLoop(true);
   soundBGM->play();
-  
+
   //dead text
   deadText = new DeadText(window);
 }

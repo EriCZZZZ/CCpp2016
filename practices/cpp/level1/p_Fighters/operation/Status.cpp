@@ -4,7 +4,7 @@
 #include <iostream>
 #endif
 
-Status::Status(sf::RenderWindow *window)
+Status::Status(sf::RenderWindow *window, int difficultyBase)
 {
   gameStatus = GAME_GOING;
   score = 0;
@@ -32,6 +32,9 @@ Status::Status(sf::RenderWindow *window)
   HPborder->setOutlineThickness(GAME_HP_BORDER_OUTLINE_THICKNESS);
   HPborder->setOutlineColor(GAME_HP_BORDER_BORDER_COLOR);
   HPborder->setFillColor(GAME_HP_BORDER_FILL_COLOR);
+
+  Status::difficultyBase = difficultyBase;
+  setDifficulty();
 }
 Status::~Status()
 {
@@ -72,4 +75,14 @@ void Status::setGameStatus(bool status)
 bool Status::checkGameStatus()
 {
   return gameStatus;
+}
+void Status::setDifficulty()
+{
+  difficulty.push_back(difficultyBase * DIFFICULTY_K_SHELL_SPEED);
+  difficulty.push_back(difficultyBase * DIFFICULTY_K_SHELL_CREATE_RATE);
+  difficulty.push_back(difficultyBase * DIFFICULTY_K_ENEMY_FIGHTER_MAX_NUMBER);
+}
+int Status::getDifficulty(int index)
+{
+  return difficulty[index];
 }
