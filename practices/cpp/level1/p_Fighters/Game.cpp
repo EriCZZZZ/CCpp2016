@@ -18,6 +18,7 @@ Game::Game()
   soundBGM->setBuffer(*bufferBGM);
   soundBGM->setLoop(true);
   soundBGM->play();
+  
   //dead text
   deadText = new DeadText(window);
 }
@@ -29,6 +30,9 @@ Game::~Game()
   delete enemy;
   delete collisionJudge;
   delete deadText;
+  delete soundBGM;
+  delete bufferBGM;
+  delete window;
 }
 void Game::play()
 {
@@ -39,6 +43,7 @@ void Game::play()
     {
       if(eventClosed.type == sf::Event::Closed)
       {
+        soundBGM->stop();
         window->close();
       }
     }
@@ -57,6 +62,7 @@ void Game::play()
       if(sf::Keyboard::isKeyPressed(KEYBOARD_RETURN))
       {
         delete window;
+        soundBGM->stop();
         return;
       }
     }

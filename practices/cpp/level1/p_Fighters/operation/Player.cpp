@@ -23,7 +23,6 @@ Player::Player(AllShell *shellContainer, sf::RenderWindow *window, Status *statu
   bufferDead->loadFromFile(SOUND_DEAD);
   soundDead = new sf::Sound;
   soundDead->setBuffer(*bufferDead);
-  soundDead->setLoop(true);
 }
 Player::~Player()
 {
