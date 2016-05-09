@@ -35,10 +35,10 @@ Enemy::~Enemy()
 }
 void Enemy::operate()
 {
-  if(enemyFighter.size() < ENEMY_MAX_NUMBER_FIGHTER)
+  if(enemyFighter.size() < status->getDifficulty(DIFFICULTY_INDEX_ENEMY_FIGHTER_MAX_NUMBER))
   {
     EnemyFighterFactory tempFactory;
-    while(enemyFighter.size() < ENEMY_MAX_NUMBER_FIGHTER)
+    while(enemyFighter.size() < status->getDifficulty(DIFFICULTY_INDEX_ENEMY_FIGHTER_MAX_NUMBER))
     {
       auto temp = tempFactory.createFighter(createRandomIndex(), ENEMY_CREATE_FIGHER_ORIGIN_Y);
       enemyFighter.push_back(temp);
