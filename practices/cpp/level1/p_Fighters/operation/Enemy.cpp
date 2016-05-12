@@ -66,8 +66,8 @@ void Enemy::operate()
       (*it)->setPosition(SCREEN_MOST_RIGHT - FIGHTER_SIZE_CORRECTED_VALUE_X, tempY);
     }
     // ==== create shell
-    if(createRandomFire() == ENEMY_FIRE)
-      shellContainer->newShell((*it)->createShell());
+    if(createRandomFire() <= ENEMY_FIRE * status->getDifficulty(DIFFICULTY_INDEX_SHELL_FIRE_RATE))
+      shellContainer->newShell((*it)->createShell(SHELL_SPEED_ENEMY_X, status->getDifficulty(DIFFICULTY_INDEX_SHELL_SPEED)));
     window->draw(*((*it)->toDraw()));
     it++;
   }
@@ -158,10 +158,6 @@ int Enemy::createRandomIndex()
 {
   srand(clock());
   return (rand() % ENEMY_RANDOM_INDEX);
-  // #ifdef DEBUG
-  // std::cout << rand()%800 << std::endl;
-  // #endif
-  // return (rand() % 800);
 }
 int Enemy::createRandomFire()
 {

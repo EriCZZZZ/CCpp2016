@@ -27,8 +27,8 @@ private:
   sf::SoundBuffer *bufferBGM;
   sf::Sound *soundBGM;
 public:
-  Game();
+  Game(int difficulty);
   ~Game();
-  void play();
+  bool play();
 };
 #endif

@@ -1,8 +1,9 @@
 #include "Game.h"
-Game::Game()
+
+Game::Game(int difficulty)
 {
   window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "ERIC-FIGHTER");
-  status = new Status(window, 3);
+  status = new Status(window, difficulty);
   allShell = new AllShell(window);
   player = new Player(allShell, window, status);
   enemy = new Enemy(allShell, window, status);
@@ -45,6 +46,7 @@ void Game::play()
       {
         soundBGM->stop();
         window->close();
+        return;
       }
     }
     window->clear(SCREEN_COLOR_BACKGROUND);
@@ -61,7 +63,7 @@ void Game::play()
       deadText->operate();
       if(sf::Keyboard::isKeyPressed(KEYBOARD_RETURN))
       {
-        delete window;
+        window->close();
         soundBGM->stop();
         return;
       }

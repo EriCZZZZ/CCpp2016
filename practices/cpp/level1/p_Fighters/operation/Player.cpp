@@ -58,7 +58,7 @@ void Player::operate()
 
   if(sf::Keyboard::isKeyPressed(PLAYER_FIRE))
   {
-    auto tempShell = playerFighter->createShell();
+    Shell *tempShell = playerFighter->createShell(SHELL_SPEED_PLAYER_X, SHELL_SPEED_PLAYER_Y);
     shellContainer->newShell(tempShell);
     playFire();
   }

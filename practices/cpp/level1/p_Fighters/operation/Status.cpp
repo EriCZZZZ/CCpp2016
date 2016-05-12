@@ -79,7 +79,7 @@ bool Status::checkGameStatus()
 void Status::setDifficulty()
 {
   difficulty.push_back(difficultyBase * DIFFICULTY_K_SHELL_SPEED);
-  difficulty.push_back(difficultyBase * DIFFICULTY_K_SHELL_CREATE_RATE);
+  difficulty.push_back(difficultyBase * DIFFICULTY_K_SHELL_FIRE_RATE);
   difficulty.push_back(difficultyBase * DIFFICULTY_K_ENEMY_FIGHTER_MAX_NUMBER);
 }
 int Status::getDifficulty(int index)
