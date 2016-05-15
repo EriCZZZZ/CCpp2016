@@ -29,6 +29,6 @@ private:
 public:
   Game(int difficulty);
   ~Game();
-  bool play();
+  int play();
 };
 #endif

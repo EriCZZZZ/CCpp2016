@@ -4,6 +4,9 @@
 #include "Game.h"
 
 class BeatFighter{
-  
-}
+private:
+  int difficulty = 1;
+public:
+  void playGame();
+};
 #endif

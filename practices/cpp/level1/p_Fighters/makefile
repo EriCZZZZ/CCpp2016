@@ -3,7 +3,7 @@ OBJ = main.o ./classGraphics/FighterGraphics.o ./classGraphics/ShellGraphics.o \
  ./classFighter/PlayerFighterFactory.o ./classFighter/EnemyFighter.o \
  ./classFighter/EnemyFighterFactory.o ./operation/Player.o ./operation/Enemy.o \
  ./operation/AllShell.o ./operation/CollisionJudge.o ./operation/Status.o \
- ./Game.o ./operation/DeadText.o
+ ./Game.o ./operation/DeadText.o ./BeatFighter.o
 
 edit: $(OBJ)
 
@@ -71,6 +71,10 @@ main.o : main.cpp ./operation/Player.o ./operation/Enemy.o ./operation/AllShell.
 ./operation/DeadText.o : ./operation/DeadText.cpp
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./operation/DeadText.o ./operation/DeadText.cpp
+
+./BeatFighter.o : ./BeatFighter.cpp ./Game.cpp
+	g++ -c -g -DDEBUG -std=c++11 -o ./BeatFighter.o ./BeatFighter.cpp
+
 clean:
 	-rm $(OBJ)
 	-rm game.out

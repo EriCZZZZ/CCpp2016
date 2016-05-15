@@ -1,10 +1,9 @@
-#include "Game.h"
 #include <iostream>
+#include "BeatFighter.h"
 
 int main()
 {
-  Game *game = new Game(2);
-  game->play();
-  // delete game;
+  BeatFighter game;
+  game.playGame();
   return 0;
 }

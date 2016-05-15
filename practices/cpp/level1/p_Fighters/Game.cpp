@@ -35,8 +35,9 @@ Game::~Game()
   delete bufferBGM;
   delete window;
 }
-void Game::play()
+int Game::play()
 {
+  int gameFlag = GAME_GOING;
   while(window->isOpen())
   {
     sf::Event eventClosed;
@@ -46,7 +47,7 @@ void Game::play()
       {
         soundBGM->stop();
         window->close();
-        return;
+        return GAME_STOP;
       }
     }
     window->clear(SCREEN_COLOR_BACKGROUND);
@@ -60,12 +61,13 @@ void Game::play()
     }
     else
     {
+      gameFlag = status->checkGameStatus();
       deadText->operate();
       if(sf::Keyboard::isKeyPressed(KEYBOARD_RETURN))
       {
         window->close();
         soundBGM->stop();
-        return;
+        return gameFlag;
       }
     }
     window->display();

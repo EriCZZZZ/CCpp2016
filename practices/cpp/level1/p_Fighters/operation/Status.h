@@ -8,7 +8,7 @@
 class Status : public Operation
 {
 private:
-  bool gameStatus;
+  int gameStatus;
   int score;
   int HP;
   sf::RenderWindow *window;
@@ -27,7 +27,7 @@ public:
   void addHP(int deltaHP);
   void addScore(int deltaScore);
   void setGameStatus(bool status);
-  bool checkGameStatus();
+  int checkGameStatus();
   int getDifficulty(int index);
 };
 #endif

@@ -38,7 +38,6 @@ Status::Status(sf::RenderWindow *window, int difficultyBase)
 }
 Status::~Status()
 {
-  delete HPborder;
   delete HPfill;
   delete HPborder;
   delete font;
@@ -51,6 +50,10 @@ void Status::operate()
   window->draw(*text);
   window->draw(*HPborder);
   window->draw(*HPfill);
+  if(score >= GAME_MAX_SCORE)
+  {
+    gameStatus = GAME_NEXT_DIFFICULTY;
+  }
 }
 void Status::addHP(int deltaHP)
 {
@@ -72,7 +75,7 @@ void Status::setGameStatus(bool status)
 {
   gameStatus = status;
 }
-bool Status::checkGameStatus()
+int Status::checkGameStatus()
 {
   return gameStatus;
 }
