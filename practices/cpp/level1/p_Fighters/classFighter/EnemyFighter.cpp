@@ -3,7 +3,7 @@ EnemyFighter::EnemyFighter(int x, int y) : Fighter(x, y)
 {
   fighterOwner = FIGHTER_ENEMY;
   HP = FIGHTER_HP_MAX;
-  //to create fighter outlook
+  //to create fighter appearance
   fighterGraphics.setRotation(FIGHTER_ENEMY_ROTATION);
 }
 Shell *EnemyFighter::createShell(int x, int y)

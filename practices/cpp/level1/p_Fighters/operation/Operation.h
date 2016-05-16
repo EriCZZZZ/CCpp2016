@@ -2,8 +2,6 @@
 #define OPERATION_H
 
 #include <SFML/Graphics.hpp>
-#include <thread>
-#include <mutex>
 #include <vector>
 #include "../head/GameConfig.h"
 
