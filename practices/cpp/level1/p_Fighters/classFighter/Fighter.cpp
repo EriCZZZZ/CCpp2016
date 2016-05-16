@@ -3,7 +3,7 @@ Fighter::Fighter(int x, int y)
 {
   fighterGraphics.setPosition(x, y);
 }
-void Fighter::designOutlookByPoint(int index, sf::Vertex targetVertex)
+void Fighter::designAppearanceByPoint(int index, sf::Vertex targetVertex)
 {
   if(index < FIGHTER_COORDINATE_INDEX_MIN || index >= FIGHTER_COORDINATE_INDEX_MAX)
   {
@@ -11,7 +11,7 @@ void Fighter::designOutlookByPoint(int index, sf::Vertex targetVertex)
   }
   else
   {
-    fighterGraphics.designOutlookByPoint(index, targetVertex);
+    fighterGraphics.designAppearanceByPoint(index, targetVertex);
     return;
   }
 }
