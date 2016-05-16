@@ -3,7 +3,7 @@ void Shell::setPosition(int indexX, int indexY)
 {
   shell.setPosition(indexX, indexY);
 }
-void Shell::setDeltaVector(sf::Vector2f vector)
+void Shell::setVByVector(sf::Vector2f vector)
 {
   deltaVector = vector;
 }
