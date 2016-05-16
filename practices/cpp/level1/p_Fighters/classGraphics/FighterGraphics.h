@@ -12,6 +12,6 @@ private:
   void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
   FighterGraphics();
-  void setPoint(int index, sf::Vertex targetVertex);
+  void designOutlookByPoint(int index, sf::Vertex targetVertex);
 };
 #endif

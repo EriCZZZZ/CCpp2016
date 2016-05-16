@@ -7,7 +7,7 @@ FighterGraphics::FighterGraphics()
   fighterVertices[3] = sf::Vertex(sf::Vector2f(FIGHTER_COORDINATE_4_X, FIGHTER_COORDINATE_4_Y));
   setOrigin(FIGHTER_COORDINATE_ORIGIN_X, FIGHTER_COORDINATE_ORIGIN_Y);
 }
-void FighterGraphics::setPoint(int index, sf::Vertex targetVertex)
+void FighterGraphics::designOutlookByPoint(int index, sf::Vertex targetVertex)
 {
   fighterVertices[index] = targetVertex;
 }
