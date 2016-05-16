@@ -8,17 +8,20 @@ Player::Player(AllShell *shellContainer, sf::RenderWindow *window, Status *statu
 {
   Player::status = status;
   Player::window = window;
+  Player::shellContainer = shellContainer;
+
   PlayerFighterFactory *tempFactory = new PlayerFighterFactory;
   playerFighter = tempFactory->createFighter(PLAYER_CREATE_FIGHTER_X, PLAYER_CREATE_FIGHTER_Y);
-  Player::shellContainer = shellContainer;
   delete tempFactory;
 
   bufferFire = new sf::SoundBuffer;
-  bufferAttacked = new sf::SoundBuffer;
   bufferFire->loadFromFile(SOUND_FIRE);
+
+  bufferAttacked = new sf::SoundBuffer;
   bufferAttacked->loadFromFile(SOUND_ATTACKED);
   soundAttacked = new sf::Sound;
   soundAttacked->setBuffer(*bufferAttacked);
+
   bufferDead = new sf::SoundBuffer;
   bufferDead->loadFromFile(SOUND_DEAD);
   soundDead = new sf::Sound;
@@ -31,59 +34,22 @@ Player::~Player()
   delete soundAttacked;
   delete bufferDead;
   delete soundDead;
-  for(auto it = soundFire.begin(); it != soundFire.end();)
-  {
-    delete *it;
-    soundFire.erase(it);
-  }
+  deleteAllSoundFire();
 }
 void Player::operate()
 {
-  int tempX = playerFighter->getVertex().position.x;
-
-  if(sf::Keyboard::isKeyPressed(PLAYER_LEFT))
-  {
-    if(tempX + PLAYER_DELTA_LEFT >= SCREEN_MOST_LEFT + FIGHTER_SIZE_CORRECTED_VALUE_X)
-    {
-      playerFighter->move(PLAYER_DELTA_LEFT, PLAYER_DELTA_Y);
-    }
-  }
-  if(sf::Keyboard::isKeyPressed(PLAYER_RIGHT))
-  {
-    if(tempX + PLAYER_DELTA_RIGHT <= SCREEN_MOST_RIGHT - FIGHTER_SIZE_CORRECTED_VALUE_X)
-    {
-      playerFighter->move(PLAYER_DELTA_RIGHT, PLAYER_DELTA_Y);
-    }
-  }
-
-  if(sf::Keyboard::isKeyPressed(PLAYER_FIRE))
-  {
-    Shell *tempShell = playerFighter->createShell(SHELL_SPEED_PLAYER_X, SHELL_SPEED_PLAYER_Y);
-    shellContainer->newShell(tempShell);
-    playFire();
-  }
+  moveFighterByKeyAndBorderCheck(playerFighter->getVertex().position.x);
+  fireByKey();
   window->draw(*(playerFighter->toDraw()));
 }
+
 bool Player::collision(int ShellIndexX, int ShellIndexY)
 {
   int fighterIndexX = playerFighter->getVertex().position.x;
   int fighterIndexY = playerFighter->getVertex().position.y;
   if(collisionJudge(ShellIndexX, ShellIndexY, fighterIndexX, fighterIndexY) == COLLISION_KNOCKED)
   {
-    if(playerFighter->reviseHP(COLLISION_HP_DELTA) == COLLISION_FIGHTER_DEAD)
-    {
-      soundDead->play();
-      status->setGameStatus(GAME_STOP);
-      #ifdef DEBUG
-      std::cout << "Aaa~" << std::endl;
-      #endif
-    }
-    else
-    {
-      soundAttacked->play();
-      status->addHP(COLLISION_HP_DELTA);
-    }
-    return COLLISION_KNOCKED;
+    return knockedOperate();
   }
   else
   {
@@ -112,5 +78,54 @@ void Player::playFire()
   {
     delete *(soundFire.begin());
     soundFire.erase(soundFire.begin());
+  }
+}
+void Player::moveFighterByKeyAndBorderCheck(int nowX)
+{
+  if(sf::Keyboard::isKeyPressed(PLAYER_LEFT))
+  {
+    if(nowX + PLAYER_DELTA_LEFT >= SCREEN_MOST_LEFT + FIGHTER_SIZE_CORRECTED_VALUE_X)
+    {
+      playerFighter->move(PLAYER_DELTA_LEFT, PLAYER_DELTA_Y);
+    }
+  }
+  if(sf::Keyboard::isKeyPressed(PLAYER_RIGHT))
+  {
+    if(nowX + PLAYER_DELTA_RIGHT <= SCREEN_MOST_RIGHT - FIGHTER_SIZE_CORRECTED_VALUE_X)
+    {
+      playerFighter->move(PLAYER_DELTA_RIGHT, PLAYER_DELTA_Y);
+    }
+  }
+}
+void Player::fireByKey()
+{
+  if(sf::Keyboard::isKeyPressed(PLAYER_FIRE))
+  {
+    Shell *tempShell = playerFighter->createShell(SHELL_SPEED_PLAYER_X, SHELL_SPEED_PLAYER_Y);
+    shellContainer->newShell(tempShell);
+    playFire();
+  }
+}
+bool Player::knockedOperate()
+{
+  auto isFighterDie = playerFighter->reviseHP(COLLISION_HP_DELTA);
+  if(isFighterDie == COLLISION_FIGHTER_DEAD)
+  {
+    soundDead->play();
+    status->setGameStatus(GAME_STOP);
+  }
+  else
+  {
+    soundAttacked->play();
+    status->addHP(COLLISION_HP_DELTA);
+  }
+  return COLLISION_KNOCKED;
+}
+void Player::deleteAllSoundFire()
+{
+  for(auto it = soundFire.begin(); it != soundFire.end();)
+  {
+    delete *it;
+    soundFire.erase(it);
   }
 }

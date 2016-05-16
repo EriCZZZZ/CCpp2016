@@ -25,6 +25,11 @@ private:
 
   void playFire();
   bool collisionJudge(int x1, int y1, int x2, int y2);
+
+  void moveFighterByKeyAndBorderCheck(int nowX);
+  void fireByKey();
+  bool knockedOperate();
+  void deleteAllSoundFire();
 public:
   Player(AllShell *shellContainer, sf::RenderWindow *window, Status *status);
   ~Player();
