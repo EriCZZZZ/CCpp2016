@@ -2,7 +2,7 @@
 ShellGraphics::ShellGraphics()
 {
   shell.setRadius(SHELL_CIRCLE_RADIUS);
-  shell.setFillColor(sf::Color::SHELL_FILL_COLOR);
+  shell.setFillColor(SHELL_FILL_COLOR);
   shell.setOrigin(SHELL_ORIGIN_COORDINATE_X, SHELL_ORIGIN_COORDINATE_Y);
 }
 void ShellGraphics::draw(sf::RenderTarget& target, sf::RenderStates states) const
