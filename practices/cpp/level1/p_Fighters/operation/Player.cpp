@@ -108,7 +108,8 @@ void Player::fireByKey()
 }
 bool Player::knockedOperate()
 {
-  auto isFighterDie = playerFighter->reviseHP(COLLISION_HP_DELTA);
+  playerFighter->reviseHP(COLLISION_HP_DELTA);
+  auto isFighterDie = playerFighter->isFighterDie();
   if(isFighterDie == COLLISION_FIGHTER_DEAD)
   {
     soundDead->play();

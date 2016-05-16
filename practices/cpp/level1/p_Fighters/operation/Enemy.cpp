@@ -82,14 +82,13 @@ bool Enemy::collision(int ShellIndexX, int ShellIndexY)
     int enemyFighterIndexY = (*it)->getVertex().position.y;
     if(collisionJudge(ShellIndexX, ShellIndexY, enemyFighterIndexX, enemyFighterIndexY) == COLLISION_KNOCKED)
     {
-      if(((*it)->reviseHP(COLLISION_HP_DELTA)) == COLLISION_FIGHTER_DEAD)
+      (*it)->reviseHP(COLLISION_HP_DELTA);
+      if(((*it)->isFighterDie()) == COLLISION_FIGHTER_DEAD)
       {
         createBoomCircle(enemyFighterIndexX, enemyFighterIndexY);
         delete *it;
         enemyFighter.erase(it);
-        //add score
         status->addScore(ENEMY_ADD_SCORE);
-        //play boom
         playBoom();
       }
       else

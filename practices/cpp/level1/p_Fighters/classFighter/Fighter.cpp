@@ -27,9 +27,16 @@ FighterGraphics *Fighter::toDraw()
 {
   return &fighterGraphics;
 }
-bool Fighter::reviseHP(int deltaHP)
+void Fighter::reviseHP(int deltaHP)
 {
   HP += deltaHP;
+  if(HP <= FIGHTER_HP_MIN)
+  {
+    HP = FIGHTER_HP_MIN;
+  }
+}
+bool Fighter::isFighterDie()
+{
   if(HP <= FIGHTER_HP_MIN)
   {
     return COLLISION_FIGHTER_DEAD;

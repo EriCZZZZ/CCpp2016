@@ -19,6 +19,7 @@ public:
   void setPosition(int indexX, int indexY);
   sf::Vertex getVertex();
   FighterGraphics *toDraw();
-  bool reviseHP(int deltaHP);
+  void reviseHP(int deltaHP);
+  bool isFighterDie();
 };
 #endif
