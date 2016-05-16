@@ -11,7 +11,7 @@ private:
   sf::Vector2f deltaVector;
 public:
   void setPosition(int indexX, int indexY);
-  void setVByVector(sf::Vector2f vector);
+  void setSpeedByVector(sf::Vector2f vector);
   void move();
   sf::Vertex getVertex();
   ShellGraphics *toDraw();
