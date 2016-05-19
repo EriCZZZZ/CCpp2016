@@ -58,6 +58,9 @@
 #define SHELL_SPEED_ENEMY_X 0
 #define SHELL_SPEED_ENEMY_Y 3
 
+#define SHELL_FIRE 1
+#define SHELL_UNFIRE 0
+
 // === Player ===
 #define PLAYER_LEFT sf::Keyboard::Left
 #define PLAYER_RIGHT sf::Keyboard::Right

@@ -23,11 +23,13 @@ private:
   sf::Sound *soundAttacked;
   sf::Sound *soundDead;
 
-  void playFire();
+  void playFireSound();
   bool collisionJudge(int x1, int y1, int x2, int y2);
 
+  // void checkMove();
   void moveFighterByKeyAndBorderCheck(int nowX);
-  void fireByKey();
+  bool checkFire();
+  void fire();
   bool knockedOperate();
   void deleteAllSoundFire();
 public:

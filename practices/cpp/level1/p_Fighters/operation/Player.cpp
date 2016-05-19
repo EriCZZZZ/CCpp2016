@@ -39,7 +39,10 @@ Player::~Player()
 void Player::operate()
 {
   moveFighterByKeyAndBorderCheck(playerFighter->getVertex().position.x);
-  fireByKey();
+  if(checkFire() == SHELL_FIRE)
+  {
+    fire();
+  }
   window->draw(*(playerFighter->toDraw()));
 }
 
@@ -68,7 +71,7 @@ bool Player::collisionJudge(int x1, int y1, int x2, int y2)
     return COLLISION_UNKNOCKED;
   }
 }
-void Player::playFire()
+void Player::playFireSound()
 {
   auto temp = new sf::Sound;
   temp->setBuffer(*bufferFire);
@@ -97,14 +100,22 @@ void Player::moveFighterByKeyAndBorderCheck(int nowX)
     }
   }
 }
-void Player::fireByKey()
+bool Player::checkFire()
 {
   if(sf::Keyboard::isKeyPressed(PLAYER_FIRE))
   {
-    Shell *tempShell = playerFighter->createShell(SHELL_SPEED_PLAYER_X, SHELL_SPEED_PLAYER_Y);
-    shellContainer->newShell(tempShell);
-    playFire();
+    return SHELL_FIRE;
   }
+  else
+  {
+    return SHELL_UNFIRE;
+  }
+}
+void Player::fire()
+{
+  Shell *tempShell = playerFighter->createShell(SHELL_SPEED_PLAYER_X, SHELL_SPEED_PLAYER_Y);
+  shellContainer->newShell(tempShell);
+  playFireSound();
 }
 bool Player::knockedOperate()
 {
