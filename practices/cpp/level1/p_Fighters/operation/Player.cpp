@@ -38,7 +38,6 @@ Player::~Player()
 }
 void Player::operate()
 {
-  // moveFighterByKeyAndBorderCheck(playerFighter->getVertex().position.x);
   move(checkMoveAndBorder());
   if(checkFire() == SHELL_FIRE)
   {
@@ -49,8 +48,8 @@ void Player::operate()
 
 bool Player::collision(int ShellIndexX, int ShellIndexY)
 {
-  int fighterIndexX = playerFighter->getVertex().position.x;
-  int fighterIndexY = playerFighter->getVertex().position.y;
+  int fighterIndexX = playerFighter->getPositionByVertex().position.x;
+  int fighterIndexY = playerFighter->getPositionByVertex().position.y;
   if(collisionJudge(ShellIndexX, ShellIndexY, fighterIndexX, fighterIndexY) == COLLISION_KNOCKED)
   {
     return knockedOperate();
@@ -90,7 +89,7 @@ void Player::move(sf::Vertex deltaVector)
 }
 sf::Vertex Player::checkMoveAndBorder()
 {
-  int nowX = playerFighter->getVertex().position.x;
+  int nowX = playerFighter->getPositionByVertex().position.x;
   if(sf::Keyboard::isKeyPressed(PLAYER_LEFT))
   {
     if(nowX + PLAYER_DELTA_LEFT >= SCREEN_MOST_LEFT + FIGHTER_SIZE_CORRECTED_VALUE_X)

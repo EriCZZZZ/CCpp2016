@@ -19,7 +19,7 @@ void Fighter::setPosition(int indexX, int indexY)
 {
   fighterGraphics.setPosition(indexX, indexY);
 }
-sf::Vertex Fighter::getVertex()
+sf::Vertex Fighter::getPositionByVertex()
 {
   return fighterGraphics.getPosition();
 }

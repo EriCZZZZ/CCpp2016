@@ -11,13 +11,13 @@ protected:
   bool fighterOwner;
   unsigned HP;
   FighterGraphics fighterGraphics;
+  void setPosition(int indexX, int indexY);
 public:
   Fighter(int x, int y);
   virtual Shell *createShell(int x, int y) = 0;
   virtual void move(int deltaX, int deltaY) = 0;
   void designAppearanceByPoint(int index, sf::Vertex targetVertex);
-  void setPosition(int indexX, int indexY);
-  sf::Vertex getVertex();
+  sf::Vertex getPositionByVertex();
   FighterGraphics *toDraw();
   void reviseHP(int deltaHP);
   bool isFighterDie();

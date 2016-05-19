@@ -48,22 +48,14 @@ void Enemy::operate()
   for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
   {
     (*it)->move(ENEMY_MOVE_DELTA_X, ENEMY_MOVE_DELTA_Y);
-    int tempX = (*it)->getVertex().position.x;
-    int tempY = (*it)->getVertex().position.y;
+    int tempX = (*it)->getPositionByVertex().position.x;
+    int tempY = (*it)->getPositionByVertex().position.y;
 
     if(tempY <= SCREEN_MOST_TOP || tempY >= SCREEN_MOST_BOTTOM)
     {
       delete *it;
       enemyFighter.erase(it);
       continue;
-    }
-    if(tempX <= SCREEN_MOST_LEFT + FIGHTER_SIZE_CORRECTED_VALUE_X)
-    {
-      (*it)->setPosition(SCREEN_MOST_LEFT + FIGHTER_SIZE_CORRECTED_VALUE_X, tempY);
-    }
-    else if(tempX >= SCREEN_MOST_RIGHT - FIGHTER_SIZE_CORRECTED_VALUE_X)
-    {
-      (*it)->setPosition(SCREEN_MOST_RIGHT - FIGHTER_SIZE_CORRECTED_VALUE_X, tempY);
     }
     // ==== create shell
     if(createRandomFire() <= ENEMY_FIRE * status->getDifficulty(DIFFICULTY_INDEX_SHELL_FIRE_RATE))
@@ -78,8 +70,8 @@ bool Enemy::collision(int ShellIndexX, int ShellIndexY)
   bool flag = COLLISION_UNKNOCKED;
   for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
   {
-    int enemyFighterIndexX = (*it)->getVertex().position.x;
-    int enemyFighterIndexY = (*it)->getVertex().position.y;
+    int enemyFighterIndexX = (*it)->getPositionByVertex().position.x;
+    int enemyFighterIndexY = (*it)->getPositionByVertex().position.y;
     if(collisionJudge(ShellIndexX, ShellIndexY, enemyFighterIndexX, enemyFighterIndexY) == COLLISION_KNOCKED)
     {
       (*it)->reviseHP(COLLISION_HP_DELTA);
