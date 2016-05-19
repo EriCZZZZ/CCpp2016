@@ -26,8 +26,8 @@ private:
   void playFireSound();
   bool collisionJudge(int x1, int y1, int x2, int y2);
 
-  // void checkMove();
-  void moveFighterByKeyAndBorderCheck(int nowX);
+  sf::Vertex checkMoveAndBorder();
+  void move(sf::Vertex deltaVector);
   bool checkFire();
   void fire();
   bool knockedOperate();

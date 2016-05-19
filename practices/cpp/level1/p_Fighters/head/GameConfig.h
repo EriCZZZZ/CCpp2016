@@ -67,6 +67,7 @@
 #define PLAYER_FIRE sf::Keyboard::Space
 #define PLAYER_DELTA_LEFT -1
 #define PLAYER_DELTA_RIGHT 1
+#define PLAYER_DELTA_NO_MOVE 0
 #define PLAYER_DELTA_Y 0
 
 #define PLAYER_CREATE_FIGHTER_X SCREEN_WIDTH / 2

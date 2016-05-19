@@ -38,7 +38,8 @@ Player::~Player()
 }
 void Player::operate()
 {
-  moveFighterByKeyAndBorderCheck(playerFighter->getVertex().position.x);
+  // moveFighterByKeyAndBorderCheck(playerFighter->getVertex().position.x);
+  move(checkMoveAndBorder());
   if(checkFire() == SHELL_FIRE)
   {
     fire();
@@ -83,23 +84,33 @@ void Player::playFireSound()
     soundFire.erase(soundFire.begin());
   }
 }
-void Player::moveFighterByKeyAndBorderCheck(int nowX)
+void Player::move(sf::Vertex deltaVector)
 {
+  playerFighter->move(deltaVector.position.x, deltaVector.position.y);
+}
+sf::Vertex Player::checkMoveAndBorder()
+{
+  int nowX = playerFighter->getVertex().position.x;
   if(sf::Keyboard::isKeyPressed(PLAYER_LEFT))
   {
     if(nowX + PLAYER_DELTA_LEFT >= SCREEN_MOST_LEFT + FIGHTER_SIZE_CORRECTED_VALUE_X)
     {
-      playerFighter->move(PLAYER_DELTA_LEFT, PLAYER_DELTA_Y);
+      return sf::Vector2f(PLAYER_DELTA_LEFT, PLAYER_DELTA_Y);
     }
   }
   if(sf::Keyboard::isKeyPressed(PLAYER_RIGHT))
   {
     if(nowX + PLAYER_DELTA_RIGHT <= SCREEN_MOST_RIGHT - FIGHTER_SIZE_CORRECTED_VALUE_X)
     {
-      playerFighter->move(PLAYER_DELTA_RIGHT, PLAYER_DELTA_Y);
+      return sf::Vector2f(PLAYER_DELTA_RIGHT, PLAYER_DELTA_Y);
     }
   }
+  else
+  {
+    return sf::Vector2f(PLAYER_DELTA_NO_MOVE, PLAYER_DELTA_Y);
+  }
 }
+
 bool Player::checkFire()
 {
   if(sf::Keyboard::isKeyPressed(PLAYER_FIRE))
