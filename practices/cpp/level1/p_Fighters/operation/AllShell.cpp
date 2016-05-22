@@ -52,7 +52,3 @@ void AllShell::operate()
   checkAllShell();
   drawAllShell();
 }
-std::vector<Shell *> &AllShell::shellVector()
-{
-  return std::ref(allShell);
-}

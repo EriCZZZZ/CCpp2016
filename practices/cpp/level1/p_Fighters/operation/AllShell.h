@@ -6,8 +6,11 @@
 #include <functional>
 #include "../head/GameConfig.h"
 
+class CollisionJudge;
+
 class AllShell : public Operation
 {
+  friend CollisionJudge;
 private:
   std::vector<Shell *> allShell;
   sf::RenderWindow *window;
@@ -20,6 +23,5 @@ public:
   ~AllShell();
   void newShell(Shell *shell);
   void operate();
-  std::vector<Shell *> &shellVector();
 };
 #endif

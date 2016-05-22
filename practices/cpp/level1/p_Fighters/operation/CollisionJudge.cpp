@@ -19,13 +19,12 @@ bool CollisionJudge::judge(int shellIndexX, int shellIndexY)
 }
 void CollisionJudge::judgeAll()
 {
-  std::vector<Shell *> &shellContainer = allShell->shellVector();
-  for(auto it = shellContainer.begin(); it != shellContainer.end();)
+  for(auto it = allShell->allShell.begin(); it != allShell->allShell.end();)
   {
     if(judge((*it)->getVertex().position.x, ((*it)->getVertex().position.y)) == COLLISION_KNOCKED)
     {
       delete *it;
-      shellContainer.erase(it);
+      allShell->allShell.erase(it);
     }
     else
     {
