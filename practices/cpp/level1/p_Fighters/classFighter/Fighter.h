@@ -17,7 +17,6 @@ public:
   Fighter(int x, int y);
   virtual Shell *fire(int x, int y) = 0;
   virtual void move(int deltaX, int deltaY) = 0;
-  void designAppearanceByPoint(int index, sf::Vertex targetVertex);
   sf::Vertex getPositionByVertex();
   FighterGraphics *toDraw();
   void reviseHP(int deltaHP);

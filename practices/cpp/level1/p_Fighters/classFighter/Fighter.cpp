@@ -3,18 +3,6 @@ Fighter::Fighter(int x, int y)
 {
   fighterGraphics.setPosition(x, y);
 }
-void Fighter::designAppearanceByPoint(int index, sf::Vertex targetVertex)
-{
-  if(index < FIGHTER_COORDINATE_INDEX_MIN || index >= FIGHTER_COORDINATE_INDEX_MAX)
-  {
-    return;
-  }
-  else
-  {
-    fighterGraphics.designAppearanceByPoint(index, targetVertex);
-    return;
-  }
-}
 void Fighter::setPosition(int indexX, int indexY)
 {
   fighterGraphics.setPosition(indexX, indexY);
