@@ -33,7 +33,7 @@ Enemy::~Enemy()
     boomSound.erase(it);
   }
 }
-void Enemy::operate()
+void Enemy::checkAndCreateFighter()
 {
   if(enemyFighter.size() < status->getDifficulty(DIFFICULTY_INDEX_ENEMY_FIGHTER_MAX_NUMBER))
   {
@@ -44,7 +44,9 @@ void Enemy::operate()
       enemyFighter.push_back(temp);
     }
   }
-
+}
+void Enemy::Move()
+{
   for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
   {
     (*it)->move(ENEMY_MOVE_DELTA_X, ENEMY_MOVE_DELTA_Y);
@@ -57,13 +59,57 @@ void Enemy::operate()
       enemyFighter.erase(it);
       continue;
     }
-    // ==== create shell
+    it++;
+  }
+}
+void Enemy::Fire()
+{
+  for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
+  {
     if(createRandomFire() <= ENEMY_FIRE * status->getDifficulty(DIFFICULTY_INDEX_SHELL_FIRE_RATE))
+    {
       shellContainer->newShell((*it)->fire(SHELL_SPEED_ENEMY_X, status->getDifficulty(DIFFICULTY_INDEX_SHELL_SPEED)));
+    }
+    it++;
+  }
+}
+void Enemy::drawAllFighter()
+{
+  for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
+  {
     window->draw(*((*it)->toDraw()));
     it++;
   }
+}
+void Enemy::operate()
+{
+  checkAndCreateFighter();
+  Move();
+  Fire();
+  drawAllFighter();
   drawBoomCircle();
+}
+void Enemy::fighterCollided(std::vector<Fighter *>::iterator &targetFighter)
+{
+  (*targetFighter)->reviseHP(COLLISION_HP_DELTA);
+  if((*targetFighter)->isFighterDie() == COLLISION_FIGHTER_DEAD)
+  {
+    fighterDead(targetFighter);
+  }
+  else
+  {
+    targetFighter++;
+  }
+}
+void Enemy::fighterDead(std::vector<Fighter *>::iterator &targetFighter)
+{
+  int enemyFighterIndexX = (*targetFighter)->getPositionByVertex().position.x;
+  int enemyFighterIndexY = (*targetFighter)->getPositionByVertex().position.y;
+  createBoomCircle(enemyFighterIndexX, enemyFighterIndexY);
+  delete *targetFighter;
+  enemyFighter.erase(targetFighter);
+  status->addScore(ENEMY_ADD_SCORE);
+  playBoom();
 }
 bool Enemy::collision(int ShellIndexX, int ShellIndexY)
 {
@@ -74,19 +120,7 @@ bool Enemy::collision(int ShellIndexX, int ShellIndexY)
     int enemyFighterIndexY = (*it)->getPositionByVertex().position.y;
     if(collisionJudge(ShellIndexX, ShellIndexY, enemyFighterIndexX, enemyFighterIndexY) == COLLISION_KNOCKED)
     {
-      (*it)->reviseHP(COLLISION_HP_DELTA);
-      if(((*it)->isFighterDie()) == COLLISION_FIGHTER_DEAD)
-      {
-        createBoomCircle(enemyFighterIndexX, enemyFighterIndexY);
-        delete *it;
-        enemyFighter.erase(it);
-        status->addScore(ENEMY_ADD_SCORE);
-        playBoom();
-      }
-      else
-      {
-        it++;
-      }
+      fighterCollided(it);
       flag = COLLISION_KNOCKED;
     }
     else
@@ -97,7 +131,7 @@ bool Enemy::collision(int ShellIndexX, int ShellIndexY)
   return flag;
 }
 void Enemy::playBoom()
- {
+{
   sf::Sound *temp = new sf::Sound;
   temp->setBuffer(*boomBuffer);
   temp->play();
@@ -148,12 +182,6 @@ bool Enemy::collisionJudge(int x1, int y1, int x2, int y2)
 int Enemy::createRandomIndex()
 {
   srand(clock());
-  // #ifdef DEBUG
-  // int temp1 = rand() % ENEMY_RANDOM_INDEX;
-  // int temp = abs(rand() % ENEMY_RANDOM_INDEX) + ENEMY_RANDOM_INDEX_BASE;
-  // std::cout << temp << "+++" << temp1 << "+++" << ENEMY_RANDOM_INDEX_BASE << "+++" << ENEMY_RANDOM_INDEX << std::endl;
-  // return temp;
-  // #endif
   return (abs(rand() % ENEMY_RANDOM_INDEX) + ENEMY_RANDOM_INDEX_BASE);
 }
 int Enemy::createRandomFire()

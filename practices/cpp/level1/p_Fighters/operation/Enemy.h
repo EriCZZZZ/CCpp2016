@@ -24,10 +24,19 @@ private:
   void playBoom();
   void createBoomCircle(int x, int y);
   void drawBoomCircle();
+
   bool collisionJudge(int x1, int y1, int x2, int y2);
+  void fighterCollided(std::vector<Fighter *>::iterator &targetFighter);
+  void fighterDead(std::vector<Fighter *>::iterator &targetFighter);
+
   int createRandomIndex();
   int createRandomMoveVector();
   int createRandomFire();
+
+  void checkAndCreateFighter();
+  void Move();
+  void Fire();
+  void drawAllFighter();
 public:
   Enemy(AllShell *shellContainer, sf::RenderWindow *window, Status *status);
   ~Enemy();
