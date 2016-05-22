@@ -20,6 +20,16 @@ private:
   int difficultyBase;
   std::vector<int> difficulty;
   void setDifficulty();
+
+  void initializeStatus();
+  void initializeText();
+  void initializeHPfill();
+  void initializeHPborder();
+
+  void refreshString();
+  void refreshHPfill();
+  void drawStatus();
+  void checkIsWinAndRefresh();
 public:
   Status(sf::RenderWindow *window, int difficultyBase = 1);
   ~Status();
