@@ -8,7 +8,7 @@ class PlayerFighter : public Fighter
 {
 public:
   PlayerFighter(int x, int y);
-  Shell *createShell(int x = SHELL_SPEED_PLAYER_X, int y = SHELL_SPEED_PLAYER_X) override;
+  Shell *fire(int x = SHELL_SPEED_PLAYER_X, int y = SHELL_SPEED_PLAYER_X) override;
   void move(int deltaX, int deltaY);
 };
 #endif

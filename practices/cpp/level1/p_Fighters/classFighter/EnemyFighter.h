@@ -7,7 +7,7 @@ class EnemyFighter : public Fighter
 {
 public:
   EnemyFighter(int x, int y);
-  Shell *createShell(int x, int y);
+  Shell *fire(int x, int y);
   void move(int deltaX, int deltaY);
 };
 #endif

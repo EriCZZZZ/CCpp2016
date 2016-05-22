@@ -123,7 +123,7 @@ bool Player::checkFire()
 }
 void Player::fire()
 {
-  Shell *tempShell = playerFighter->createShell(SHELL_SPEED_PLAYER_X, SHELL_SPEED_PLAYER_Y);
+  Shell *tempShell = playerFighter->fire(SHELL_SPEED_PLAYER_X, SHELL_SPEED_PLAYER_Y);
   shellContainer->newShell(tempShell);
   playFireSound();
 }

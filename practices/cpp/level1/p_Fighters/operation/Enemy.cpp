@@ -59,7 +59,7 @@ void Enemy::operate()
     }
     // ==== create shell
     if(createRandomFire() <= ENEMY_FIRE * status->getDifficulty(DIFFICULTY_INDEX_SHELL_FIRE_RATE))
-      shellContainer->newShell((*it)->createShell(SHELL_SPEED_ENEMY_X, status->getDifficulty(DIFFICULTY_INDEX_SHELL_SPEED)));
+      shellContainer->newShell((*it)->fire(SHELL_SPEED_ENEMY_X, status->getDifficulty(DIFFICULTY_INDEX_SHELL_SPEED)));
     window->draw(*((*it)->toDraw()));
     it++;
   }

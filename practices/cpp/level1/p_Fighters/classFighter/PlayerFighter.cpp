@@ -5,7 +5,7 @@ PlayerFighter::PlayerFighter(int x, int y) : Fighter(x, y)
   HP = FIGHTER_HP_MAX;
   //to create fighter outlook
 }
-Shell *PlayerFighter::createShell(int x, int y)
+Shell *PlayerFighter::fire(int x, int y)
 {
   auto newShell = new Shell;
   newShell->setPosition(getPositionByVertex().position.x, getPositionByVertex().position.y + FIGHTER_CREATE_SHELL_CORRECTED_VALUE_PLAYER_Y);

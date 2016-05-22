@@ -6,7 +6,7 @@ EnemyFighter::EnemyFighter(int x, int y) : Fighter(x, y)
   //to create fighter appearance
   fighterGraphics.setRotation(FIGHTER_ENEMY_ROTATION);
 }
-Shell *EnemyFighter::createShell(int x, int y)
+Shell *EnemyFighter::fire(int x, int y)
 {
   auto newShell = new Shell;
   newShell->setPosition(getPositionByVertex().position.x, getPositionByVertex().position.y + FIGHTER_CREATE_SHELL_CORRECTED_VALUE_ENEMY_Y);
