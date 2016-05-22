@@ -11,6 +11,10 @@ class AllShell : public Operation
 private:
   std::vector<Shell *> allShell;
   sf::RenderWindow *window;
+
+  void moveAllShell();
+  void checkAllShell();
+  void drawAllShell();
 public:
   AllShell(sf::RenderWindow *window) : window(window) {}
   ~AllShell();

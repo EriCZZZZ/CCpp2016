@@ -16,11 +16,17 @@ void AllShell::newShell(Shell *shell)
 {
   allShell.push_back(shell);
 }
-void AllShell::operate()
+void AllShell::moveAllShell()
+{
+  for(auto it = allShell.begin(); it != allShell.end(); it++)
+  {
+    (*it)->move();
+  }
+}
+void AllShell::checkAllShell()
 {
   for(auto it = allShell.begin(); it != allShell.end();)
   {
-    (*it)->move();
     int tempY = (*it)->getVertex().position.y;
     if(tempY < SCREEN_MOST_TOP || tempY > SCREEN_MOST_BOTTOM)
     {
@@ -29,10 +35,22 @@ void AllShell::operate()
     }
     else
     {
-      window->draw(*((*it)->toDraw()));
       it++;
     }
   }
+}
+void AllShell::drawAllShell()
+{
+  for(auto it = allShell.begin(); it != allShell.end(); it++)
+  {
+    window->draw(*((*it)->toDraw()));
+  }
+}
+void AllShell::operate()
+{
+  moveAllShell();
+  checkAllShell();
+  drawAllShell();
 }
 std::vector<Shell *> &AllShell::shellVector()
 {
