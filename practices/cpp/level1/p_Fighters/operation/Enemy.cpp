@@ -148,7 +148,13 @@ bool Enemy::collisionJudge(int x1, int y1, int x2, int y2)
 int Enemy::createRandomIndex()
 {
   srand(clock());
-  return (rand() % ENEMY_RANDOM_INDEX);
+  // #ifdef DEBUG
+  // int temp1 = rand() % ENEMY_RANDOM_INDEX;
+  // int temp = abs(rand() % ENEMY_RANDOM_INDEX) + ENEMY_RANDOM_INDEX_BASE;
+  // std::cout << temp << "+++" << temp1 << "+++" << ENEMY_RANDOM_INDEX_BASE << "+++" << ENEMY_RANDOM_INDEX << std::endl;
+  // return temp;
+  // #endif
+  return (abs(rand() % ENEMY_RANDOM_INDEX) + ENEMY_RANDOM_INDEX_BASE);
 }
 int Enemy::createRandomFire()
 {

@@ -11,6 +11,7 @@ protected:
   bool fighterOwner;
   unsigned HP;
   FighterGraphics fighterGraphics;
+private:
   void setPosition(int indexX, int indexY);
 public:
   Fighter(int x, int y);
