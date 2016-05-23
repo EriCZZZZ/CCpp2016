@@ -21,7 +21,7 @@ void CollisionJudge::judgeAll()
 {
   for(auto it = allShell->allShell.begin(); it != allShell->allShell.end();)
   {
-    if(judge((*it)->().position.x, ((*it)->getPositionByVertex().position.y)) == COLLISION_KNOCKED)
+    if(judge((*it)->getPositionByVertex().position.x, ((*it)->getPositionByVertex().position.y)) == COLLISION_KNOCKED)
     {
       delete *it;
       allShell->allShell.erase(it);

@@ -11,6 +11,8 @@ private:
   bool shellOwner;
   sf::Vector2f deltaVector;
 public:
+  void setOwner(bool owner);
+  bool getOwner();
   void setPosition(int indexX, int indexY);
   void setSpeedByVector(sf::Vector2f vector);
   void move();

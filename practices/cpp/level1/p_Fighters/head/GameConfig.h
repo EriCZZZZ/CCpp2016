@@ -47,6 +47,9 @@
 #define FIGHTER_PLAYER_MOVE_DELTA_Y 0
 #define FIGHTER_ENEMY_MOVE_X_DELTA_Y 0
 
+#define FIGHTER_OWNER_PLAYER 0
+#define FIGHTER_OWNER_ENEMY 1
+
 // === shell ===
 #define SHELL_CIRCLE_RADIUS 5
 #define SHELL_FILL_COLOR sf::Color::Red
@@ -60,6 +63,9 @@
 
 #define SHELL_FIRE 1
 #define SHELL_UNFIRE 0
+
+#define SHELL_OWNER_PLAYER FIGHTER_OWNER_PLAYER
+#define SHELL_OWNER_ENEMY FIGHTER_OWNER_ENEMY
 
 // === Player ===
 #define PLAYER_LEFT sf::Keyboard::Left

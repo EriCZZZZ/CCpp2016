@@ -5,6 +5,8 @@
 
 class EnemyFighter : public Fighter
 {
+private:
+  bool fighterOwner = FIGHTER_OWNER_ENEMY;
 public:
   EnemyFighter(int x, int y);
   Shell *fire(int x, int y);

@@ -1,4 +1,12 @@
 #include "Shell.h"
+void Shell::setOwner(bool owner)
+{
+  shellOwner = owner;
+}
+bool Shell::getOwner()
+{
+  return shellOwner;
+}
 void Shell::setPosition(int indexX, int indexY)
 {
   shell.setPosition(indexX, indexY);
