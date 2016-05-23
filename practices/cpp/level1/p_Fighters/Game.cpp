@@ -3,6 +3,13 @@
 Game::Game(int difficulty)
 {
   window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "ERIC-FIGHTER");
+  initializateItem(difficulty);
+  initializateSound();
+  //dead text
+  showText = new ShowText(window);
+}
+void Game::initializateItem(int difficulty)
+{
   status = new Status(window, difficulty);
   allShell = new AllShell(window);
   player = new Player(allShell, window, status);
@@ -12,16 +19,15 @@ Game::Game(int difficulty)
   gameOperation.push_back(enemy);
   gameOperation.push_back(allShell);
   gameOperation.push_back(status);
-  //BGM
+}
+void Game::initializateSound()
+{
   bufferBGM = new sf::SoundBuffer;
   bufferBGM->loadFromFile(SOUND_BGM);
   soundBGM = new sf::Sound;
   soundBGM->setBuffer(*bufferBGM);
   soundBGM->setLoop(true);
   soundBGM->play();
-
-  //dead text
-  showText = new ShowText(window);
 }
 Game::~Game()
 {

@@ -26,6 +26,9 @@ private:
 
   sf::SoundBuffer *bufferBGM;
   sf::Sound *soundBGM;
+
+  void initializateItem(int difficulty);
+  void initializateSound();
 public:
   Game(int difficulty);
   ~Game();
