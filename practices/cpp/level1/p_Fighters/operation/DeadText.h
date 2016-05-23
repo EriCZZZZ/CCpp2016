@@ -1,11 +1,10 @@
 #ifndef DEAD_TEXT_H
 #define DEAD_TEXT_H
 
-#include "Operation.h"
 #include "../head/GameConfig.h"
 #include <SFML/Graphics.hpp>
 
-class DeadText : public Operation
+class DeadText
 {
 private:
   sf::RenderWindow *window;
@@ -14,6 +13,6 @@ private:
 public:
   DeadText(sf::RenderWindow *window);
   ~DeadText();
-  void operate();
+  void showDeadInfo();
 };
 #endif

@@ -17,7 +17,7 @@ DeadText::~DeadText()
   delete font;
   delete text;
 }
-void DeadText::operate()
+void DeadText::showDeadInfo()
 {
   window->draw(*text);
 }

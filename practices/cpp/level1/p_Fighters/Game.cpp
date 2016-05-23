@@ -62,7 +62,7 @@ int Game::play()
     else
     {
       gameFlag = status->checkGameStatus();
-      deadText->operate();
+      deadText->showDeadInfo();
       if(sf::Keyboard::isKeyPressed(KEYBOARD_RETURN))
       {
         window->close();
