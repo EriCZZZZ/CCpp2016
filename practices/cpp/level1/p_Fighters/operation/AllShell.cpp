@@ -27,7 +27,7 @@ void AllShell::checkAllShell()
 {
   for(auto it = allShell.begin(); it != allShell.end();)
   {
-    int tempY = (*it)->getVertex().position.y;
+    int tempY = (*it)->getPositionByVertex().position.y;
     if(tempY < SCREEN_MOST_TOP || tempY > SCREEN_MOST_BOTTOM)
     {
       delete *it;

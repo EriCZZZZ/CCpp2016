@@ -11,7 +11,7 @@ void Shell::move()
 {
   shell.move(deltaVector.x, deltaVector.y);
 }
-sf::Vertex Shell::getVertex()
+sf::Vertex Shell::getPositionByVertex()
 {
   return shell.getPosition();
 }
