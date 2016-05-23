@@ -21,7 +21,7 @@ Game::Game(int difficulty)
   soundBGM->play();
 
   //dead text
-  deadText = new DeadText(window);
+  showText = new ShowText(window);
 }
 Game::~Game()
 {
@@ -30,7 +30,7 @@ Game::~Game()
   delete player;
   delete enemy;
   delete collisionJudge;
-  delete deadText;
+  delete showText;
   delete soundBGM;
   delete bufferBGM;
   delete window;
@@ -62,7 +62,14 @@ int Game::play()
     else
     {
       gameFlag = status->checkGameStatus();
-      deadText->showDeadInfo();
+      if(gameFlag == GAME_STOP)
+      {
+        showText->showDeadInfo();
+      }
+      else
+      {
+        showText->showWinInfo();
+      }
       if(sf::Keyboard::isKeyPressed(KEYBOARD_RETURN))
       {
         window->close();

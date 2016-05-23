@@ -3,7 +3,7 @@ OBJ = main.o ./classGraphics/FighterGraphics.o ./classGraphics/ShellGraphics.o \
  ./classFighter/PlayerFighterFactory.o ./classFighter/EnemyFighter.o \
  ./classFighter/EnemyFighterFactory.o ./operation/Player.o ./operation/Enemy.o \
  ./operation/AllShell.o ./operation/CollisionJudge.o ./operation/Status.o \
- ./Game.o ./operation/DeadText.o ./BeatFighter.o
+ ./Game.o ./operation/ShowText.o ./BeatFighter.o
 
 edit: $(OBJ)
 
@@ -64,13 +64,13 @@ main.o : main.cpp ./operation/Player.o ./operation/Enemy.o ./operation/AllShell.
 ./operation/Status.o : ./operation/Status.cpp
 	g++ -c -g -DDEBUG -std=c++11 -o ./operation/Status.o ./operation/Status.cpp
 
-./Game.o : ./Game.cpp ./operation/AllShell.o ./operation/CollisionJudge.o ./operation/Enemy.o ./operation/Player.o ./operation/Status.o ./operation/DeadText.o
+./Game.o : ./Game.cpp ./operation/AllShell.o ./operation/CollisionJudge.o ./operation/Enemy.o ./operation/Player.o ./operation/Status.o ./operation/ShowText.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./Game.o ./Game.cpp
 
-./operation/DeadText.o : ./operation/DeadText.cpp
+./operation/ShowText.o : ./operation/ShowText.cpp
 
-	g++ -c -g -DDEBUG -std=c++11 -o ./operation/DeadText.o ./operation/DeadText.cpp
+	g++ -c -g -DDEBUG -std=c++11 -o ./operation/ShowText.o ./operation/ShowText.cpp
 
 ./BeatFighter.o : ./BeatFighter.cpp ./Game.cpp
 	g++ -c -g -DDEBUG -std=c++11 -o ./BeatFighter.o ./BeatFighter.cpp

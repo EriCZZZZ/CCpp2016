@@ -142,10 +142,10 @@
 #define GAME_MAX_SCORE 100
 
 // === dead text ===
-#define DEAD_TEXT_INDEX_X SCREEN_WIDTH / 2 - 30
-#define DEAD_TEXT_INDEX_Y SCREEN_HEIGHT / 2
-#define DEAD_TEXT_CHARACTER_SIZE 50
-#define DEAD_TEXT_COLOR sf::Color::Red
+#define SHOW_TEXT_INDEX_X SCREEN_WIDTH / 2 - 30
+#define SHOW_TEXT_INDEX_Y SCREEN_HEIGHT / 2
+#define SHOW_TEXT_CHARACTER_SIZE 50
+#define SHOW_TEXT_COLOR sf::Color::Red
 
 // === keyboard setting ===
 #define KEYBOARD_RETURN sf::Keyboard::Q
