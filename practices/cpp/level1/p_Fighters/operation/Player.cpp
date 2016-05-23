@@ -139,7 +139,7 @@ bool Player::knockedOperate()
   else
   {
     soundAttacked->play();
-    status->addHP(COLLISION_HP_DELTA);
+    status->reviseHP(COLLISION_HP_DELTA);
   }
   return COLLISION_KNOCKED;
 }

@@ -83,7 +83,7 @@ void Status::refreshHPfill()
 {
   HPfill->setSize(sf::Vector2f((static_cast<float>(HP) / FIGHTER_HP_MAX) * GAME_HP_LENGTH, GAME_HP_WIDTH));
 }
-void Status::addHP(int deltaHP)
+void Status::reviseHP(int deltaHP)
 {
   int temp = deltaHP + HP;
   if(temp < FIGHTER_HP_MIN)

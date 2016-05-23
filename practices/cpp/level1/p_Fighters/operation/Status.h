@@ -34,7 +34,7 @@ public:
   Status(sf::RenderWindow *window, int difficultyBase = 1);
   ~Status();
   void operate();
-  void addHP(int deltaHP);
+  void reviseHP(int deltaHP);
   void addScore(int deltaScore);
   void setGameStatus(bool status);
   int checkGameStatus();
