@@ -77,7 +77,7 @@ void Status::drawStatus()
 }
 void Status::refreshString()
 {
-  text->setString("Score : " + std::to_string(score));
+  text->setString("Class : " + std::to_string(difficultyBase) + " Score : " + std::to_string(score));
 }
 void Status::refreshHPfill()
 {
