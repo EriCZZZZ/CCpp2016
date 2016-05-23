@@ -21,7 +21,7 @@ private:
 public:
   AllShell(sf::RenderWindow *window) : window(window) {}
   ~AllShell();
-  void newShell(Shell *shell);
+  void addShell(Shell *shell);
   void operate();
 };
 #endif

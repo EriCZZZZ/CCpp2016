@@ -68,7 +68,7 @@ void Enemy::Fire()
   {
     if(createRandomFire() <= ENEMY_FIRE * status->getDifficulty(DIFFICULTY_INDEX_SHELL_FIRE_RATE))
     {
-      shellContainer->newShell((*it)->fire(SHELL_SPEED_ENEMY_X, status->getDifficulty(DIFFICULTY_INDEX_SHELL_SPEED)));
+      shellContainer->addShell((*it)->fire(SHELL_SPEED_ENEMY_X, status->getDifficulty(DIFFICULTY_INDEX_SHELL_SPEED)));
     }
     it++;
   }

@@ -12,7 +12,7 @@ AllShell::~AllShell()
     allShell.erase(it);
   }
 }
-void AllShell::newShell(Shell *shell)
+void AllShell::addShell(Shell *shell)
 {
   allShell.push_back(shell);
 }
