@@ -20,6 +20,7 @@ public:
   sf::Vertex getPositionByVertex();
   FighterGraphics *toDraw();
   void reviseHP(int deltaHP);
+  unsigned getHP(void);
   bool isFighterDie();
 };
 #endif

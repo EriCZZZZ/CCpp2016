@@ -23,6 +23,13 @@ private:
   sf::Sound *soundAttacked;
   sf::Sound *soundDead;
 
+  sf::RectangleShape *HPborder;
+  sf::RectangleShape *HPfill;
+
+  void initializeHPfill();
+  void initializeHPborder();
+  void drawHPImage();
+
   void playFireSound();
   bool collisionJudge(Shell *target , int x2, int y2);
 

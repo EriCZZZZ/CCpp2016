@@ -23,6 +23,10 @@ void Fighter::reviseHP(int deltaHP)
     HP = FIGHTER_HP_MIN;
   }
 }
+unsigned Fighter::getHP()
+{
+  return HP;
+}
 bool Fighter::isFighterDie()
 {
   if(HP <= FIGHTER_HP_MIN)

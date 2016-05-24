@@ -9,8 +9,6 @@ Status::Status(sf::RenderWindow *window, int difficultyBase)
   Status::window = window;
   initializeStatus();
   initializeText();
-  initializeHPfill();
-  initializeHPborder();
 
   Status::difficultyBase = difficultyBase;
   setDifficulty();
@@ -19,7 +17,6 @@ void Status::initializeStatus()
 {
   gameStatus = GAME_GOING;
   score = 0;
-  HP = FIGHTER_HP_MAX;
 }
 void Status::initializeText()
 {
@@ -32,33 +29,15 @@ void Status::initializeText()
   text->setCharacterSize(FONT_SIZE);
   text->setColor(FONT_COLOR);
 }
-void Status::initializeHPfill()
-{
-  HPfill = new sf::RectangleShape;
-  HPfill->setSize(sf::Vector2f(GAME_HP_LENGTH, GAME_HP_WIDTH));
-  HPfill->setPosition(SCREEN_WIDTH * GAME_HP_INDEX_PERCENT_X, SCREEN_HEIGHT * GAME_HP_INDEX_PERCENT_Y);
-  HPfill->setFillColor(GAME_HP_FILL_FILL_COLOR);
-}
-void Status::initializeHPborder()
-{
-  HPborder = new sf::RectangleShape;
-  HPborder->setSize(HPfill->getSize());
-  HPborder->setPosition(HPfill->getPosition());
-  HPborder->setOutlineThickness(GAME_HP_BORDER_OUTLINE_THICKNESS);
-  HPborder->setOutlineColor(GAME_HP_BORDER_BORDER_COLOR);
-  HPborder->setFillColor(GAME_HP_BORDER_FILL_COLOR);
-}
+
 Status::~Status()
 {
-  delete HPfill;
-  delete HPborder;
   delete font;
   delete text;
 }
 void Status::operate()
 {
   refreshString();
-  refreshHPfill();
   drawStatus();
   checkIsWinAndRefresh();
 }
@@ -72,28 +51,10 @@ void Status::checkIsWinAndRefresh()
 void Status::drawStatus()
 {
   window->draw(*text);
-  window->draw(*HPborder);
-  window->draw(*HPfill);
 }
 void Status::refreshString()
 {
   text->setString("Class : " + std::to_string(difficultyBase) + " Score : " + std::to_string(score));
-}
-void Status::refreshHPfill()
-{
-  HPfill->setSize(sf::Vector2f((static_cast<float>(HP) / FIGHTER_HP_MAX) * GAME_HP_LENGTH, GAME_HP_WIDTH));
-}
-void Status::reviseHP(int deltaHP)
-{
-  int temp = deltaHP + HP;
-  if(temp < FIGHTER_HP_MIN)
-  {
-    HP = FIGHTER_HP_MIN;
-  }
-  else
-  {
-    HP = temp;
-  }
 }
 void Status::addScore(int deltaScore)
 {

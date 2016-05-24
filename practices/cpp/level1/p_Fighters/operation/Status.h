@@ -10,10 +10,8 @@ class Status : public Operation
 private:
   int gameStatus;
   int score;
-  int HP;
   sf::RenderWindow *window;
-  sf::RectangleShape *HPborder;
-  sf::RectangleShape *HPfill;
+
   sf::Font *font;
   sf::Text *text;
 
@@ -23,8 +21,6 @@ private:
 
   void initializeStatus();
   void initializeText();
-  void initializeHPfill();
-  void initializeHPborder();
 
   void refreshString();
   void refreshHPfill();

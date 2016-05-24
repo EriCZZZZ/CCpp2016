@@ -26,7 +26,27 @@ Player::Player(AllShell *shellContainer, sf::RenderWindow *window, Status *statu
   bufferDead->loadFromFile(SOUND_DEAD);
   soundDead = new sf::Sound;
   soundDead->setBuffer(*bufferDead);
+
+  initializeHPfill();
+  initializeHPborder();
 }
+void Player::initializeHPfill()
+{
+  HPfill = new sf::RectangleShape;
+  HPfill->setSize(sf::Vector2f(GAME_HP_LENGTH, GAME_HP_WIDTH));
+  HPfill->setPosition(SCREEN_WIDTH * GAME_HP_INDEX_PERCENT_X, SCREEN_HEIGHT * GAME_HP_INDEX_PERCENT_Y);
+  HPfill->setFillColor(GAME_HP_FILL_FILL_COLOR);
+}
+void Player::initializeHPborder()
+{
+  HPborder = new sf::RectangleShape;
+  HPborder->setSize(HPfill->getSize());
+  HPborder->setPosition(HPfill->getPosition());
+  HPborder->setOutlineThickness(GAME_HP_BORDER_OUTLINE_THICKNESS);
+  HPborder->setOutlineColor(GAME_HP_BORDER_BORDER_COLOR);
+  HPborder->setFillColor(GAME_HP_BORDER_FILL_COLOR);
+}
+
 Player::~Player()
 {
   delete bufferFire;
@@ -34,6 +54,10 @@ Player::~Player()
   delete soundAttacked;
   delete bufferDead;
   delete soundDead;
+
+  delete HPborder;
+  delete HPfill;
+  
   deleteAllSoundFire();
 }
 void Player::operate()
@@ -43,9 +67,14 @@ void Player::operate()
   {
     fire();
   }
+  drawHPImage();
   window->draw(*(playerFighter->toDraw()));
 }
-
+void Player::drawHPImage()
+{
+  window->draw(*HPborder);
+  window->draw(*HPfill);
+}
 bool Player::collision(Shell *target)
 {
   int fighterIndexX = playerFighter->getPositionByVertex().position.x;
@@ -118,7 +147,6 @@ sf::Vertex Player::checkMoveAndBorder()
     return sf::Vector2f(PLAYER_DELTA_NO_MOVE, PLAYER_DELTA_Y);
   }
 }
-
 bool Player::checkFire()
 {
   if(sf::Keyboard::isKeyPressed(PLAYER_FIRE))
@@ -139,6 +167,10 @@ void Player::fire()
 bool Player::knockedOperate()
 {
   playerFighter->reviseHP(COLLISION_HP_DELTA);
+
+  auto HP = playerFighter->getHP();
+  HPfill->setSize(sf::Vector2f((static_cast<float>(HP) / FIGHTER_HP_MAX) * GAME_HP_LENGTH, GAME_HP_WIDTH));
+
   auto isFighterDie = playerFighter->isFighterDie();
   if(isFighterDie == COLLISION_FIGHTER_DEAD)
   {
@@ -148,7 +180,6 @@ bool Player::knockedOperate()
   else
   {
     soundAttacked->play();
-    status->reviseHP(COLLISION_HP_DELTA);
   }
   return COLLISION_KNOCKED;
 }
