@@ -16,6 +16,8 @@ class Game
 {
 private:
   sf::RenderWindow *window;
+  int difficulty;
+  int score = 9999;
   ShowText *showText;
   Status *status;
   AllShell *allShell;

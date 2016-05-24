@@ -7,6 +7,8 @@ Game::Game(int difficulty)
   initializateSound();
   //dead text
   showText = new ShowText(window);
+
+  Game::difficulty = difficulty;
 }
 void Game::initializateItem(int difficulty)
 {
@@ -18,7 +20,7 @@ void Game::initializateItem(int difficulty)
   gameOperation.push_back(player);
   gameOperation.push_back(enemy);
   gameOperation.push_back(allShell);
-  gameOperation.push_back(status);
+  // gameOperation.push_back(status);
 }
 void Game::initializateSound()
 {
@@ -64,6 +66,8 @@ int Game::play()
         (*it)->operate();
       }
       collisionJudge->judgeAll();
+      //print info
+      showText->showInfo(difficulty, score);
     }
     else
     {
