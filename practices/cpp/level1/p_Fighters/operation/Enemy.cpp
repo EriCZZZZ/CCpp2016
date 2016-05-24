@@ -111,14 +111,14 @@ void Enemy::fighterDead(std::vector<Fighter *>::iterator &targetFighter)
   status->addScore(ENEMY_ADD_SCORE);
   playBoom();
 }
-bool Enemy::collision(int ShellIndexX, int ShellIndexY)
+bool Enemy::collision(Shell *target)
 {
   bool flag = COLLISION_UNKNOCKED;
   for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
   {
     int enemyFighterIndexX = (*it)->getPositionByVertex().position.x;
     int enemyFighterIndexY = (*it)->getPositionByVertex().position.y;
-    if(collisionJudge(ShellIndexX, ShellIndexY, enemyFighterIndexX, enemyFighterIndexY) == COLLISION_KNOCKED)
+    if(collisionJudge(target, enemyFighterIndexX, enemyFighterIndexY) == COLLISION_KNOCKED)
     {
       fighterCollided(it);
       flag = COLLISION_KNOCKED;
@@ -167,12 +167,21 @@ void Enemy::drawBoomCircle()
     }
   }
 }
-bool Enemy::collisionJudge(int x1, int y1, int x2, int y2)
+bool Enemy::collisionJudge(Shell *target, int x2, int y2)
 {
-  int distance = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 -y2);
-  if(distance <= COLLISION_KNOCK_DISTANCE)
+  if(target->getOwner() != FIGHTER_OWNER_ENEMY)
   {
-    return COLLISION_KNOCKED;
+    int x1 = target->getPositionByVertex().position.x;
+    int y1 = target->getPositionByVertex().position.y;
+    int distance = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 -y2);
+    if(distance <= COLLISION_KNOCK_DISTANCE)
+    {
+      return COLLISION_KNOCKED;
+    }
+    else
+    {
+      return COLLISION_UNKNOCKED;
+    }
   }
   else
   {

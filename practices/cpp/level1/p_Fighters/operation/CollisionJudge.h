@@ -13,7 +13,7 @@ private:
   Player *player;
   Enemy *enemy;
   AllShell *allShell;
-  bool judge(int shellIndexX, int shellIndexY);
+  bool judge(Shell *target);
 public:
   CollisionJudge(Player *player, Enemy *enemy, AllShell *allShell);
   void judgeAll();

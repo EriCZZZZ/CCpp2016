@@ -24,7 +24,7 @@ private:
   sf::Sound *soundDead;
 
   void playFireSound();
-  bool collisionJudge(int x1, int y1, int x2, int y2);
+  bool collisionJudge(Shell *target , int x2, int y2);
 
   sf::Vertex checkMoveAndBorder();
   void move(sf::Vertex deltaVector);
@@ -36,6 +36,6 @@ public:
   Player(AllShell *shellContainer, sf::RenderWindow *window, Status *status);
   ~Player();
   void operate();
-  bool collision(int ShellIndexX, int ShellIndexY);
+  bool collision(Shell *target);
 };
 #endif

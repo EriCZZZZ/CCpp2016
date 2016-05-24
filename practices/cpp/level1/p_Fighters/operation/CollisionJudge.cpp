@@ -10,18 +10,18 @@ CollisionJudge::CollisionJudge(Player *player, Enemy *enemy, AllShell *allShell)
   CollisionJudge::enemy = enemy;
   CollisionJudge::allShell = allShell;
 }
-bool CollisionJudge::judge(int shellIndexX, int shellIndexY)
+bool CollisionJudge::judge(Shell *target)
 {
   bool flag = COLLISION_UNKNOCKED;
-  flag += player->collision(shellIndexX, shellIndexY);
-  flag += enemy->collision(shellIndexX, shellIndexY);
+  flag += player->collision(target);
+  flag += enemy->collision(target);
   return flag;
 }
 void CollisionJudge::judgeAll()
 {
   for(auto it = allShell->allShell.begin(); it != allShell->allShell.end();)
   {
-    if(judge((*it)->getPositionByVertex().position.x, ((*it)->getPositionByVertex().position.y)) == COLLISION_KNOCKED)
+    if(judge(*it) == COLLISION_KNOCKED)
     {
       delete *it;
       allShell->allShell.erase(it);

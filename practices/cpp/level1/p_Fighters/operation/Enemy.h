@@ -25,7 +25,7 @@ private:
   void createBoomCircle(int x, int y);
   void drawBoomCircle();
 
-  bool collisionJudge(int x1, int y1, int x2, int y2);
+  bool collisionJudge(Shell *target, int fighterX, int fighterY);
   void fighterCollided(std::vector<Fighter *>::iterator &targetFighter);
   void fighterDead(std::vector<Fighter *>::iterator &targetFighter);
 
@@ -41,6 +41,6 @@ public:
   Enemy(AllShell *shellContainer, sf::RenderWindow *window, Status *status);
   ~Enemy();
   void operate();
-  bool collision(int ShellIndexX, int ShellIndexY);
+  bool collision(Shell *target);
 };
 #endif

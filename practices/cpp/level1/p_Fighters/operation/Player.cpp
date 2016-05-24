@@ -46,11 +46,11 @@ void Player::operate()
   window->draw(*(playerFighter->toDraw()));
 }
 
-bool Player::collision(int ShellIndexX, int ShellIndexY)
+bool Player::collision(Shell *target)
 {
   int fighterIndexX = playerFighter->getPositionByVertex().position.x;
   int fighterIndexY = playerFighter->getPositionByVertex().position.y;
-  if(collisionJudge(ShellIndexX, ShellIndexY, fighterIndexX, fighterIndexY) == COLLISION_KNOCKED)
+  if(collisionJudge(target, fighterIndexX, fighterIndexY) == COLLISION_KNOCKED)
   {
     return knockedOperate();
   }
@@ -59,12 +59,21 @@ bool Player::collision(int ShellIndexX, int ShellIndexY)
     return COLLISION_UNKNOCKED;
   }
 }
-bool Player::collisionJudge(int x1, int y1, int x2, int y2)
+bool Player::collisionJudge(Shell *target, int x2, int y2)
 {
-  int distance = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 -y2);
-  if(distance <= COLLISION_KNOCK_DISTANCE)
+  if(target->getOwner() != FIGHTER_OWNER_PLAYER)
   {
-    return COLLISION_KNOCKED;
+    int x1 = target->getPositionByVertex().position.x;
+    int y1 = target->getPositionByVertex().position.y;
+    int distance = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 -y2);
+    if(distance <= COLLISION_KNOCK_DISTANCE)
+    {
+      return COLLISION_KNOCKED;
+    }
+    else
+    {
+      return COLLISION_UNKNOCKED;
+    }
   }
   else
   {
