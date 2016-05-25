@@ -12,12 +12,19 @@
 #include <thread>
 #include <vector>
 
+class Player;
+class Game;
+
 class Game
 {
 private:
   sf::RenderWindow *window;
+
   int difficulty;
-  int score = 9999;
+  int score = 0;
+  int gameStatus;
+  std::vector<int> difficultyContainer;
+
   ShowText *showText;
   Status *status;
   AllShell *allShell;
@@ -31,9 +38,15 @@ private:
 
   void initializateItem(int difficulty);
   void initializateSound();
+  void initializeInfo();
+  void initializeDifficulty();
+  void checkScore();
 public:
   Game(int difficulty);
   ~Game();
   int play();
+  void addScore(int deltaScore);
+  void setGameStatus(int gameStatus);
+  int getDifficulty(int index);
 };
 #endif

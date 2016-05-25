@@ -6,8 +6,9 @@
 #include <chrono>
 #endif
 
-Enemy::Enemy(AllShell *shellContainer, sf::RenderWindow *window, Status *status)
+Enemy::Enemy(AllShell *shellContainer, sf::RenderWindow *window, Game *game)
 {
+  Enemy::game = game;
   Enemy::status = status;
   Enemy::shellContainer = shellContainer;
   Enemy::window = window;
@@ -35,10 +36,10 @@ Enemy::~Enemy()
 }
 void Enemy::checkAndCreateFighter()
 {
-  if(enemyFighter.size() < status->getDifficulty(DIFFICULTY_INDEX_ENEMY_FIGHTER_MAX_NUMBER))
+  if(enemyFighter.size() < game->getDifficulty(DIFFICULTY_INDEX_ENEMY_FIGHTER_MAX_NUMBER))
   {
     EnemyFighterFactory tempFactory;
-    while(enemyFighter.size() < status->getDifficulty(DIFFICULTY_INDEX_ENEMY_FIGHTER_MAX_NUMBER))
+    while(enemyFighter.size() < game->getDifficulty(DIFFICULTY_INDEX_ENEMY_FIGHTER_MAX_NUMBER))
     {
       auto temp = tempFactory.createFighter(createRandomIndex(), ENEMY_CREATE_FIGHER_ORIGIN_Y);
       enemyFighter.push_back(temp);
@@ -66,9 +67,9 @@ void Enemy::Fire()
 {
   for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
   {
-    if(createRandomFire() <= ENEMY_FIRE * status->getDifficulty(DIFFICULTY_INDEX_SHELL_FIRE_RATE))
+    if(createRandomFire() <= ENEMY_FIRE * game->getDifficulty(DIFFICULTY_INDEX_SHELL_FIRE_RATE))
     {
-      shellContainer->addShell((*it)->fire(SHELL_SPEED_ENEMY_X, status->getDifficulty(DIFFICULTY_INDEX_SHELL_SPEED)));
+      shellContainer->addShell((*it)->fire(SHELL_SPEED_ENEMY_X, game->getDifficulty(DIFFICULTY_INDEX_SHELL_SPEED)));
     }
     it++;
   }
@@ -108,7 +109,7 @@ void Enemy::fighterDead(std::vector<Fighter *>::iterator &targetFighter)
   createBoomCircle(enemyFighterIndexX, enemyFighterIndexY);
   delete *targetFighter;
   enemyFighter.erase(targetFighter);
-  status->addScore(ENEMY_ADD_SCORE);
+  game->addScore(ENEMY_ADD_SCORE);
   playBoom();
 }
 bool Enemy::collision(Shell *target)

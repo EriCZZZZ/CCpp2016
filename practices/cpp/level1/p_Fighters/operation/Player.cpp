@@ -4,10 +4,10 @@
 #include <iostream>
 #endif
 
-Player::Player(AllShell *shellContainer, sf::RenderWindow *window, Status *status)
+Player::Player(AllShell *shellContainer, sf::RenderWindow *window, Game *game)
 {
-  Player::status = status;
   Player::window = window;
+  Player::game = game;
   Player::shellContainer = shellContainer;
 
   PlayerFighterFactory *tempFactory = new PlayerFighterFactory;
@@ -46,7 +46,6 @@ void Player::initializeHPborder()
   HPborder->setOutlineColor(GAME_HP_BORDER_BORDER_COLOR);
   HPborder->setFillColor(GAME_HP_BORDER_FILL_COLOR);
 }
-
 Player::~Player()
 {
   delete bufferFire;
@@ -57,7 +56,7 @@ Player::~Player()
 
   delete HPborder;
   delete HPfill;
-  
+
   deleteAllSoundFire();
 }
 void Player::operate()
@@ -175,7 +174,7 @@ bool Player::knockedOperate()
   if(isFighterDie == COLLISION_FIGHTER_DEAD)
   {
     soundDead->play();
-    status->setGameStatus(GAME_STOP);
+    game->setGameStatus(GAME_STOP);
   }
   else
   {

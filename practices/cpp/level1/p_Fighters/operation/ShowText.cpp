@@ -14,10 +14,8 @@ ShowText::ShowText(sf::RenderWindow *window)
   textInfo = new sf::Text;
   textInfo->setFont(*font);
   textInfo->setPosition(SHOW_TEXT_GAME_STATUS_INDEX_X, SHOW_TEXT_GAME_STATUS_INDEX_Y);
-  // textInfo->setPosition(SCREEN_WIDTH * GAME_FONT_INDEX_PERCENT_X, SCREEN_HEIGHT * GAME_FONT_INDEX_PERCENT_Y);
   textInfo->setCharacterSize(SHOW_TEXT_GAME_STATUS_CHARACTER_SIZE);
   textInfo->setColor(SHOW_TEXT_GAME_STATUS_COLOR);
-  // textInfo->setColor(FONT_COLOR);
 }
 ShowText::~ShowText()
 {

@@ -5,16 +5,18 @@
 #include "../classFighter/PlayerFighterFactory.h"
 #include "AllShell.h"
 #include "../head/GameConfig.h"
-#include "Status.h"
 #include <SFML/Audio.hpp>
+#include "../Game.h"
+
+class Game;
 
 class Player : public Operation
 {
 private:
   Fighter *playerFighter;
   AllShell *shellContainer;
-  Status *status;
   sf::RenderWindow *window;
+  Game *game;
 
   sf::SoundBuffer *bufferFire;
   sf::SoundBuffer *bufferAttacked;
@@ -40,7 +42,7 @@ private:
   bool knockedOperate();
   void deleteAllSoundFire();
 public:
-  Player(AllShell *shellContainer, sf::RenderWindow *window, Status *status);
+  Player(AllShell *shellContainer, sf::RenderWindow *window, Game *game);
   ~Player();
   void operate();
   bool collision(Shell *target);

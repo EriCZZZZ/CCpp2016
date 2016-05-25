@@ -1,21 +1,33 @@
 #include "Game.h"
-
 Game::Game(int difficulty)
 {
   window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "ERIC-FIGHTER");
   initializateItem(difficulty);
   initializateSound();
+  initializeInfo();
+  Game::difficulty = difficulty;
+  initializeDifficulty();
   //dead text
   showText = new ShowText(window);
 
-  Game::difficulty = difficulty;
+}
+void Game::initializeDifficulty()
+{
+  difficultyContainer.push_back(difficulty * DIFFICULTY_K_SHELL_SPEED);
+  difficultyContainer.push_back(difficulty * DIFFICULTY_K_SHELL_FIRE_RATE);
+  difficultyContainer.push_back(difficulty * DIFFICULTY_K_ENEMY_FIGHTER_MAX_NUMBER);
+}
+void Game::initializeInfo()
+{
+  score = 0;
+  gameStatus = GAME_GOING;
 }
 void Game::initializateItem(int difficulty)
 {
   status = new Status(window, difficulty);
   allShell = new AllShell(window);
-  player = new Player(allShell, window, status);
-  enemy = new Enemy(allShell, window, status);
+  player = new Player(allShell, window, this);
+  enemy = new Enemy(allShell, window, this);
   collisionJudge = new CollisionJudge(player, enemy, allShell);
   gameOperation.push_back(player);
   gameOperation.push_back(enemy);
@@ -43,9 +55,12 @@ Game::~Game()
   delete bufferBGM;
   delete window;
 }
+void Game::setGameStatus(int gameStatus)
+{
+  Game::gameStatus = gameStatus;
+}
 int Game::play()
 {
-  int gameFlag = GAME_GOING;
   while(window->isOpen())
   {
     sf::Event eventClosed;
@@ -59,7 +74,7 @@ int Game::play()
       }
     }
     window->clear(SCREEN_COLOR_BACKGROUND);
-    if(status->checkGameStatus() == GAME_GOING)
+    if(gameStatus == GAME_GOING)
     {
       for(auto it = gameOperation.begin(); it != gameOperation.end(); it++)
       {
@@ -67,12 +82,12 @@ int Game::play()
       }
       collisionJudge->judgeAll();
       //print info
+      checkScore();
       showText->showInfo(difficulty, score);
     }
     else
     {
-      gameFlag = status->checkGameStatus();
-      if(gameFlag == GAME_STOP)
+      if(gameStatus == GAME_STOP)
       {
         showText->showDeadInfo();
       }
@@ -84,10 +99,25 @@ int Game::play()
       {
         window->close();
         soundBGM->stop();
-        return gameFlag;
+        return gameStatus;
       }
     }
     window->display();
     std::this_thread::sleep_for(std::chrono::microseconds(INTERVAL_MAIN));
   }
+}
+void Game::addScore(int deltaScore)
+{
+  score += deltaScore;
+}
+void Game::checkScore()
+{
+  if(score >= GAME_MAX_SCORE)
+  {
+    gameStatus = GAME_NEXT_DIFFICULTY;
+  }
+}
+int Game::getDifficulty(int index)
+{
+  return difficultyContainer[index];
 }

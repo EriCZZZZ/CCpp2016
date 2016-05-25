@@ -10,11 +10,15 @@
 #include "Status.h"
 #include "ctime"
 #include "cstdlib"
+#include "../Game.h"
+
+class Game;
 
 class Enemy : public Operation
 {
 private:
   sf::RenderWindow *window;
+  Game *game;
   AllShell *shellContainer;
   Status *status;
   std::vector<Fighter *> enemyFighter;
@@ -38,7 +42,7 @@ private:
   void Fire();
   void drawAllFighter();
 public:
-  Enemy(AllShell *shellContainer, sf::RenderWindow *window, Status *status);
+  Enemy(AllShell *shellContainer, sf::RenderWindow *window, Game *game);
   ~Enemy();
   void operate();
   bool collision(Shell *target);

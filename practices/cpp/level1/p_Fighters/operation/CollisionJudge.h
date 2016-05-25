@@ -7,6 +7,9 @@
 #include "Status.h"
 #include "../head/GameConfig.h"
 
+class Player;
+class Enemy;
+
 class CollisionJudge
 {
 private:

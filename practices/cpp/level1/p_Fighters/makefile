@@ -9,9 +9,21 @@ edit: $(OBJ)
 
 	g++ $(OBJ) -std=c++11 -g -o game.out -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio
 
-main.o : main.cpp ./operation/Player.o ./operation/Enemy.o ./operation/AllShell.o ./operation/CollisionJudge.o
+# main.o : main.cpp ./operation/Player.o ./operation/Enemy.o ./operation/AllShell.o ./operation/CollisionJudge.o
+main.o : main.cpp BeatFighter.o
 
 	g++ -c -g -std=c++11 -o main.o main.cpp
+
+./BeatFighter.o : ./BeatFighter.cpp ./Game.o
+	g++ -c -g -DDEBUG -std=c++11 -o ./BeatFighter.o ./BeatFighter.cpp
+
+./Game.o : ./Game.cpp ./operation/AllShell.o ./operation/CollisionJudge.o ./operation/Enemy.o ./operation/Player.o ./operation/Status.o ./operation/ShowText.o
+
+	g++ -c -g -DDEBUG -std=c++11 -o ./Game.o ./Game.cpp
+
+./operation/AllShell.o : ./operation/AllShell.cpp ./classShell/Shell.o
+
+	g++ -c -g -DDEBUG -std=c++11 -o ./operation/AllShell.o ./operation/AllShell.cpp
 
 ./classGraphics/FighterGraphics.o : ./classGraphics/FighterGraphics.cpp ./head/GameConfig.h
 
@@ -45,9 +57,6 @@ main.o : main.cpp ./operation/Player.o ./operation/Enemy.o ./operation/AllShell.
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classFighter/EnemyFighterFactory.o ./classFighter/EnemyFighterFactory.cpp
 
-./operation/AllShell.o : ./operation/AllShell.cpp ./classShell/Shell.o
-
-	g++ -c -g -DDEBUG -std=c++11 -o ./operation/AllShell.o ./operation/AllShell.cpp
 
 ./operation/Player.o : ./operation/Player.cpp ./operation/AllShell.o ./classFighter/PlayerFighterFactory.o ./operation/Status.o
 
@@ -64,16 +73,11 @@ main.o : main.cpp ./operation/Player.o ./operation/Enemy.o ./operation/AllShell.
 ./operation/Status.o : ./operation/Status.cpp
 	g++ -c -g -DDEBUG -std=c++11 -o ./operation/Status.o ./operation/Status.cpp
 
-./Game.o : ./Game.cpp ./operation/AllShell.o ./operation/CollisionJudge.o ./operation/Enemy.o ./operation/Player.o ./operation/Status.o ./operation/ShowText.o
-
-	g++ -c -g -DDEBUG -std=c++11 -o ./Game.o ./Game.cpp
 
 ./operation/ShowText.o : ./operation/ShowText.cpp
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./operation/ShowText.o ./operation/ShowText.cpp
 
-./BeatFighter.o : ./BeatFighter.cpp ./Game.cpp
-	g++ -c -g -DDEBUG -std=c++11 -o ./BeatFighter.o ./BeatFighter.cpp
 
 clean:
 	-rm $(OBJ)
