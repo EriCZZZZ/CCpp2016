@@ -2,7 +2,7 @@ OBJ = main.o ./classGraphics/FighterGraphics.o ./classGraphics/ShellGraphics.o \
  ./classShell/Shell.o ./classFighter/Fighter.o ./classFighter/PlayerFighter.o \
  ./classFighter/PlayerFighterFactory.o ./classFighter/EnemyFighter.o \
  ./classFighter/EnemyFighterFactory.o ./operation/Player.o ./operation/Enemy.o \
- ./operation/AllShell.o ./operation/CollisionJudge.o ./operation/Status.o \
+ ./operation/AllShell.o ./operation/CollisionJudge.o  \
  ./Game.o ./operation/ShowText.o ./BeatFighter.o
 
 edit: $(OBJ)
@@ -17,7 +17,7 @@ main.o : main.cpp BeatFighter.o
 ./BeatFighter.o : ./BeatFighter.cpp ./Game.o
 	g++ -c -g -DDEBUG -std=c++11 -o ./BeatFighter.o ./BeatFighter.cpp
 
-./Game.o : ./Game.cpp ./operation/AllShell.o ./operation/CollisionJudge.o ./operation/Enemy.o ./operation/Player.o ./operation/Status.o ./operation/ShowText.o
+./Game.o : ./Game.cpp ./operation/AllShell.o ./operation/CollisionJudge.o ./operation/Enemy.o ./operation/Player.o  ./operation/ShowText.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./Game.o ./Game.cpp
 
@@ -58,21 +58,17 @@ main.o : main.cpp BeatFighter.o
 	g++ -c -g -DDEBUG -std=c++11 -o ./classFighter/EnemyFighterFactory.o ./classFighter/EnemyFighterFactory.cpp
 
 
-./operation/Player.o : ./operation/Player.cpp ./operation/AllShell.o ./classFighter/PlayerFighterFactory.o ./operation/Status.o
+./operation/Player.o : ./operation/Player.cpp ./operation/AllShell.o ./classFighter/PlayerFighterFactory.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./operation/Player.o ./operation/Player.cpp
 
-./operation/Enemy.o : ./operation/Enemy.cpp ./operation/AllShell.o ./classFighter/EnemyFighterFactory.o ./operation/Status.o
+./operation/Enemy.o : ./operation/Enemy.cpp ./operation/AllShell.o ./classFighter/EnemyFighterFactory.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./operation/Enemy.o ./operation/Enemy.cpp
 
 ./operation/CollisionJudge.o : ./operation/CollisionJudge.cpp ./operation/Player.o ./operation/Enemy.o ./operation/AllShell.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./operation/CollisionJudge.o ./operation/CollisionJudge.cpp
-
-./operation/Status.o : ./operation/Status.cpp
-	g++ -c -g -DDEBUG -std=c++11 -o ./operation/Status.o ./operation/Status.cpp
-
 
 ./operation/ShowText.o : ./operation/ShowText.cpp
 

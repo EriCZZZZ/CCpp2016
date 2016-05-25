@@ -5,7 +5,6 @@
 #include "./operation/Player.h"
 #include "./operation/Enemy.h"
 #include "./operation/AllShell.h"
-#include "./operation/Status.h"
 #include "./operation/CollisionJudge.h"
 #include "./operation/ShowText.h"
 #include "./head/GameConfig.h"
@@ -26,7 +25,6 @@ private:
   std::vector<int> difficultyContainer;
 
   ShowText *showText;
-  Status *status;
   AllShell *allShell;
   Player *player;
   Enemy *enemy;

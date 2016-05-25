@@ -4,7 +4,6 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "AllShell.h"
-#include "Status.h"
 #include "../head/GameConfig.h"
 
 class Player;
