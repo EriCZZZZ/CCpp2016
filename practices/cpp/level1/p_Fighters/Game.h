@@ -40,7 +40,7 @@ private:
   void initializateSound();
   void initializeInfo();
   void initializeDifficulty();
-  void checkScore();
+  void checkScoreAndSetGameStatus();
 public:
   Game(int difficulty);
   ~Game();

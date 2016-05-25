@@ -9,7 +9,6 @@
 Enemy::Enemy(AllShell *shellContainer, sf::RenderWindow *window, Game *game)
 {
   Enemy::game = game;
-  Enemy::status = status;
   Enemy::shellContainer = shellContainer;
   Enemy::window = window;
   boomBuffer = new sf::SoundBuffer;

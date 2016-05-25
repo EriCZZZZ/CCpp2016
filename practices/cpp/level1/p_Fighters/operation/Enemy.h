@@ -7,7 +7,6 @@
 #include "../classFighter/EnemyFighterFactory.h"
 #include "../head/GameConfig.h"
 #include "AllShell.h"
-#include "Status.h"
 #include "ctime"
 #include "cstdlib"
 #include "../Game.h"
@@ -20,7 +19,6 @@ private:
   sf::RenderWindow *window;
   Game *game;
   AllShell *shellContainer;
-  Status *status;
   std::vector<Fighter *> enemyFighter;
   std::vector<sf::CircleShape *> boomCircle;
   sf::SoundBuffer *boomBuffer;

@@ -24,7 +24,6 @@ void Game::initializeInfo()
 }
 void Game::initializateItem(int difficulty)
 {
-  status = new Status(window, difficulty);
   allShell = new AllShell(window);
   player = new Player(allShell, window, this);
   enemy = new Enemy(allShell, window, this);
@@ -32,7 +31,6 @@ void Game::initializateItem(int difficulty)
   gameOperation.push_back(player);
   gameOperation.push_back(enemy);
   gameOperation.push_back(allShell);
-  // gameOperation.push_back(status);
 }
 void Game::initializateSound()
 {
@@ -45,7 +43,6 @@ void Game::initializateSound()
 }
 Game::~Game()
 {
-  delete status;
   delete allShell;
   delete player;
   delete enemy;
@@ -54,10 +51,6 @@ Game::~Game()
   delete soundBGM;
   delete bufferBGM;
   delete window;
-}
-void Game::setGameStatus(int gameStatus)
-{
-  Game::gameStatus = gameStatus;
 }
 int Game::play()
 {
@@ -82,7 +75,7 @@ int Game::play()
       }
       collisionJudge->judgeAll();
       //print info
-      checkScore();
+      checkScoreAndSetGameStatus();
       showText->showInfo(difficulty, score);
     }
     else
@@ -110,7 +103,7 @@ void Game::addScore(int deltaScore)
 {
   score += deltaScore;
 }
-void Game::checkScore()
+void Game::checkScoreAndSetGameStatus()
 {
   if(score >= GAME_MAX_SCORE)
   {
@@ -120,4 +113,8 @@ void Game::checkScore()
 int Game::getDifficulty(int index)
 {
   return difficultyContainer[index];
+}
+void Game::setGameStatus(int gameStatus)
+{
+  Game::gameStatus = gameStatus;
 }
