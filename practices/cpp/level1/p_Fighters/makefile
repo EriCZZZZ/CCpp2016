@@ -40,8 +40,8 @@ main.o : main.cpp BeatFighter.o
 ./classShell/WeaponSingle.o : ./classShell/WeaponSingle.cpp ./classShell/Shell.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classShell/WeaponSingle.o ./classShell/WeaponSingle.cpp
-	
-./classFighter/Fighter.o : ./classFighter/Fighter.cpp ./classGraphics/FighterGraphics.o ./classShell/Shell.o
+
+./classFighter/Fighter.o : ./classFighter/Fighter.cpp ./classGraphics/FighterGraphics.o ./classShell/WeaponSingle.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classFighter/Fighter.o ./classFighter/Fighter.cpp
 
@@ -53,7 +53,7 @@ main.o : main.cpp BeatFighter.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classFighter/PlayerFighterFactory.o ./classFighter/PlayerFighterFactory.cpp
 
-./classFighter/EnemyFighter.o : ./classFighter/EnemyFighter.cpp ./classFighter/Fighter.o
+./classFighter/EnemyFighter.o : ./classFighter/EnemyFighter.cpp ./classFighter/Fighter.o ./classShell/WeaponSingle.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classFighter/EnemyFighter.o ./classFighter/EnemyFighter.cpp
 
