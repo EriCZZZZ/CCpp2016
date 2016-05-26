@@ -3,7 +3,7 @@ PlayerFighter::PlayerFighter(int x, int y) : Fighter(x, y)
 {
   weapon = new WeaponSingle;
   fighterOwner = FIGHTER_PLAYER;
-  HP = FIGHTER_HP_MAX;
+  HP = FIGHTER_HP_MAX_PLAYER;
   //to create fighter outlook
 }
 std::vector<Shell *> PlayerFighter::fire()
