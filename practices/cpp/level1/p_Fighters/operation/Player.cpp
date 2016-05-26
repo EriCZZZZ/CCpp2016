@@ -62,7 +62,8 @@ Player::~Player()
 void Player::operate()
 {
   move(checkMoveAndBorder());
-  if(checkFire() == SHELL_FIRE)
+
+  if(checkFireAndRefreshShell() == SHELL_FIRE)
   {
     fire();
   }
@@ -146,9 +147,10 @@ sf::Vertex Player::checkMoveAndBorder()
     return sf::Vector2f(PLAYER_DELTA_NO_MOVE, PLAYER_DELTA_Y);
   }
 }
-bool Player::checkFire()
+bool Player::checkFireAndRefreshShell()
 {
-  if(sf::Keyboard::isKeyPressed(PLAYER_FIRE))
+  playerFighter->refreshShell();
+  if(sf::Keyboard::isKeyPressed(PLAYER_FIRE) && playerFighter->checkWeaponStatus() == WEAPON_SHELL_IS_READY)
   {
     return SHELL_FIRE;
   }
@@ -159,8 +161,6 @@ bool Player::checkFire()
 }
 void Player::fire()
 {
-  // Shell *tempShell = playerFighter->fire(SHELL_SPEED_PLAYER_X, SHELL_SPEED_PLAYER_Y);
-  // shellContainer->addShell(tempShell);
   std::vector<Shell *> newShellContainer = playerFighter->fire();
   for(auto it = newShellContainer.begin(); it != newShellContainer.end(); it++)
   {

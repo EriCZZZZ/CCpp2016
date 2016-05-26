@@ -19,6 +19,8 @@ public:
   Fighter(int x, int y);
   virtual std::vector<Shell *> fire() = 0;
   virtual void move(int deltaX, int deltaY) = 0;
+  virtual bool checkWeaponStatus() = 0;
+  virtual void refreshShell() = 0;
   sf::Vertex getPositionByVertex();
   FighterGraphics *toDraw();
   void reviseHP(int deltaHP);

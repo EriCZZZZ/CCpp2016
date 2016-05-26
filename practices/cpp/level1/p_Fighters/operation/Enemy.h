@@ -23,6 +23,9 @@ private:
   std::vector<sf::CircleShape *> boomCircle;
   sf::SoundBuffer *boomBuffer;
   std::vector<sf::Sound *> boomSound;
+
+  static int createFighterTimeCount;
+
   void playBoom();
   void createBoomCircle(int x, int y);
   void drawBoomCircle();

@@ -12,5 +12,7 @@ public:
   EnemyFighter(int x, int y);
   std::vector<Shell *> fire();
   void move(int deltaX, int deltaY);
+  bool checkWeaponStatus();
+  void refreshShell();
 };
 #endif

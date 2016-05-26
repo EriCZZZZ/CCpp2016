@@ -6,6 +6,7 @@
 #include <chrono>
 #endif
 
+int Enemy::createFighterTimeCount = ENEMY_CREATE_FIGHTER_INTERVAL;
 Enemy::Enemy(AllShell *shellContainer, sf::RenderWindow *window, Game *game)
 {
   Enemy::game = game;
@@ -35,11 +36,13 @@ Enemy::~Enemy()
 }
 void Enemy::checkAndCreateFighter()
 {
+  createFighterTimeCount++;
   if(enemyFighter.size() < game->getDifficulty(DIFFICULTY_INDEX_ENEMY_FIGHTER_MAX_NUMBER))
   {
     EnemyFighterFactory tempFactory;
-    while(enemyFighter.size() < game->getDifficulty(DIFFICULTY_INDEX_ENEMY_FIGHTER_MAX_NUMBER))
+    if(createFighterTimeCount >= ENEMY_CREATE_FIGHTER_INTERVAL)
     {
+      createFighterTimeCount = 0;
       auto temp = tempFactory.createFighter(createRandomIndex(), ENEMY_CREATE_FIGHER_ORIGIN_Y);
       enemyFighter.push_back(temp);
     }
@@ -66,10 +69,10 @@ void Enemy::Fire()
 {
   for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
   {
-    if(createRandomFire() <= ENEMY_FIRE * game->getDifficulty(DIFFICULTY_INDEX_SHELL_FIRE_RATE))
+    (*it)->refreshShell();
+    if(createRandomFire() <= ENEMY_FIRE * game->getDifficulty(DIFFICULTY_INDEX_SHELL_FIRE_RATE) && (*it)->checkWeaponStatus() == WEAPON_SHELL_IS_READY)
     {
       std::vector<Shell *> newShellContainer = (*it)->fire();
-      // shellContainer->addShell((*it)->fire(SHELL_SPEED_ENEMY_X, game->getDifficulty(DIFFICULTY_INDEX_SHELL_SPEED)));
       for(auto it = newShellContainer.begin(); it != newShellContainer.end(); it++)
       {
         shellContainer->addShell(*it);

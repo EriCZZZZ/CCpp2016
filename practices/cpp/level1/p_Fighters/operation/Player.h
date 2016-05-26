@@ -37,7 +37,7 @@ private:
 
   sf::Vertex checkMoveAndBorder();
   void move(sf::Vertex deltaVector);
-  bool checkFire();
+  bool checkFireAndRefreshShell();
   void fire();
   bool knockedOperate();
   void deleteAllSoundFire();

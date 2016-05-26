@@ -13,5 +13,7 @@ public:
   PlayerFighter(int x, int y);
   std::vector<Shell *> fire() override;
   void move(int deltaX, int deltaY);
+  bool checkWeaponStatus();
+  void refreshShell();
 };
 #endif

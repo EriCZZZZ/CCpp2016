@@ -14,3 +14,11 @@ void PlayerFighter::move(int deltaX, int deltaY)
 {
   fighterGraphics.move(deltaX, deltaY);
 }
+bool PlayerFighter::checkWeaponStatus()
+{
+  return weapon->checkWeaponStatus();
+}
+void PlayerFighter::refreshShell()
+{
+  weapon->refreshShell();
+}

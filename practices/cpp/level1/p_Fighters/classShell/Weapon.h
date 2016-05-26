@@ -7,5 +7,7 @@ class Weapon
 {
 public:
   virtual std::vector<Shell *> fire(sf::Vertex fighterLocation, sf::Vector2f shellSpeedDirection, int owner) = 0;
+  virtual bool checkWeaponStatus() = 0;
+  virtual void refreshShell() = 0;
 };
 #endif

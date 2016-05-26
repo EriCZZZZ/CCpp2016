@@ -13,7 +13,15 @@ std::vector<Shell *> EnemyFighter::fire()
 }
 void EnemyFighter::move(int deltaX, int deltaY)
 {
-  int targetX = getPositionByVertex().position.x + deltaX;
-  int targetY = getPositionByVertex().position.y + deltaY;
+  // int targetX = getPositionByVertex().position.x + deltaX;
+  // int targetY = getPositionByVertex().position.y + deltaY;
   fighterGraphics.move(deltaX, deltaY);
+}
+bool EnemyFighter::checkWeaponStatus()
+{
+  return weapon->checkWeaponStatus();
+}
+void EnemyFighter::refreshShell()
+{
+  weapon->refreshShell();
 }
