@@ -4,6 +4,8 @@
 #include "../head/GameConfig.h"
 #include "../classGraphics/FighterGraphics.h"
 #include "../classShell/Shell.h"
+#include "../classShell/WeaponSingle.h"
+#include <vector>
 
 class Fighter
 {
@@ -15,7 +17,7 @@ private:
   void setPosition(int indexX, int indexY);
 public:
   Fighter(int x, int y);
-  virtual Shell *fire(int x, int y) = 0;
+  virtual std::vector<Shell *> fire() = 0;
   virtual void move(int deltaX, int deltaY) = 0;
   sf::Vertex getPositionByVertex();
   FighterGraphics *toDraw();

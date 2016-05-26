@@ -68,7 +68,12 @@ void Enemy::Fire()
   {
     if(createRandomFire() <= ENEMY_FIRE * game->getDifficulty(DIFFICULTY_INDEX_SHELL_FIRE_RATE))
     {
-      shellContainer->addShell((*it)->fire(SHELL_SPEED_ENEMY_X, game->getDifficulty(DIFFICULTY_INDEX_SHELL_SPEED)));
+      std::vector<Shell *> newShellContainer = (*it)->fire();
+      // shellContainer->addShell((*it)->fire(SHELL_SPEED_ENEMY_X, game->getDifficulty(DIFFICULTY_INDEX_SHELL_SPEED)));
+      for(auto it = newShellContainer.begin(); it != newShellContainer.end(); it++)
+      {
+        shellContainer->addShell(*it);
+      }
     }
     it++;
   }

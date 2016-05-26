@@ -7,9 +7,10 @@ class EnemyFighter : public Fighter
 {
 private:
   bool fighterOwner = FIGHTER_OWNER_ENEMY;
+  Weapon *weapon;
 public:
   EnemyFighter(int x, int y);
-  Shell *fire(int x, int y);
+  std::vector<Shell *> fire();
   void move(int deltaX, int deltaY);
 };
 #endif

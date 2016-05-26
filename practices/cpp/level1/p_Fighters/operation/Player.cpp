@@ -159,8 +159,13 @@ bool Player::checkFire()
 }
 void Player::fire()
 {
-  Shell *tempShell = playerFighter->fire(SHELL_SPEED_PLAYER_X, SHELL_SPEED_PLAYER_Y);
-  shellContainer->addShell(tempShell);
+  // Shell *tempShell = playerFighter->fire(SHELL_SPEED_PLAYER_X, SHELL_SPEED_PLAYER_Y);
+  // shellContainer->addShell(tempShell);
+  std::vector<Shell *> newShellContainer = playerFighter->fire();
+  for(auto it = newShellContainer.begin(); it != newShellContainer.end(); it++)
+  {
+    shellContainer->addShell(*it);
+  }
   playFireSound();
 }
 bool Player::knockedOperate()
