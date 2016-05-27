@@ -177,7 +177,10 @@ void Player::fire()
   {
     shellContainer->addShell(*it);
   }
-  playFireSound();
+  if(newShellContainer.begin() != newShellContainer.end())
+  {
+    playFireSound();
+  }
 }
 bool Player::knockedOperate()
 {
