@@ -21,20 +21,15 @@ std::vector<Shell *> WeaponSingle::fire(sf::Vertex fighterLocation, sf::Vector2f
   if(isShellReady == WEAPON_FIRE_RATE_SINGLE)
   {
     Shell *shell;
-    isShellReady = 0;
+    isShellReady = WEAPON_RESET_SHELL_STATUS;
     if(owner == FIGHTER_OWNER_PLAYER)
     {
       shell = shellFactory->createShell(sf::Vector2f(fighterLocation.position.x, fighterLocation.position.y + FIGHTER_CREATE_SHELL_CORRECTED_VALUE_PLAYER_Y), shellSpeedDirection, owner);
-      // shell->setPosition(fighterLocation.position.x, fighterLocation.position.y + FIGHTER_CREATE_SHELL_CORRECTED_VALUE_PLAYER_Y);
     }
     else
     {
       shell = shellFactory->createShell(sf::Vector2f(fighterLocation.position.x, fighterLocation.position.y + FIGHTER_CREATE_SHELL_CORRECTED_VALUE_ENEMY_Y), shellSpeedDirection, owner);
-      // shell->setPosition(fighterLocation.position.x, fighterLocation.position.y + FIGHTER_CREATE_SHELL_CORRECTED_VALUE_ENEMY_Y);
     }
-    // shell->setSpeedByVector(shellSpeedDirection);
-    // shell->setOwner(owner);
-
     shellContainer.push_back(shell);
   }
   return shellContainer;

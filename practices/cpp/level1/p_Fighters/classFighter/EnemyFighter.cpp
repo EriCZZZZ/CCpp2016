@@ -23,3 +23,7 @@ void EnemyFighter::refreshShell()
 {
   weapon->refreshShell();
 }
+void EnemyFighter::changeWeapon(int weaponIndex)
+{
+  ;
+}

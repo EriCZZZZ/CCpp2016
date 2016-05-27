@@ -4,7 +4,9 @@
 #include "../head/GameConfig.h"
 #include "../classGraphics/FighterGraphics.h"
 #include "../classShell/Shell.h"
+#include "../classShell/Weapon.h"
 #include "../classShell/WeaponSingle.h"
+#include "../classShell/WeaponSpread.h"
 #include <vector>
 
 class Fighter
@@ -21,6 +23,7 @@ public:
   virtual void move(int deltaX, int deltaY) = 0;
   virtual bool checkWeaponStatus() = 0;
   virtual void refreshShell() = 0;
+  virtual void changeWeapon(int weaponIndex) = 0;
   sf::Vertex getPositionByVertex();
   FighterGraphics *toDraw();
   void reviseHP(int deltaHP);

@@ -2,6 +2,8 @@
 #define WEAPON_SPREAD_H
 #include "Weapon.h"
 #define SPREAD_SHELL_NUMBER 3
+#define SPREAD_SHELL_SPEED_X_2 -1
+#define SPREAD_SHELL_SPEED_X_3 1
 
 class WeaponSpread : public Weapon
 {
@@ -12,6 +14,6 @@ public:
   bool checkWeaponStatus();
 private:
   int model = WEAPON_MODEL_NUMBER_SPREAD;
-  int isShellReady;
+  int isShellReady = WEAPON_SHELL_IS_READY;
 };
 #endif

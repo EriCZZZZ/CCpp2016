@@ -14,5 +14,6 @@ public:
   void move(int deltaX, int deltaY);
   bool checkWeaponStatus();
   void refreshShell();
+  void changeWeapon(int weaponIndex);
 };
 #endif
