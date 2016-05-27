@@ -1,6 +1,7 @@
 #ifndef WEAPON_H
 #define WEAPON_H
 #include "Shell.h"
+#include "ShellFactory.h"
 #include "../head/GameConfig.h"
 #include <vector>
 class Weapon

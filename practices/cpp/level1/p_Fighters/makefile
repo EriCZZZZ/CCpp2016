@@ -3,7 +3,7 @@ OBJ = main.o ./classGraphics/FighterGraphics.o ./classGraphics/ShellGraphics.o \
  ./classFighter/PlayerFighterFactory.o ./classFighter/EnemyFighter.o \
  ./classFighter/EnemyFighterFactory.o ./operation/Player.o ./operation/Enemy.o \
  ./operation/AllShell.o ./operation/CollisionJudge.o  ./classShell/WeaponSingle.o\
- ./Game.o ./operation/ShowText.o ./BeatFighter.o
+ ./Game.o ./operation/ShowText.o ./BeatFighter.o ./classShell/ShellFactory.o
 
 edit: $(OBJ)
 
@@ -37,7 +37,11 @@ main.o : main.cpp BeatFighter.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classShell/Shell.o ./classShell/Shell.cpp
 
-./classShell/WeaponSingle.o : ./classShell/WeaponSingle.cpp ./classShell/Shell.o
+./classShell/ShellFactory.o : ./classShell/ShellFactory.cpp ./classShell/Shell.o
+
+	g++ -c -g -DDEBUG -std=c++11 -o ./classShell/ShellFactory.o ./classShell/ShellFactory.cpp
+
+./classShell/WeaponSingle.o : ./classShell/WeaponSingle.cpp ./classShell/Shell.o ./classShell/ShellFactory.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classShell/WeaponSingle.o ./classShell/WeaponSingle.cpp
 
