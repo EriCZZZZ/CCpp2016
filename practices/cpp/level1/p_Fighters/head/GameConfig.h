@@ -166,7 +166,8 @@
 
 // === keyboard setting ===
 #define KEYBOARD_RETURN sf::Keyboard::Q
-
+#define KEYBOARD_CHANGE_WEAPON_SINGLE sf::Keyboard::Num1
+#define KEYBOARD_CHANGE_WEAPON_SPREAD sf::Keyboard::Num2
 // === difficulty ===
 #define DIFFICULTY_K_SHELL_SPEED 3
 #define DIFFICULTY_K_SHELL_FIRE_RATE 1

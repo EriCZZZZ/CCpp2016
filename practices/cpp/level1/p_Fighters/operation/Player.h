@@ -41,6 +41,7 @@ private:
   void fire();
   bool knockedOperate();
   void deleteAllSoundFire();
+  void checkAndChangeWeapon();
 public:
   Player(AllShell *shellContainer, sf::RenderWindow *window, Game *game);
   ~Player();

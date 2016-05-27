@@ -62,7 +62,7 @@ Player::~Player()
 void Player::operate()
 {
   move(checkMoveAndBorder());
-
+  checkAndChangeWeapon();
   if(checkFireAndRefreshShell() == SHELL_FIRE)
   {
     fire();
@@ -157,6 +157,17 @@ bool Player::checkFireAndRefreshShell()
   else
   {
     return SHELL_UNFIRE;
+  }
+}
+void Player::checkAndChangeWeapon()
+{
+  if(sf::Keyboard::isKeyPressed(KEYBOARD_CHANGE_WEAPON_SINGLE))
+  {
+    playerFighter->changeWeapon(WEAPON_MODEL_NUMBER_SINGLE);
+  }
+  if(sf::Keyboard::isKeyPressed(KEYBOARD_CHANGE_WEAPON_SPREAD))
+  {
+    playerFighter->changeWeapon(WEAPON_MODEL_NUMBER_SPREAD);
   }
 }
 void Player::fire()
