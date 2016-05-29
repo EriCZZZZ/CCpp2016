@@ -109,6 +109,25 @@ bool Player::collisionJudge(Shell *target, int x2, int y2)
     return COLLISION_UNKNOCKED;
   }
 }
+bool Player::knockedOperate()
+{
+  playerFighter->reviseHP(COLLISION_HP_DELTA);
+
+  auto HP = playerFighter->getHP();
+  HPfill->setSize(sf::Vector2f((static_cast<float>(HP) / FIGHTER_HP_MAX_PLAYER) * GAME_HP_LENGTH, GAME_HP_WIDTH));
+
+  auto isFighterDie = playerFighter->isFighterDie();
+  if(isFighterDie == COLLISION_FIGHTER_DEAD)
+  {
+    soundDead->play();
+    game->setGameStatus(GAME_STOP);
+  }
+  else
+  {
+    soundAttacked->play();
+  }
+  return COLLISION_KNOCKED;
+}
 void Player::playFireSound()
 {
   auto temp = new sf::Sound;
@@ -182,25 +201,7 @@ void Player::fire()
     playFireSound();
   }
 }
-bool Player::knockedOperate()
-{
-  playerFighter->reviseHP(COLLISION_HP_DELTA);
 
-  auto HP = playerFighter->getHP();
-  HPfill->setSize(sf::Vector2f((static_cast<float>(HP) / FIGHTER_HP_MAX_PLAYER) * GAME_HP_LENGTH, GAME_HP_WIDTH));
-
-  auto isFighterDie = playerFighter->isFighterDie();
-  if(isFighterDie == COLLISION_FIGHTER_DEAD)
-  {
-    soundDead->play();
-    game->setGameStatus(GAME_STOP);
-  }
-  else
-  {
-    soundAttacked->play();
-  }
-  return COLLISION_KNOCKED;
-}
 void Player::deleteAllSoundFire()
 {
   for(auto it = soundFire.begin(); it != soundFire.end();)

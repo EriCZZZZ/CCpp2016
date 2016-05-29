@@ -188,4 +188,7 @@
 
 #define WEAPON_SHELL_IS_READY 0
 #define WEAPON_SHELL_NOT_READY 1
+
+// === sound ====
+#define SOUND_CONTAINER_MAX 50
 #endif

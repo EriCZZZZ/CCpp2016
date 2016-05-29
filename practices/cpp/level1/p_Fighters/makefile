@@ -4,7 +4,7 @@ OBJ = main.o ./classGraphics/FighterGraphics.o ./classGraphics/ShellGraphics.o \
  ./classFighter/EnemyFighterFactory.o ./operation/Player.o ./operation/Enemy.o \
  ./operation/AllShell.o ./operation/CollisionJudge.o  ./classShell/WeaponSingle.o\
  ./Game.o ./operation/ShowText.o ./BeatFighter.o ./classShell/ShellFactory.o \
- ./classShell/WeaponSpread.o
+ ./classShell/WeaponSpread.o ./operation/PlaySound.o
 
 edit: $(OBJ)
 
@@ -49,7 +49,7 @@ main.o : main.cpp BeatFighter.o
 ./classShell/WeaponSpread.o : ./classShell/WeaponSpread.cpp ./classShell/Shell.o ./classShell/ShellFactory.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classShell/WeaponSpread.o ./classShell/WeaponSpread.cpp
-	
+
 ./classFighter/Fighter.o : ./classFighter/Fighter.cpp ./classGraphics/FighterGraphics.o ./classShell/WeaponSingle.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classFighter/Fighter.o ./classFighter/Fighter.cpp
@@ -87,7 +87,10 @@ main.o : main.cpp BeatFighter.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./operation/ShowText.o ./operation/ShowText.cpp
 
+./operation/PlaySound.o : ./operation/PlaySound.cpp
 
+	g++ -c -g -DDEBUG -std=c++11 -o ./operation/PlaySound.o ./operation/PlaySound.cpp
+	
 clean:
 	-rm $(OBJ)
 	-rm game.out

@@ -16,6 +16,7 @@ public:
   void setPosition(int indexX, int indexY);
   void setSpeedByVector(sf::Vector2f vector);
   void move();
+  // void collisionOperate(Operation *targetOperation);
   sf::Vertex getPositionByVertex();
   ShellGraphics *toDraw();
 };
