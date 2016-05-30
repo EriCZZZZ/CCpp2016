@@ -1,11 +1,11 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Operation.h"
-#include "../classFighter/PlayerFighterFactory.h"
-#include "AllShell.h"
-#include "../head/GameConfig.h"
 #include <SFML/Audio.hpp>
+#include "Operation.h"
+#include "AllShell.h"
+#include "../classFighter/PlayerFighterFactory.h"
+#include "../head/GameConfig.h"
 #include "../Game.h"
 
 class Game;

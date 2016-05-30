@@ -34,12 +34,14 @@ void Game::initializateItem(int difficulty)
 }
 void Game::initializateSound()
 {
-  bufferBGM = new sf::SoundBuffer;
-  bufferBGM->loadFromFile(SOUND_BGM);
-  soundBGM = new sf::Sound;
-  soundBGM->setBuffer(*bufferBGM);
-  soundBGM->setLoop(true);
-  soundBGM->play();
+  // bufferBGM = new sf::SoundBuffer;
+  // bufferBGM->loadFromFile(SOUND_BGM);
+  // soundBGM = new sf::Sound;
+  // soundBGM->setBuffer(*bufferBGM);
+  // soundBGM->setLoop(true);
+  // soundBGM->play();
+  playSound = new PlaySound;
+  playSound->playBGM();
 }
 Game::~Game()
 {
@@ -48,8 +50,9 @@ Game::~Game()
   delete enemy;
   delete collisionJudge;
   delete showText;
-  delete soundBGM;
-  delete bufferBGM;
+  // delete soundBGM;
+  // delete bufferBGM;
+  delete playSound;
   delete window;
 }
 int Game::play()
@@ -61,7 +64,8 @@ int Game::play()
     {
       if(eventClosed.type == sf::Event::Closed)
       {
-        soundBGM->stop();
+        // soundBGM->stop();
+        playSound->stopBGM();
         window->close();
         return GAME_STOP;
       }
@@ -91,7 +95,8 @@ int Game::play()
       if(sf::Keyboard::isKeyPressed(KEYBOARD_RETURN))
       {
         window->close();
-        soundBGM->stop();
+        // soundBGM->stop();
+        playSound->stopBGM();
         return gameStatus;
       }
     }

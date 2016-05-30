@@ -8,6 +8,7 @@
 #include "./operation/CollisionJudge.h"
 #include "./operation/ShowText.h"
 #include "./head/GameConfig.h"
+#include "./operation/PlaySound.h"
 #include <thread>
 #include <vector>
 
@@ -30,9 +31,9 @@ private:
   Enemy *enemy;
   CollisionJudge *collisionJudge;
   std::vector<Operation *> gameOperation;
-
-  sf::SoundBuffer *bufferBGM;
-  sf::Sound *soundBGM;
+  PlaySound *playSound;
+  // sf::SoundBuffer *bufferBGM;
+  // sf::Sound *soundBGM;
 
   void initializateItem(int difficulty);
   void initializateSound();

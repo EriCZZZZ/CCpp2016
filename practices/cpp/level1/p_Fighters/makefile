@@ -18,7 +18,7 @@ main.o : main.cpp BeatFighter.o
 ./BeatFighter.o : ./BeatFighter.cpp ./Game.o
 	g++ -c -g -DDEBUG -std=c++11 -o ./BeatFighter.o ./BeatFighter.cpp
 
-./Game.o : ./Game.cpp ./operation/AllShell.o ./operation/CollisionJudge.o ./operation/Enemy.o ./operation/Player.o  ./operation/ShowText.o
+./Game.o : ./Game.cpp ./operation/AllShell.o ./operation/CollisionJudge.o ./operation/Enemy.o ./operation/Player.o  ./operation/ShowText.o ./operation/PlaySound.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./Game.o ./Game.cpp
 
@@ -70,7 +70,6 @@ main.o : main.cpp BeatFighter.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classFighter/EnemyFighterFactory.o ./classFighter/EnemyFighterFactory.cpp
 
-
 ./operation/Player.o : ./operation/Player.cpp ./operation/AllShell.o ./classFighter/PlayerFighterFactory.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./operation/Player.o ./operation/Player.cpp
@@ -90,7 +89,7 @@ main.o : main.cpp BeatFighter.o
 ./operation/PlaySound.o : ./operation/PlaySound.cpp
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./operation/PlaySound.o ./operation/PlaySound.cpp
-	
+
 clean:
 	-rm $(OBJ)
 	-rm game.out
