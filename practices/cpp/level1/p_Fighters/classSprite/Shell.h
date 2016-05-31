@@ -9,7 +9,7 @@ class Shell : public Sprite
 private:
   ShellGraphics shell;
   int shellOwner;
-  sf::Vector2f deltaVector;
+  sf::Vector2f speedVector;
 public:
   void setOwner(int owner);
   int getSpriteClass();

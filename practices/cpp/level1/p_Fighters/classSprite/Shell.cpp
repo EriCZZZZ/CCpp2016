@@ -13,7 +13,7 @@ void Shell::setPosition(int indexX, int indexY)
 }
 void Shell::setSpeedByVector(sf::Vector2f vector)
 {
-  deltaVector = vector;
+  speedVector = vector;
 }
 void Shell::move()
 {
