@@ -1,15 +1,17 @@
 #include "Game.h"
+#ifdef DEBUG
+#include <iostream>
+#endif
 Game::Game(int difficulty)
 {
   window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "ERIC-FIGHTER");
-  initializateItem(difficulty);
   initializateSound();
+  initializateItem(difficulty);
   initializeInfo();
   Game::difficulty = difficulty;
   initializeDifficulty();
   //dead text
   showText = new ShowText(window);
-
 }
 void Game::initializeDifficulty()
 {
@@ -25,7 +27,7 @@ void Game::initializeInfo()
 void Game::initializateItem(int difficulty)
 {
   allShell = new AllShell(window);
-  player = new Player(allShell, window, this);
+  player = new Player(allShell, window, this, playSound);
   enemy = new Enemy(allShell, window, this);
   collisionJudge = new CollisionJudge(player, enemy, allShell);
   gameOperation.push_back(player);
@@ -34,12 +36,6 @@ void Game::initializateItem(int difficulty)
 }
 void Game::initializateSound()
 {
-  // bufferBGM = new sf::SoundBuffer;
-  // bufferBGM->loadFromFile(SOUND_BGM);
-  // soundBGM = new sf::Sound;
-  // soundBGM->setBuffer(*bufferBGM);
-  // soundBGM->setLoop(true);
-  // soundBGM->play();
   playSound = new PlaySound;
   playSound->playBGM();
 }
@@ -50,8 +46,6 @@ Game::~Game()
   delete enemy;
   delete collisionJudge;
   delete showText;
-  // delete soundBGM;
-  // delete bufferBGM;
   delete playSound;
   delete window;
 }
@@ -64,7 +58,6 @@ int Game::play()
     {
       if(eventClosed.type == sf::Event::Closed)
       {
-        // soundBGM->stop();
         playSound->stopBGM();
         window->close();
         return GAME_STOP;
@@ -95,7 +88,6 @@ int Game::play()
       if(sf::Keyboard::isKeyPressed(KEYBOARD_RETURN))
       {
         window->close();
-        // soundBGM->stop();
         playSound->stopBGM();
         return gameStatus;
       }

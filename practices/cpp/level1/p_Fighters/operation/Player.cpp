@@ -4,7 +4,7 @@
 #include <iostream>
 #endif
 
-Player::Player(AllShell *shellContainer, sf::RenderWindow *window, Game *game)
+Player::Player(AllShell *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound)
 {
   Player::window = window;
   Player::game = game;
@@ -14,18 +14,7 @@ Player::Player(AllShell *shellContainer, sf::RenderWindow *window, Game *game)
   playerFighter = tempFactory->createFighter(PLAYER_CREATE_FIGHTER_X, PLAYER_CREATE_FIGHTER_Y);
   delete tempFactory;
 
-  bufferFire = new sf::SoundBuffer;
-  bufferFire->loadFromFile(SOUND_FIRE);
-
-  bufferAttacked = new sf::SoundBuffer;
-  bufferAttacked->loadFromFile(SOUND_ATTACKED);
-  soundAttacked = new sf::Sound;
-  soundAttacked->setBuffer(*bufferAttacked);
-
-  bufferDead = new sf::SoundBuffer;
-  bufferDead->loadFromFile(SOUND_DEAD);
-  soundDead = new sf::Sound;
-  soundDead->setBuffer(*bufferDead);
+  Player::playSound = playSound;
 
   initializeHPfill();
   initializeHPborder();
@@ -48,16 +37,8 @@ void Player::initializeHPborder()
 }
 Player::~Player()
 {
-  delete bufferFire;
-  delete bufferAttacked;
-  delete soundAttacked;
-  delete bufferDead;
-  delete soundDead;
-
   delete HPborder;
   delete HPfill;
-
-  deleteAllSoundFire();
 }
 void Player::operate()
 {
@@ -119,26 +100,14 @@ bool Player::knockedOperate()
   auto isFighterDie = playerFighter->isFighterDie();
   if(isFighterDie == COLLISION_FIGHTER_DEAD)
   {
-    soundDead->play();
+    playSound->playLose();
     game->setGameStatus(GAME_STOP);
   }
   else
   {
-    soundAttacked->play();
+    playSound->playAttackedPlayer();
   }
   return COLLISION_KNOCKED;
-}
-void Player::playFireSound()
-{
-  auto temp = new sf::Sound;
-  temp->setBuffer(*bufferFire);
-  soundFire.push_back(temp);
-  temp->play();
-  while(soundFire.size() > PLAYER_FIRE_MAX)
-  {
-    delete *(soundFire.begin());
-    soundFire.erase(soundFire.begin());
-  }
 }
 void Player::move(sf::Vertex deltaVector)
 {
@@ -198,15 +167,6 @@ void Player::fire()
   }
   if(newShellContainer.begin() != newShellContainer.end())
   {
-    playFireSound();
-  }
-}
-
-void Player::deleteAllSoundFire()
-{
-  for(auto it = soundFire.begin(); it != soundFire.end();)
-  {
-    delete *it;
-    soundFire.erase(it);
+    playSound->playFire();
   }
 }

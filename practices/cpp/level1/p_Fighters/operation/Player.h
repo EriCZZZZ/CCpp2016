@@ -18,12 +18,13 @@ private:
   sf::RenderWindow *window;
   Game *game;
 
-  sf::SoundBuffer *bufferFire;
-  sf::SoundBuffer *bufferAttacked;
-  sf::SoundBuffer *bufferDead;
-  std::vector<sf::Sound *> soundFire;
-  sf::Sound *soundAttacked;
-  sf::Sound *soundDead;
+  // sf::SoundBuffer *bufferFire;
+  // sf::SoundBuffer *bufferAttacked;
+  // sf::SoundBuffer *bufferDead;
+  // std::vector<sf::Sound *> soundFire;
+  // sf::Sound *soundAttacked;
+  // sf::Sound *soundDead;
+  PlaySound *playSound;
 
   sf::RectangleShape *HPborder;
   sf::RectangleShape *HPfill;
@@ -32,7 +33,7 @@ private:
   void initializeHPborder();
   void drawHPImage();
 
-  void playFireSound();
+  // void playFireSound();
   bool collisionJudge(Shell *target , int x2, int y2);
 
   sf::Vertex checkMoveAndBorder();
@@ -40,10 +41,10 @@ private:
   bool checkFireAndRefreshShell();
   void fire();
   bool knockedOperate();
-  void deleteAllSoundFire();
+  // void deleteAllSoundFire();
   void checkAndChangeWeapon();
 public:
-  Player(AllShell *shellContainer, sf::RenderWindow *window, Game *game);
+  Player(AllShell *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound);
   ~Player();
   void operate();
   bool collision(Shell *target);

@@ -28,5 +28,8 @@ public:
   void playAttackedPlayer();
   void playBGM();
   void stopBGM();
+  #ifdef DEBUG
+  sf::SoundBuffer *testFireBuffer();
+  #endif
 };
 #endif

@@ -1,4 +1,8 @@
 #include "PlaySound.h"
+#ifdef DEBUG
+#include <iostream>
+#endif
+
 PlaySound::PlaySound()
 {
   fire = new sf::SoundBuffer;
@@ -50,7 +54,7 @@ void PlaySound::checkContainer()
 {
   while(soundContainer.size() > SOUND_CONTAINER_MAX)
   {
-    delete *(soundContainer.begin());
+    delete (*soundContainer.begin());
     soundContainer.erase(soundContainer.begin());
   }
 }

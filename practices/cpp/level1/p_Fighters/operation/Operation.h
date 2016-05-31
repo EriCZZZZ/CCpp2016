@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "../head/GameConfig.h"
-
+#include "PlaySound.h"
 class Operation
 {
 public:
