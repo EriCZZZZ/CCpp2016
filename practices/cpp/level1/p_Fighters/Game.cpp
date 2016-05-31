@@ -28,7 +28,7 @@ void Game::initializateItem(int difficulty)
 {
   allShell = new AllShell(window);
   player = new Player(allShell, window, this, playSound);
-  enemy = new Enemy(allShell, window, this);
+  enemy = new Enemy(allShell, window, this, playSound);
   collisionJudge = new CollisionJudge(player, enemy, allShell);
   gameOperation.push_back(player);
   gameOperation.push_back(enemy);

@@ -7,17 +7,15 @@
 #endif
 
 int Enemy::createFighterTimeCount = ENEMY_CREATE_FIGHTER_INTERVAL;
-Enemy::Enemy(AllShell *shellContainer, sf::RenderWindow *window, Game *game)
+Enemy::Enemy(AllShell *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound)
 {
   Enemy::game = game;
   Enemy::shellContainer = shellContainer;
   Enemy::window = window;
-  boomBuffer = new sf::SoundBuffer;
-  boomBuffer->loadFromFile(SOUND_BOOM);
+  Enemy::playSound = playSound;
 }
 Enemy::~Enemy()
 {
-  delete boomBuffer;
   for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
   {
     delete *it;
@@ -27,11 +25,6 @@ Enemy::~Enemy()
   {
     delete *it;
     boomCircle.erase(it);
-  }
-  for(auto it = boomSound.begin(); it != boomSound.end();)
-  {
-    delete *it;
-    boomSound.erase(it);
   }
 }
 void Enemy::checkAndCreateFighter()
@@ -77,6 +70,7 @@ void Enemy::Fire()
       {
         shellContainer->addShell(*it);
       }
+      playSound->playFire();
     }
     it++;
   }
@@ -117,7 +111,7 @@ void Enemy::fighterDead(std::vector<Fighter *>::iterator &targetFighter)
   delete *targetFighter;
   enemyFighter.erase(targetFighter);
   game->addScore(ENEMY_ADD_SCORE);
-  playBoom();
+  playSound->playBoom();
 }
 bool Enemy::collision(Shell *target)
 {
@@ -137,18 +131,6 @@ bool Enemy::collision(Shell *target)
     }
   }
   return flag;
-}
-void Enemy::playBoom()
-{
-  sf::Sound *temp = new sf::Sound;
-  temp->setBuffer(*boomBuffer);
-  temp->play();
-  boomSound.push_back(temp);
-  while(boomSound.size() > BOOM_CONTAINER_MAX)
-  {
-    delete *(boomSound.begin());
-    boomSound.erase(boomSound.begin());
-  }
 }
 void Enemy::createBoomCircle(int x, int y)
 {

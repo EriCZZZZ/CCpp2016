@@ -18,15 +18,13 @@ class Enemy : public Operation
 private:
   sf::RenderWindow *window;
   Game *game;
+  PlaySound *playSound;
   AllShell *shellContainer;
   std::vector<Fighter *> enemyFighter;
   std::vector<sf::CircleShape *> boomCircle;
-  sf::SoundBuffer *boomBuffer;
-  std::vector<sf::Sound *> boomSound;
 
   static int createFighterTimeCount;
 
-  void playBoom();
   void createBoomCircle(int x, int y);
   void drawBoomCircle();
 
@@ -43,7 +41,7 @@ private:
   void Fire();
   void drawAllFighter();
 public:
-  Enemy(AllShell *shellContainer, sf::RenderWindow *window, Game *game);
+  Enemy(AllShell *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound);
   ~Enemy();
   void operate();
   bool collision(Shell *target);
