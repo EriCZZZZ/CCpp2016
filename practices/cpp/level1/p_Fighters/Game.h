@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "./operation/Player.h"
 #include "./operation/Enemy.h"
-#include "./operation/AllShell.h"
+#include "./operation/SpriteContainer.h"
 #include "./operation/CollisionJudge.h"
 #include "./operation/ShowText.h"
 #include "./head/GameConfig.h"
@@ -26,14 +26,12 @@ private:
   std::vector<int> difficultyContainer;
 
   ShowText *showText;
-  AllShell *allShell;
+  SpriteContainer *allShell;
   Player *player;
   Enemy *enemy;
   CollisionJudge *collisionJudge;
   std::vector<Operation *> gameOperation;
   PlaySound *playSound;
-  // sf::SoundBuffer *bufferBGM;
-  // sf::Sound *soundBGM;
 
   void initializateItem(int difficulty);
   void initializateSound();

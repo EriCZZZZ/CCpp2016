@@ -6,7 +6,7 @@
 #include "Operation.h"
 #include "../classFighter/EnemyFighterFactory.h"
 #include "../head/GameConfig.h"
-#include "AllShell.h"
+#include "SpriteContainer.h"
 #include "ctime"
 #include "cstdlib"
 #include "../Game.h"
@@ -19,7 +19,7 @@ private:
   sf::RenderWindow *window;
   Game *game;
   PlaySound *playSound;
-  AllShell *shellContainer;
+  SpriteContainer *shellContainer;
   std::vector<Fighter *> enemyFighter;
   std::vector<sf::CircleShape *> boomCircle;
 
@@ -41,7 +41,7 @@ private:
   void Fire();
   void drawAllFighter();
 public:
-  Enemy(AllShell *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound);
+  Enemy(SpriteContainer *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound);
   ~Enemy();
   void operate();
   bool collision(Shell *target);

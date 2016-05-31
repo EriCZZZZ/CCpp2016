@@ -8,19 +8,19 @@
 
 class CollisionJudge;
 
-class AllShell : public Operation
+class SpriteContainer : public Operation
 {
   friend CollisionJudge;
 private:
-  std::vector<Shell *> allShell;
+  std::vector<Shell *> spriteContainer;
   sf::RenderWindow *window;
 
-  void moveAllShell();
-  void checkAllShell();
-  void drawAllShell();
+  void moveSpriteContainer();
+  void checkSpriteContainer();
+  void drawSpriteContainer();
 public:
-  AllShell(sf::RenderWindow *window) : window(window) {}
-  ~AllShell();
+  SpriteContainer(sf::RenderWindow *window) : window(window) {}
+  ~SpriteContainer();
   void addShell(Shell *shell);
   void operate();
 };

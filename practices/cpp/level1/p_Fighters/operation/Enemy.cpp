@@ -7,7 +7,7 @@
 #endif
 
 int Enemy::createFighterTimeCount = ENEMY_CREATE_FIGHTER_INTERVAL;
-Enemy::Enemy(AllShell *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound)
+Enemy::Enemy(SpriteContainer *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound)
 {
   Enemy::game = game;
   Enemy::shellContainer = shellContainer;

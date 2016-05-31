@@ -4,7 +4,7 @@
 #include <iostream>
 #endif
 
-Player::Player(AllShell *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound)
+Player::Player(SpriteContainer *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound)
 {
   Player::window = window;
   Player::game = game;

@@ -3,7 +3,7 @@
 
 #include <SFML/Audio.hpp>
 #include "Operation.h"
-#include "AllShell.h"
+#include "SpriteContainer.h"
 #include "../classFighter/PlayerFighterFactory.h"
 #include "../head/GameConfig.h"
 #include "../Game.h"
@@ -14,7 +14,7 @@ class Player : public Operation
 {
 private:
   Fighter *playerFighter;
-  AllShell *shellContainer;
+  SpriteContainer *shellContainer;
   sf::RenderWindow *window;
   Game *game;
 
@@ -44,7 +44,7 @@ private:
   // void deleteAllSoundFire();
   void checkAndChangeWeapon();
 public:
-  Player(AllShell *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound);
+  Player(SpriteContainer *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound);
   ~Player();
   void operate();
   bool collision(Shell *target);

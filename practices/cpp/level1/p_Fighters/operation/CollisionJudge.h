@@ -3,7 +3,7 @@
 
 #include "Player.h"
 #include "Enemy.h"
-#include "AllShell.h"
+#include "SpriteContainer.h"
 #include "../head/GameConfig.h"
 
 class Player;
@@ -14,10 +14,10 @@ class CollisionJudge
 private:
   Player *player;
   Enemy *enemy;
-  AllShell *allShell;
+  SpriteContainer *allShell;
   bool judge(Shell *target);
 public:
-  CollisionJudge(Player *player, Enemy *enemy, AllShell *allShell);
+  CollisionJudge(Player *player, Enemy *enemy, SpriteContainer *allShell);
   void judgeAll();
 };
 #endif

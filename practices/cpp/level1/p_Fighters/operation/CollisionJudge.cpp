@@ -4,7 +4,7 @@
 #include <iostream>
 #endif
 
-CollisionJudge::CollisionJudge(Player *player, Enemy *enemy, AllShell *allShell)
+CollisionJudge::CollisionJudge(Player *player, Enemy *enemy, SpriteContainer *allShell)
 {
   CollisionJudge::player = player;
   CollisionJudge::enemy = enemy;
@@ -19,12 +19,12 @@ bool CollisionJudge::judge(Shell *target)
 }
 void CollisionJudge::judgeAll()
 {
-  for(auto it = allShell->allShell.begin(); it != allShell->allShell.end();)
+  for(auto it = allShell->spriteContainer.begin(); it != allShell->spriteContainer.end();)
   {
     if(judge(*it) == COLLISION_KNOCKED)
     {
       delete *it;
-      allShell->allShell.erase(it);
+      allShell->spriteContainer.erase(it);
     }
     else
     {
