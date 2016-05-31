@@ -27,20 +27,7 @@ Enemy::~Enemy()
     boomCircle.erase(it);
   }
 }
-void Enemy::checkAndCreateFighter()
-{
-  createFighterTimeCount++;
-  if(enemyFighter.size() < game->getDifficulty(DIFFICULTY_INDEX_ENEMY_FIGHTER_MAX_NUMBER))
-  {
-    EnemyFighterFactory tempFactory;
-    if(createFighterTimeCount >= ENEMY_CREATE_FIGHTER_INTERVAL)
-    {
-      createFighterTimeCount = 0;
-      auto temp = tempFactory.createFighter(createRandomIndex(), ENEMY_CREATE_FIGHER_ORIGIN_Y);
-      enemyFighter.push_back(temp);
-    }
-  }
-}
+
 void Enemy::Move()
 {
   for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
@@ -58,22 +45,33 @@ void Enemy::Move()
     it++;
   }
 }
-void Enemy::Fire()
+
+void Enemy::operate()
 {
-  for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
+  checkAndCreateFighter();
+  Move();
+  Fire();
+  drawAllFighter();
+  drawBoomCircle();
+}
+void Enemy::checkAndCreateFighter()
+{
+  createFighterTimeCount++;
+  if(enemyFighter.size() < game->getDifficulty(DIFFICULTY_INDEX_ENEMY_FIGHTER_MAX_NUMBER))
   {
-    (*it)->refreshShell();
-    if(createRandomFire() <= ENEMY_FIRE * game->getDifficulty(DIFFICULTY_INDEX_SHELL_FIRE_RATE) && (*it)->checkWeaponStatus() == WEAPON_SHELL_IS_READY)
+    EnemyFighterFactory tempFactory;
+    if(createFighterTimeCount >= ENEMY_CREATE_FIGHTER_INTERVAL)
     {
-      std::vector<Shell *> newSpriteContainer = (*it)->fire();
-      for(auto it = newSpriteContainer.begin(); it != newSpriteContainer.end(); it++)
-      {
-        spriteContainer->addShell(*it);
-      }
-      playSound->playFire();
+      createFighterTimeCount = 0;
+      auto temp = tempFactory.createFighter(createRandomIndex(), ENEMY_CREATE_FIGHER_ORIGIN_Y);
+      enemyFighter.push_back(temp);
     }
-    it++;
   }
+}
+int Enemy::createRandomIndex()
+{
+  srand(clock());
+  return (abs(rand() % ENEMY_RANDOM_INDEX) + ENEMY_RANDOM_INDEX_BASE);
 }
 void Enemy::drawAllFighter()
 {
@@ -83,26 +81,7 @@ void Enemy::drawAllFighter()
     it++;
   }
 }
-void Enemy::operate()
-{
-  checkAndCreateFighter();
-  Move();
-  Fire();
-  drawAllFighter();
-  drawBoomCircle();
-}
-void Enemy::fighterCollided(std::vector<Fighter *>::iterator &targetFighter)
-{
-  (*targetFighter)->reviseHP(COLLISION_HP_DELTA);
-  if((*targetFighter)->isFighterDie() == COLLISION_FIGHTER_DEAD)
-  {
-    fighterDead(targetFighter);
-  }
-  else
-  {
-    targetFighter++;
-  }
-}
+
 void Enemy::fighterDead(std::vector<Fighter *>::iterator &targetFighter)
 {
   int enemyFighterIndexX = (*targetFighter)->getPositionByVertex().position.x;
@@ -132,6 +111,57 @@ bool Enemy::collision(Sprite *target)
   }
   return flag;
 }
+bool Enemy::collisionJudge(Sprite *target, int x2, int y2)
+{
+  if(target->getSpriteClass() == SPRITE_SHELL_PLAYER)
+  {
+    int x1 = target->getPositionByVertex().position.x;
+    int y1 = target->getPositionByVertex().position.y;
+    int distance = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 -y2);
+    if(distance <= COLLISION_KNOCK_DISTANCE)
+    {
+      return COLLISION_KNOCKED;
+    }
+    else
+    {
+      return COLLISION_UNKNOCKED;
+    }
+  }
+  else
+  {
+    return COLLISION_UNKNOCKED;
+  }
+}
+void Enemy::fighterCollided(std::vector<Fighter *>::iterator &targetFighter)
+{
+  (*targetFighter)->reviseHP(COLLISION_HP_DELTA);
+  if((*targetFighter)->isFighterDie() == COLLISION_FIGHTER_DEAD)
+  {
+    fighterDead(targetFighter);
+  }
+  else
+  {
+    targetFighter++;
+  }
+}
+
+void Enemy::Fire()
+{
+  for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
+  {
+    (*it)->refreshShell();
+    if(createRandomFire() <= ENEMY_FIRE * game->getDifficulty(DIFFICULTY_INDEX_SHELL_FIRE_RATE) && (*it)->checkWeaponStatus() == WEAPON_SHELL_IS_READY)
+    {
+      std::vector<Shell *> newSpriteContainer = (*it)->fire();
+      for(auto it = newSpriteContainer.begin(); it != newSpriteContainer.end(); it++)
+      {
+        spriteContainer->addShell(*it);
+      }
+      playSound->playFire();
+    }
+    it++;
+  }
+}
 void Enemy::createBoomCircle(int x, int y)
 {
   auto tempBoom = new sf::CircleShape(BOOM_SIZE_ORIGIN);
@@ -156,32 +186,6 @@ void Enemy::drawBoomCircle()
       boomCircle.erase(it);
     }
   }
-}
-bool Enemy::collisionJudge(Sprite *target, int x2, int y2)
-{
-  if(target->getOwner() != FIGHTER_OWNER_ENEMY)
-  {
-    int x1 = target->getPositionByVertex().position.x;
-    int y1 = target->getPositionByVertex().position.y;
-    int distance = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 -y2);
-    if(distance <= COLLISION_KNOCK_DISTANCE)
-    {
-      return COLLISION_KNOCKED;
-    }
-    else
-    {
-      return COLLISION_UNKNOCKED;
-    }
-  }
-  else
-  {
-    return COLLISION_UNKNOCKED;
-  }
-}
-int Enemy::createRandomIndex()
-{
-  srand(clock());
-  return (abs(rand() % ENEMY_RANDOM_INDEX) + ENEMY_RANDOM_INDEX_BASE);
 }
 int Enemy::createRandomFire()
 {

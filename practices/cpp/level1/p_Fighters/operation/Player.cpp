@@ -71,7 +71,7 @@ bool Player::collision(Sprite *target)
 }
 bool Player::collisionJudge(Sprite *target, int x2, int y2)
 {
-  if(target->getOwner() != FIGHTER_OWNER_PLAYER)
+  if(target->getSpriteClass() != FIGHTER_OWNER_PLAYER)
   {
     int x1 = target->getPositionByVertex().position.x;
     int y1 = target->getPositionByVertex().position.y;

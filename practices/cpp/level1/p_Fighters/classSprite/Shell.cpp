@@ -3,7 +3,7 @@ void Shell::setOwner(int owner)
 {
   shellOwner = owner;
 }
-int Shell::getOwner()
+int Shell::getSpriteClass()
 {
   return shellOwner;
 }

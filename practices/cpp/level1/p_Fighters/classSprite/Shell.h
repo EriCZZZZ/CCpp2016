@@ -3,7 +3,6 @@
 
 #include "Sprite.h"
 #include "../classGraphics/ShellGraphics.h"
-// #include "../head/GameConfig.h"
 
 class Shell : public Sprite
 {
@@ -13,7 +12,7 @@ private:
   sf::Vector2f deltaVector;
 public:
   void setOwner(int owner);
-  int getOwner();
+  int getSpriteClass();
   void setPosition(int indexX, int indexY);
   void setSpeedByVector(sf::Vector2f vector);
   void move();

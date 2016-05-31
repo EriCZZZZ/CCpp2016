@@ -27,9 +27,6 @@
 #define FIGHTER_COORDINATE_ORIGIN_X 30
 #define FIGHTER_COORDINATE_ORIGIN_Y 30
 
-#define FIGHTER_ENEMY 1
-#define FIGHTER_PLAYER 0
-
 #define FIGHTER_HP_MAX_PLAYER 100
 #define FIGHTER_HP_MAX_ENEMY 20
 #define FIGHTER_HP_MIN 0
@@ -64,9 +61,6 @@
 
 #define SHELL_FIRE 1
 #define SHELL_UNFIRE 0
-
-#define SHELL_OWNER_PLAYER FIGHTER_OWNER_PLAYER
-#define SHELL_OWNER_ENEMY FIGHTER_OWNER_ENEMY
 
 // === Player ===
 #define PLAYER_LEFT sf::Keyboard::Left
@@ -191,4 +185,9 @@
 
 // === sound ====
 #define SOUND_CONTAINER_MAX 100
+
+// === sprite class ===
+#define SPRITE_SHELL_PLAYER 0
+#define SPRITE_SHELL_ENEMY 1
+
 #endif

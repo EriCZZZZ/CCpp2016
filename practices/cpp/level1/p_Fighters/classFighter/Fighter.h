@@ -12,7 +12,7 @@
 class Fighter
 {
 protected:
-  bool fighterOwner;
+  int fighterOwner;
   unsigned HP;
   FighterGraphics fighterGraphics;
 private:

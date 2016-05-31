@@ -2,7 +2,7 @@
 EnemyFighter::EnemyFighter(int x, int y) : Fighter(x, y)
 {
   weapon = new WeaponSingle;
-  fighterOwner = FIGHTER_ENEMY;
+  fighterOwner = FIGHTER_OWNER_ENEMY;
   HP = FIGHTER_HP_MAX_ENEMY;
   //to create fighter appearance
   fighterGraphics.setRotation(FIGHTER_ENEMY_ROTATION);

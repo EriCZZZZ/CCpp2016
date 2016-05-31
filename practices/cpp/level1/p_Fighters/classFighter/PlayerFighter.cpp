@@ -2,7 +2,7 @@
 PlayerFighter::PlayerFighter(int x, int y) : Fighter(x, y)
 {
   weapon = new WeaponSingle;
-  fighterOwner = FIGHTER_PLAYER;
+  fighterOwner = FIGHTER_OWNER_PLAYER;
   HP = FIGHTER_HP_MAX_PLAYER;
   initializeWeapon();
   //to create fighter outlook
