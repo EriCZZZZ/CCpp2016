@@ -113,7 +113,7 @@ void Enemy::fighterDead(std::vector<Fighter *>::iterator &targetFighter)
   game->addScore(ENEMY_ADD_SCORE);
   playSound->playBoom();
 }
-bool Enemy::collision(Shell *target)
+bool Enemy::collision(Sprite *target)
 {
   bool flag = COLLISION_UNKNOCKED;
   for(auto it = enemyFighter.begin(); it != enemyFighter.end();)
@@ -157,7 +157,7 @@ void Enemy::drawBoomCircle()
     }
   }
 }
-bool Enemy::collisionJudge(Shell *target, int x2, int y2)
+bool Enemy::collisionJudge(Sprite *target, int x2, int y2)
 {
   if(target->getOwner() != FIGHTER_OWNER_ENEMY)
   {

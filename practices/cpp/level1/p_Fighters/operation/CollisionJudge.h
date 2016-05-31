@@ -15,7 +15,7 @@ private:
   Player *player;
   Enemy *enemy;
   SpriteContainer *spriteContainer;
-  bool judge(Shell *target);
+  bool judge(Sprite *target);
 public:
   CollisionJudge(Player *player, Enemy *enemy, SpriteContainer *spriteContainer);
   void judgeAll();

@@ -10,7 +10,7 @@ CollisionJudge::CollisionJudge(Player *player, Enemy *enemy, SpriteContainer *sp
   CollisionJudge::enemy = enemy;
   CollisionJudge::spriteContainer = spriteContainer;
 }
-bool CollisionJudge::judge(Shell *target)
+bool CollisionJudge::judge(Sprite *target)
 {
   bool flag = COLLISION_UNKNOCKED;
   flag += player->collision(target);

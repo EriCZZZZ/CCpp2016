@@ -56,7 +56,7 @@ void Player::drawHPImage()
   window->draw(*HPborder);
   window->draw(*HPfill);
 }
-bool Player::collision(Shell *target)
+bool Player::collision(Sprite *target)
 {
   int fighterIndexX = playerFighter->getPositionByVertex().position.x;
   int fighterIndexY = playerFighter->getPositionByVertex().position.y;
@@ -69,7 +69,7 @@ bool Player::collision(Shell *target)
     return COLLISION_UNKNOCKED;
   }
 }
-bool Player::collisionJudge(Shell *target, int x2, int y2)
+bool Player::collisionJudge(Sprite *target, int x2, int y2)
 {
   if(target->getOwner() != FIGHTER_OWNER_PLAYER)
   {

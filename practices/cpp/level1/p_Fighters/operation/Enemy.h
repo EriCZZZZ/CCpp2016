@@ -28,7 +28,7 @@ private:
   void createBoomCircle(int x, int y);
   void drawBoomCircle();
 
-  bool collisionJudge(Shell *target, int fighterX, int fighterY);
+  bool collisionJudge(Sprite *target, int fighterX, int fighterY);
   void fighterCollided(std::vector<Fighter *>::iterator &targetFighter);
   void fighterDead(std::vector<Fighter *>::iterator &targetFighter);
 
@@ -44,6 +44,6 @@ public:
   Enemy(SpriteContainer *spriteContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound);
   ~Enemy();
   void operate();
-  bool collision(Shell *target);
+  bool collision(Sprite *target);
 };
 #endif

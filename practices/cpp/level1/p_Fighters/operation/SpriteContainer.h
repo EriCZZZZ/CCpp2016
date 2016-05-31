@@ -2,7 +2,7 @@
 #define ALL_SHELL_H
 
 #include "Operation.h"
-#include "../classSprite/Shell.h"
+#include "../classSprite/Sprite.h"
 #include <functional>
 #include "../head/GameConfig.h"
 
@@ -12,7 +12,7 @@ class SpriteContainer : public Operation
 {
   friend CollisionJudge;
 private:
-  std::vector<Shell *> spriteContainer;
+  std::vector<Sprite *> spriteContainer;
   sf::RenderWindow *window;
 
   void moveSpriteContainer();
@@ -21,7 +21,7 @@ private:
 public:
   SpriteContainer(sf::RenderWindow *window) : window(window) {}
   ~SpriteContainer();
-  void addShell(Shell *shell);
+  void addShell(Sprite *sprite);
   void operate();
 };
 #endif
