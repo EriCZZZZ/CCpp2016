@@ -3,10 +3,10 @@
 
 #include "../head/GameConfig.h"
 #include "../classGraphics/FighterGraphics.h"
-#include "../classShell/Shell.h"
-#include "../classShell/Weapon.h"
-#include "../classShell/WeaponSingle.h"
-#include "../classShell/WeaponSpread.h"
+#include "../classSprite/Shell.h"
+#include "../classSprite/Weapon.h"
+#include "../classSprite/WeaponSingle.h"
+#include "../classSprite/WeaponSpread.h"
 #include <vector>
 
 class Fighter

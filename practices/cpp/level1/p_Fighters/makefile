@@ -1,10 +1,10 @@
 OBJ = main.o ./classGraphics/FighterGraphics.o ./classGraphics/ShellGraphics.o \
- ./classShell/Shell.o ./classFighter/Fighter.o ./classFighter/PlayerFighter.o \
+ ./classSprite/Shell.o ./classFighter/Fighter.o ./classFighter/PlayerFighter.o \
  ./classFighter/PlayerFighterFactory.o ./classFighter/EnemyFighter.o \
  ./classFighter/EnemyFighterFactory.o ./operation/Player.o ./operation/Enemy.o \
- ./operation/AllShell.o ./operation/CollisionJudge.o  ./classShell/WeaponSingle.o\
- ./Game.o ./operation/ShowText.o ./BeatFighter.o ./classShell/ShellFactory.o \
- ./classShell/WeaponSpread.o ./operation/PlaySound.o
+ ./operation/AllShell.o ./operation/CollisionJudge.o  ./classSprite/WeaponSingle.o\
+ ./Game.o ./operation/ShowText.o ./BeatFighter.o ./classSprite/ShellFactory.o \
+ ./classSprite/WeaponSpread.o ./operation/PlaySound.o
 
 edit: $(OBJ)
 
@@ -22,7 +22,7 @@ main.o : main.cpp BeatFighter.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./Game.o ./Game.cpp
 
-./operation/AllShell.o : ./operation/AllShell.cpp ./classShell/Shell.o
+./operation/AllShell.o : ./operation/AllShell.cpp ./classSprite/Shell.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./operation/AllShell.o ./operation/AllShell.cpp
 
@@ -34,23 +34,23 @@ main.o : main.cpp BeatFighter.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classGraphics/ShellGraphics.o ./classGraphics/ShellGraphics.cpp
 
-./classShell/Shell.o : ./classShell/Shell.cpp ./classGraphics/ShellGraphics.o
+./classSprite/Shell.o : ./classSprite/Shell.cpp ./classGraphics/ShellGraphics.o
 
-	g++ -c -g -DDEBUG -std=c++11 -o ./classShell/Shell.o ./classShell/Shell.cpp
+	g++ -c -g -DDEBUG -std=c++11 -o ./classSprite/Shell.o ./classSprite/Shell.cpp
 
-./classShell/ShellFactory.o : ./classShell/ShellFactory.cpp ./classShell/Shell.o
+./classSprite/ShellFactory.o : ./classSprite/ShellFactory.cpp ./classSprite/Shell.o
 
-	g++ -c -g -DDEBUG -std=c++11 -o ./classShell/ShellFactory.o ./classShell/ShellFactory.cpp
+	g++ -c -g -DDEBUG -std=c++11 -o ./classSprite/ShellFactory.o ./classSprite/ShellFactory.cpp
 
-./classShell/WeaponSingle.o : ./classShell/WeaponSingle.cpp ./classShell/Shell.o ./classShell/ShellFactory.o
+./classSprite/WeaponSingle.o : ./classSprite/WeaponSingle.cpp ./classSprite/Shell.o ./classSprite/ShellFactory.o
 
-	g++ -c -g -DDEBUG -std=c++11 -o ./classShell/WeaponSingle.o ./classShell/WeaponSingle.cpp
+	g++ -c -g -DDEBUG -std=c++11 -o ./classSprite/WeaponSingle.o ./classSprite/WeaponSingle.cpp
 
-./classShell/WeaponSpread.o : ./classShell/WeaponSpread.cpp ./classShell/Shell.o ./classShell/ShellFactory.o
+./classSprite/WeaponSpread.o : ./classSprite/WeaponSpread.cpp ./classSprite/Shell.o ./classSprite/ShellFactory.o
 
-	g++ -c -g -DDEBUG -std=c++11 -o ./classShell/WeaponSpread.o ./classShell/WeaponSpread.cpp
+	g++ -c -g -DDEBUG -std=c++11 -o ./classSprite/WeaponSpread.o ./classSprite/WeaponSpread.cpp
 
-./classFighter/Fighter.o : ./classFighter/Fighter.cpp ./classGraphics/FighterGraphics.o ./classShell/WeaponSingle.o
+./classFighter/Fighter.o : ./classFighter/Fighter.cpp ./classGraphics/FighterGraphics.o ./classSprite/WeaponSingle.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classFighter/Fighter.o ./classFighter/Fighter.cpp
 
@@ -62,7 +62,7 @@ main.o : main.cpp BeatFighter.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classFighter/PlayerFighterFactory.o ./classFighter/PlayerFighterFactory.cpp
 
-./classFighter/EnemyFighter.o : ./classFighter/EnemyFighter.cpp ./classFighter/Fighter.o ./classShell/WeaponSingle.o
+./classFighter/EnemyFighter.o : ./classFighter/EnemyFighter.cpp ./classFighter/Fighter.o ./classSprite/WeaponSingle.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classFighter/EnemyFighter.o ./classFighter/EnemyFighter.cpp
 

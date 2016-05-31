@@ -2,7 +2,7 @@
 #define ALL_SHELL_H
 
 #include "Operation.h"
-#include "../classShell/Shell.h"
+#include "../classSprite/Shell.h"
 #include <functional>
 #include "../head/GameConfig.h"
 
