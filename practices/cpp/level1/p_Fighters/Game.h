@@ -26,7 +26,7 @@ private:
   std::vector<int> difficultyContainer;
 
   ShowText *showText;
-  SpriteContainer *allShell;
+  SpriteContainer *spriteContainer;
   Player *player;
   Enemy *enemy;
   CollisionJudge *collisionJudge;

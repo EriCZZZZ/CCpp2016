@@ -14,10 +14,10 @@ class CollisionJudge
 private:
   Player *player;
   Enemy *enemy;
-  SpriteContainer *allShell;
+  SpriteContainer *spriteContainer;
   bool judge(Shell *target);
 public:
-  CollisionJudge(Player *player, Enemy *enemy, SpriteContainer *allShell);
+  CollisionJudge(Player *player, Enemy *enemy, SpriteContainer *spriteContainer);
   void judgeAll();
 };
 #endif

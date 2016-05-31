@@ -14,16 +14,10 @@ class Player : public Operation
 {
 private:
   Fighter *playerFighter;
-  SpriteContainer *shellContainer;
+  SpriteContainer *spriteContainer;
   sf::RenderWindow *window;
   Game *game;
 
-  // sf::SoundBuffer *bufferFire;
-  // sf::SoundBuffer *bufferAttacked;
-  // sf::SoundBuffer *bufferDead;
-  // std::vector<sf::Sound *> soundFire;
-  // sf::Sound *soundAttacked;
-  // sf::Sound *soundDead;
   PlaySound *playSound;
 
   sf::RectangleShape *HPborder;
@@ -33,7 +27,6 @@ private:
   void initializeHPborder();
   void drawHPImage();
 
-  // void playFireSound();
   bool collisionJudge(Shell *target , int x2, int y2);
 
   sf::Vertex checkMoveAndBorder();
@@ -44,7 +37,7 @@ private:
   // void deleteAllSoundFire();
   void checkAndChangeWeapon();
 public:
-  Player(SpriteContainer *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound);
+  Player(SpriteContainer *SpriteContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound);
   ~Player();
   void operate();
   bool collision(Shell *target);

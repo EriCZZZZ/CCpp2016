@@ -7,10 +7,10 @@
 #endif
 
 int Enemy::createFighterTimeCount = ENEMY_CREATE_FIGHTER_INTERVAL;
-Enemy::Enemy(SpriteContainer *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound)
+Enemy::Enemy(SpriteContainer *spriteContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound)
 {
   Enemy::game = game;
-  Enemy::shellContainer = shellContainer;
+  Enemy::spriteContainer = spriteContainer;
   Enemy::window = window;
   Enemy::playSound = playSound;
 }
@@ -65,10 +65,10 @@ void Enemy::Fire()
     (*it)->refreshShell();
     if(createRandomFire() <= ENEMY_FIRE * game->getDifficulty(DIFFICULTY_INDEX_SHELL_FIRE_RATE) && (*it)->checkWeaponStatus() == WEAPON_SHELL_IS_READY)
     {
-      std::vector<Shell *> newShellContainer = (*it)->fire();
-      for(auto it = newShellContainer.begin(); it != newShellContainer.end(); it++)
+      std::vector<Shell *> newSpriteContainer = (*it)->fire();
+      for(auto it = newSpriteContainer.begin(); it != newSpriteContainer.end(); it++)
       {
-        shellContainer->addShell(*it);
+        spriteContainer->addShell(*it);
       }
       playSound->playFire();
     }

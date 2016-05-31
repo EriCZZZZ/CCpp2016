@@ -4,11 +4,11 @@
 #include <iostream>
 #endif
 
-CollisionJudge::CollisionJudge(Player *player, Enemy *enemy, SpriteContainer *allShell)
+CollisionJudge::CollisionJudge(Player *player, Enemy *enemy, SpriteContainer *spriteContainer)
 {
   CollisionJudge::player = player;
   CollisionJudge::enemy = enemy;
-  CollisionJudge::allShell = allShell;
+  CollisionJudge::spriteContainer = spriteContainer;
 }
 bool CollisionJudge::judge(Shell *target)
 {
@@ -19,12 +19,12 @@ bool CollisionJudge::judge(Shell *target)
 }
 void CollisionJudge::judgeAll()
 {
-  for(auto it = allShell->spriteContainer.begin(); it != allShell->spriteContainer.end();)
+  for(auto it = spriteContainer->spriteContainer.begin(); it != spriteContainer->spriteContainer.end();)
   {
     if(judge(*it) == COLLISION_KNOCKED)
     {
       delete *it;
-      allShell->spriteContainer.erase(it);
+      spriteContainer->spriteContainer.erase(it);
     }
     else
     {

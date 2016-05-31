@@ -4,11 +4,11 @@
 #include <iostream>
 #endif
 
-Player::Player(SpriteContainer *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound)
+Player::Player(SpriteContainer *spriteContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound)
 {
   Player::window = window;
   Player::game = game;
-  Player::shellContainer = shellContainer;
+  Player::spriteContainer = spriteContainer;
 
   PlayerFighterFactory *tempFactory = new PlayerFighterFactory;
   playerFighter = tempFactory->createFighter(PLAYER_CREATE_FIGHTER_X, PLAYER_CREATE_FIGHTER_Y);
@@ -160,12 +160,12 @@ void Player::checkAndChangeWeapon()
 }
 void Player::fire()
 {
-  std::vector<Shell *> newShellContainer = playerFighter->fire();
-  for(auto it = newShellContainer.begin(); it != newShellContainer.end(); it++)
+  std::vector<Shell *> newSpriteContainer = playerFighter->fire();
+  for(auto it = newSpriteContainer.begin(); it != newSpriteContainer.end(); it++)
   {
-    shellContainer->addShell(*it);
+    spriteContainer->addShell(*it);
   }
-  if(newShellContainer.begin() != newShellContainer.end())
+  if(newSpriteContainer.begin() != newSpriteContainer.end())
   {
     playSound->playFire();
   }

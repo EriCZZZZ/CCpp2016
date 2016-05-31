@@ -19,7 +19,7 @@ private:
   sf::RenderWindow *window;
   Game *game;
   PlaySound *playSound;
-  SpriteContainer *shellContainer;
+  SpriteContainer *spriteContainer;
   std::vector<Fighter *> enemyFighter;
   std::vector<sf::CircleShape *> boomCircle;
 
@@ -41,7 +41,7 @@ private:
   void Fire();
   void drawAllFighter();
 public:
-  Enemy(SpriteContainer *shellContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound);
+  Enemy(SpriteContainer *spriteContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound);
   ~Enemy();
   void operate();
   bool collision(Shell *target);

@@ -26,13 +26,13 @@ void Game::initializeInfo()
 }
 void Game::initializateItem(int difficulty)
 {
-  allShell = new SpriteContainer(window);
-  player = new Player(allShell, window, this, playSound);
-  enemy = new Enemy(allShell, window, this, playSound);
-  collisionJudge = new CollisionJudge(player, enemy, allShell);
+  spriteContainer = new SpriteContainer(window);
+  player = new Player(spriteContainer, window, this, playSound);
+  enemy = new Enemy(spriteContainer, window, this, playSound);
+  collisionJudge = new CollisionJudge(player, enemy, spriteContainer);
   gameOperation.push_back(player);
   gameOperation.push_back(enemy);
-  gameOperation.push_back(allShell);
+  gameOperation.push_back(spriteContainer);
 }
 void Game::initializateSound()
 {
@@ -41,7 +41,7 @@ void Game::initializateSound()
 }
 Game::~Game()
 {
-  delete allShell;
+  delete spriteContainer;
   delete player;
   delete enemy;
   delete collisionJudge;
