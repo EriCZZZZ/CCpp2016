@@ -12,7 +12,7 @@ SpriteContainer::~SpriteContainer()
     spriteContainer.erase(it);
   }
 }
-void SpriteContainer::addShell(Sprite *sprite)
+void SpriteContainer::addSprite(Sprite *sprite)
 {
   spriteContainer.push_back(sprite);
 }

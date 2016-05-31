@@ -155,7 +155,7 @@ void Enemy::Fire()
       std::vector<Shell *> newSpriteContainer = (*it)->fire();
       for(auto it = newSpriteContainer.begin(); it != newSpriteContainer.end(); it++)
       {
-        spriteContainer->addShell(*it);
+        spriteContainer->addSprite(*it);
       }
       playSound->playFire();
     }

@@ -33,8 +33,12 @@ private:
   void move(sf::Vertex deltaVector);
   bool checkFireAndRefreshShell();
   void fire();
-  bool knockedOperate();
+
   void checkAndChangeWeapon();
+
+  bool switchKnockedOperate(Sprite * target);
+  bool shellKnockedOperate();
+
 public:
   Player(SpriteContainer *SpriteContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound);
   ~Player();

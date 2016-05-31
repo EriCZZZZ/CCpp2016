@@ -21,7 +21,7 @@ private:
 public:
   SpriteContainer(sf::RenderWindow *window) : window(window) {}
   ~SpriteContainer();
-  void addShell(Sprite *sprite);
+  void addSprite(Sprite *sprite);
   void operate();
 };
 #endif

@@ -51,6 +51,68 @@ void Player::operate()
   drawHPImage();
   window->draw(*(playerFighter->toDraw()));
 }
+sf::Vertex Player::checkMoveAndBorder()
+{
+  int nowX = playerFighter->getPositionByVertex().position.x;
+  if(sf::Keyboard::isKeyPressed(PLAYER_LEFT))
+  {
+    if(nowX + PLAYER_DELTA_LEFT > SCREEN_MOST_LEFT + FIGHTER_SIZE_CORRECTED_VALUE_X)
+    {
+      return sf::Vector2f(PLAYER_DELTA_LEFT, PLAYER_DELTA_Y);
+    }
+  }
+  else if(sf::Keyboard::isKeyPressed(PLAYER_RIGHT))
+  {
+    if(nowX + PLAYER_DELTA_RIGHT < SCREEN_MOST_RIGHT - FIGHTER_SIZE_CORRECTED_VALUE_X)
+    {
+      return sf::Vector2f(PLAYER_DELTA_RIGHT, PLAYER_DELTA_Y);
+    }
+  }
+  else
+  {
+    return sf::Vector2f(PLAYER_DELTA_NO_MOVE, PLAYER_DELTA_Y);
+  }
+}
+void Player::move(sf::Vertex deltaVector)
+{
+  playerFighter->move(deltaVector.position.x, deltaVector.position.y);
+}
+bool Player::checkFireAndRefreshShell()
+{
+  playerFighter->refreshShell();
+  if(sf::Keyboard::isKeyPressed(PLAYER_FIRE) && playerFighter->checkWeaponStatus() == WEAPON_SHELL_IS_READY)
+  {
+    return SHELL_FIRE;
+  }
+  else
+  {
+    return SHELL_UNFIRE;
+  }
+}
+void Player::fire()
+{
+  std::vector<Shell *> newSpriteContainer = playerFighter->fire();
+  for(auto it = newSpriteContainer.begin(); it != newSpriteContainer.end(); it++)
+  {
+    spriteContainer->addSprite(*it);
+  }
+  if(newSpriteContainer.begin() != newSpriteContainer.end())
+  {
+    playSound->playFire();
+  }
+}
+void Player::checkAndChangeWeapon()
+{
+  if(sf::Keyboard::isKeyPressed(KEYBOARD_CHANGE_WEAPON_SINGLE))
+  {
+    playerFighter->changeWeapon(WEAPON_MODEL_NUMBER_SINGLE);
+  }
+  if(sf::Keyboard::isKeyPressed(KEYBOARD_CHANGE_WEAPON_SPREAD))
+  {
+    playerFighter->changeWeapon(WEAPON_MODEL_NUMBER_SPREAD);
+  }
+}
+
 void Player::drawHPImage()
 {
   window->draw(*HPborder);
@@ -62,16 +124,27 @@ bool Player::collision(Sprite *target)
   int fighterIndexY = playerFighter->getPositionByVertex().position.y;
   if(collisionJudge(target, fighterIndexX, fighterIndexY) == COLLISION_KNOCKED)
   {
-    return knockedOperate();
+    return switchKnockedOperate(target);
+    // return knockedOperate();
   }
   else
   {
     return COLLISION_UNKNOCKED;
   }
 }
+bool Player::switchKnockedOperate(Sprite *target)
+{
+  switch(target->getSpriteClass())
+  {
+    case SPRITE_SHELL_ENEMY:
+      return shellKnockedOperate();
+    default:
+      return COLLISION_UNKNOCKED;
+  }
+}
 bool Player::collisionJudge(Sprite *target, int x2, int y2)
 {
-  if(target->getSpriteClass() != FIGHTER_OWNER_PLAYER)
+  if(target->getSpriteClass() == SPRITE_SHELL_ENEMY)
   {
     int x1 = target->getPositionByVertex().position.x;
     int y1 = target->getPositionByVertex().position.y;
@@ -90,7 +163,7 @@ bool Player::collisionJudge(Sprite *target, int x2, int y2)
     return COLLISION_UNKNOCKED;
   }
 }
-bool Player::knockedOperate()
+bool Player::shellKnockedOperate()
 {
   playerFighter->reviseHP(COLLISION_HP_DELTA);
 
@@ -108,65 +181,4 @@ bool Player::knockedOperate()
     playSound->playAttackedPlayer();
   }
   return COLLISION_KNOCKED;
-}
-void Player::move(sf::Vertex deltaVector)
-{
-  playerFighter->move(deltaVector.position.x, deltaVector.position.y);
-}
-sf::Vertex Player::checkMoveAndBorder()
-{
-  int nowX = playerFighter->getPositionByVertex().position.x;
-  if(sf::Keyboard::isKeyPressed(PLAYER_LEFT))
-  {
-    if(nowX + PLAYER_DELTA_LEFT >= SCREEN_MOST_LEFT + FIGHTER_SIZE_CORRECTED_VALUE_X)
-    {
-      return sf::Vector2f(PLAYER_DELTA_LEFT, PLAYER_DELTA_Y);
-    }
-  }
-  if(sf::Keyboard::isKeyPressed(PLAYER_RIGHT))
-  {
-    if(nowX + PLAYER_DELTA_RIGHT <= SCREEN_MOST_RIGHT - FIGHTER_SIZE_CORRECTED_VALUE_X)
-    {
-      return sf::Vector2f(PLAYER_DELTA_RIGHT, PLAYER_DELTA_Y);
-    }
-  }
-  else
-  {
-    return sf::Vector2f(PLAYER_DELTA_NO_MOVE, PLAYER_DELTA_Y);
-  }
-}
-bool Player::checkFireAndRefreshShell()
-{
-  playerFighter->refreshShell();
-  if(sf::Keyboard::isKeyPressed(PLAYER_FIRE) && playerFighter->checkWeaponStatus() == WEAPON_SHELL_IS_READY)
-  {
-    return SHELL_FIRE;
-  }
-  else
-  {
-    return SHELL_UNFIRE;
-  }
-}
-void Player::checkAndChangeWeapon()
-{
-  if(sf::Keyboard::isKeyPressed(KEYBOARD_CHANGE_WEAPON_SINGLE))
-  {
-    playerFighter->changeWeapon(WEAPON_MODEL_NUMBER_SINGLE);
-  }
-  if(sf::Keyboard::isKeyPressed(KEYBOARD_CHANGE_WEAPON_SPREAD))
-  {
-    playerFighter->changeWeapon(WEAPON_MODEL_NUMBER_SPREAD);
-  }
-}
-void Player::fire()
-{
-  std::vector<Shell *> newSpriteContainer = playerFighter->fire();
-  for(auto it = newSpriteContainer.begin(); it != newSpriteContainer.end(); it++)
-  {
-    spriteContainer->addShell(*it);
-  }
-  if(newSpriteContainer.begin() != newSpriteContainer.end())
-  {
-    playSound->playFire();
-  }
 }
