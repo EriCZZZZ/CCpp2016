@@ -1,9 +1,9 @@
 #include "Shell.h"
-void Shell::setOwner(bool owner)
+void Shell::setOwner(int owner)
 {
   shellOwner = owner;
 }
-bool Shell::getOwner()
+int Shell::getOwner()
 {
   return shellOwner;
 }

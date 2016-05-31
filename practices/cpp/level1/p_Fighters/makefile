@@ -34,7 +34,7 @@ main.o : main.cpp BeatFighter.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classGraphics/ShellGraphics.o ./classGraphics/ShellGraphics.cpp
 
-./classSprite/Shell.o : ./classSprite/Shell.cpp ./classGraphics/ShellGraphics.o
+./classSprite/Shell.o : ./classSprite/Shell.cpp ./classGraphics/ShellGraphics.o ./classSprite/Sprite.h
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classSprite/Shell.o ./classSprite/Shell.cpp
 
