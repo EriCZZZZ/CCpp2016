@@ -38,7 +38,7 @@ private:
 
   bool switchKnockedOperate(Sprite * target);
   bool shellKnockedOperate();
-
+  bool weaponKnockedOperate();
 public:
   Player(SpriteContainer *SpriteContainer, sf::RenderWindow *window, Game *game, PlaySound *playSound);
   ~Player();

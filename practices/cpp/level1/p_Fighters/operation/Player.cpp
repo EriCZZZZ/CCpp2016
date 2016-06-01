@@ -132,20 +132,10 @@ bool Player::collision(Sprite *target)
     return COLLISION_UNKNOCKED;
   }
 }
-bool Player::switchKnockedOperate(Sprite *target)
-{
-  switch(target->getSpriteClass())
-  {
-    case SPRITE_SHELL_ENEMY:
-      return shellKnockedOperate();
-    default:
-      return COLLISION_UNKNOCKED;
-  }
-}
 bool Player::collisionJudge(Sprite *target, int x2, int y2)
 {
-  if(target->getSpriteClass() == SPRITE_SHELL_ENEMY)
-  {
+  // if(target->getSpriteClass() == SPRITE_SHELL_ENEMY)
+  // {
     int x1 = target->getPositionByVertex().position.x;
     int y1 = target->getPositionByVertex().position.y;
     int distance = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 -y2);
@@ -157,10 +147,25 @@ bool Player::collisionJudge(Sprite *target, int x2, int y2)
     {
       return COLLISION_UNKNOCKED;
     }
-  }
-  else
+  // }
+  // else
+  // {
+  //   return COLLISION_UNKNOCKED;
+  // }
+}
+bool Player::switchKnockedOperate(Sprite *target)
+{
+  #ifdef DEBUG
+  std::cout << target->getSpriteClass() << std::endl;
+  #endif
+  switch(target->getSpriteClass())
   {
-    return COLLISION_UNKNOCKED;
+    case SPRITE_SHELL_ENEMY:
+      return shellKnockedOperate();
+    case SPRITE_WEAPON_SPREAD:
+      return weaponKnockedOperate();
+    default:
+      return COLLISION_UNKNOCKED;
   }
 }
 bool Player::shellKnockedOperate()
@@ -180,5 +185,10 @@ bool Player::shellKnockedOperate()
   {
     playSound->playAttackedPlayer();
   }
+  return COLLISION_KNOCKED;
+}
+bool Player::weaponKnockedOperate()
+{
+  playerFighter->changeWeapon(WEAPON_MODEL_NUMBER_SPREAD);
   return COLLISION_KNOCKED;
 }

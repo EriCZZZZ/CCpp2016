@@ -13,7 +13,20 @@ CollisionJudge::CollisionJudge(Player *player, Enemy *enemy, SpriteContainer *sp
 bool CollisionJudge::judge(Sprite *target)
 {
   bool flag = COLLISION_UNKNOCKED;
+
+  #ifdef DEBUG
+  std::cout << target->getSpriteClass() << std::endl;
+  #endif
+
   flag += player->collision(target);
+
+  #ifdef DEBUG
+  if(target->getSpriteClass() == SPRITE_WEAPON_SPREAD)
+  {
+    std::cout << "==============" << std::endl;
+  }
+  #endif
+  
   flag += enemy->collision(target);
   return flag;
 }
