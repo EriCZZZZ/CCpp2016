@@ -2,6 +2,10 @@
 #ifdef DEBUG
 #include <iostream>
 #endif
+
+#include <ctime>
+#include <cstdlib>
+
 Game::Game(int difficulty)
 {
   window = new sf::RenderWindow(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "ERIC-FIGHTER");
@@ -100,9 +104,13 @@ int Game::play()
 
 void Game::createAward()
 {
-  auto temp = new SpriteWeaponSpread;
-  temp->setPosition(200, 200);
-  spriteContainer->addSprite(temp);
+  srand(clock());
+  if(rand() % 100 == 1)
+  {
+    auto temp = new SpriteWeaponSpread;
+    temp->setPosition(200, 200);
+    spriteContainer->addSprite(temp);
+  }
 }
 void Game::addScore(int deltaScore)
 {
