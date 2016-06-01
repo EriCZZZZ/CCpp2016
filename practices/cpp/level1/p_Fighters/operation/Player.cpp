@@ -43,7 +43,6 @@ Player::~Player()
 void Player::operate()
 {
   move(checkMoveAndBorder());
-  checkAndChangeWeapon();
   if(checkFireAndRefreshShell() == SHELL_FIRE)
   {
     fire();
@@ -101,18 +100,6 @@ void Player::fire()
     playSound->playFire();
   }
 }
-void Player::checkAndChangeWeapon()
-{
-  if(sf::Keyboard::isKeyPressed(KEYBOARD_CHANGE_WEAPON_SINGLE))
-  {
-    playerFighter->changeWeapon(WEAPON_MODEL_NUMBER_SINGLE);
-  }
-  if(sf::Keyboard::isKeyPressed(KEYBOARD_CHANGE_WEAPON_SPREAD))
-  {
-    playerFighter->changeWeapon(WEAPON_MODEL_NUMBER_SPREAD);
-  }
-}
-
 void Player::drawHPImage()
 {
   window->draw(*HPborder);

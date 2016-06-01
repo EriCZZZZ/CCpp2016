@@ -34,8 +34,6 @@ private:
   bool checkFireAndRefreshShell();
   void fire();
 
-  void checkAndChangeWeapon();
-
   bool switchKnockedOperate(Sprite * target);
   bool shellKnockedOperate();
   bool weaponKnockedOperate();
