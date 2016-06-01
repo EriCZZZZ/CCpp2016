@@ -125,7 +125,6 @@ bool Player::collision(Sprite *target)
   if(collisionJudge(target, fighterIndexX, fighterIndexY) == COLLISION_KNOCKED)
   {
     return switchKnockedOperate(target);
-    // return knockedOperate();
   }
   else
   {
@@ -134,30 +133,20 @@ bool Player::collision(Sprite *target)
 }
 bool Player::collisionJudge(Sprite *target, int x2, int y2)
 {
-  // if(target->getSpriteClass() == SPRITE_SHELL_ENEMY)
-  // {
-    int x1 = target->getPositionByVertex().position.x;
-    int y1 = target->getPositionByVertex().position.y;
-    int distance = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 -y2);
-    if(distance <= COLLISION_KNOCK_DISTANCE)
-    {
-      return COLLISION_KNOCKED;
-    }
-    else
-    {
-      return COLLISION_UNKNOCKED;
-    }
-  // }
-  // else
-  // {
-  //   return COLLISION_UNKNOCKED;
-  // }
+  int x1 = target->getPositionByVertex().position.x;
+  int y1 = target->getPositionByVertex().position.y;
+  int distance = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 -y2);
+  if(distance <= COLLISION_KNOCK_DISTANCE)
+  {
+    return COLLISION_KNOCKED;
+  }
+  else
+  {
+    return COLLISION_UNKNOCKED;
+  }
 }
 bool Player::switchKnockedOperate(Sprite *target)
 {
-  #ifdef DEBUG
-  std::cout << target->getSpriteClass() << std::endl;
-  #endif
   switch(target->getSpriteClass())
   {
     case SPRITE_SHELL_ENEMY:

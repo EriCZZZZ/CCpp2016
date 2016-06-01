@@ -34,9 +34,11 @@ void Game::initializateItem(int difficulty)
   player = new Player(spriteContainer, window, this, playSound);
   enemy = new Enemy(spriteContainer, window, this, playSound);
   collisionJudge = new CollisionJudge(player, enemy, spriteContainer);
+  award = new Award(spriteContainer, window);
   gameOperation.push_back(player);
   gameOperation.push_back(enemy);
   gameOperation.push_back(spriteContainer);
+  gameOperation.push_back(award);
 }
 void Game::initializateSound()
 {
@@ -74,7 +76,6 @@ int Game::play()
       {
         (*it)->operate();
       }
-      createAward();
       collisionJudge->judgeAll();
       //print info
       checkScoreAndSetGameStatus();
@@ -102,16 +103,6 @@ int Game::play()
   }
 }
 
-void Game::createAward()
-{
-  srand(clock());
-  if(rand() % 100 == 1)
-  {
-    auto temp = new SpriteWeaponSpread;
-    temp->setPosition(200, 200);
-    spriteContainer->addSprite(temp);
-  }
-}
 void Game::addScore(int deltaScore)
 {
   score += deltaScore;

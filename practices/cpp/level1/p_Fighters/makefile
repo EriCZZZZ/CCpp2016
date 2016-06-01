@@ -5,7 +5,7 @@ OBJ = main.o ./classGraphics/FighterGraphics.o ./classGraphics/ShellGraphics.o \
  ./operation/SpriteContainer.o ./operation/CollisionJudge.o  ./classSprite/WeaponSingle.o\
  ./Game.o ./operation/ShowText.o ./BeatFighter.o ./classSprite/ShellFactory.o \
  ./classSprite/WeaponSpread.o ./operation/PlaySound.o ./classGraphics/WeaponSpreadSpriteGraphics.o \
- ./classSprite/SpriteWeaponSpread.o
+ ./classSprite/SpriteWeaponSpread.o ./operation/Award.o
 
 edit: $(OBJ)
 
@@ -42,7 +42,7 @@ main.o : main.cpp BeatFighter.o
 ./classSprite/SpriteWeaponSpread.o : ./classSprite/SpriteWeaponSpread.cpp ./classGraphics/WeaponSpreadSpriteGraphics.o ./classSprite/Sprite.h
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classSprite/SpriteWeaponSpread.o ./classSprite/SpriteWeaponSpread.cpp
-	
+
 ./classSprite/Shell.o : ./classSprite/Shell.cpp ./classGraphics/ShellGraphics.o ./classSprite/Sprite.h
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classSprite/Shell.o ./classSprite/Shell.cpp
@@ -98,6 +98,10 @@ main.o : main.cpp BeatFighter.o
 ./operation/PlaySound.o : ./operation/PlaySound.cpp
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./operation/PlaySound.o ./operation/PlaySound.cpp
+
+./operation/Award.o : ./operation/Award.cpp ./classSprite/SpriteWeaponSpread.o ./operation/SpriteContainer.o
+
+	g++ -c -g -DDEBUG -std=c++11 -o ./operation/Award.o ./operation/Award.cpp
 
 clean:
 	-rm $(OBJ)
