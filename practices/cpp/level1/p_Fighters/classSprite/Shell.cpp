@@ -11,13 +11,13 @@ void Shell::setPosition(int indexX, int indexY)
 {
   shell.setPosition(indexX, indexY);
 }
-void Shell::setSpeedByVector(sf::Vector2f vector)
+void Shell::setSpeedByVector(sf::Vector2f speedVector)
 {
-  speedVector = vector;
+  Shell::speedVector = speedVector;
 }
 void Shell::move()
 {
-  shell.move(deltaVector.x, deltaVector.y);
+  shell.move(speedVector.x, speedVector.y);
 }
 sf::Vertex Shell::getPositionByVertex()
 {

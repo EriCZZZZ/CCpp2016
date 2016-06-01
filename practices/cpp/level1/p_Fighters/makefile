@@ -4,7 +4,8 @@ OBJ = main.o ./classGraphics/FighterGraphics.o ./classGraphics/ShellGraphics.o \
  ./classFighter/EnemyFighterFactory.o ./operation/Player.o ./operation/Enemy.o \
  ./operation/SpriteContainer.o ./operation/CollisionJudge.o  ./classSprite/WeaponSingle.o\
  ./Game.o ./operation/ShowText.o ./BeatFighter.o ./classSprite/ShellFactory.o \
- ./classSprite/WeaponSpread.o ./operation/PlaySound.o
+ ./classSprite/WeaponSpread.o ./operation/PlaySound.o ./classGraphics/WeaponSpreadSpriteGraphics.o \
+ ./classSprite/SpriteWeaponSpread.o
 
 edit: $(OBJ)
 
@@ -34,6 +35,14 @@ main.o : main.cpp BeatFighter.o
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classGraphics/ShellGraphics.o ./classGraphics/ShellGraphics.cpp
 
+./classGraphics/WeaponSpreadSpriteGraphics.o : ./classGraphics/WeaponSpreadSpriteGraphics.cpp ./head/GameConfig.h
+
+	g++ -c -g -DDEBUG -std=c++11 -o ./classGraphics/WeaponSpreadSpriteGraphics.o ./classGraphics/WeaponSpreadSpriteGraphics.cpp
+
+./classSprite/SpriteWeaponSpread.o : ./classSprite/SpriteWeaponSpread.cpp ./classGraphics/WeaponSpreadSpriteGraphics.o ./classSprite/Sprite.h
+
+	g++ -c -g -DDEBUG -std=c++11 -o ./classSprite/SpriteWeaponSpread.o ./classSprite/SpriteWeaponSpread.cpp
+	
 ./classSprite/Shell.o : ./classSprite/Shell.cpp ./classGraphics/ShellGraphics.o ./classSprite/Sprite.h
 
 	g++ -c -g -DDEBUG -std=c++11 -o ./classSprite/Shell.o ./classSprite/Shell.cpp

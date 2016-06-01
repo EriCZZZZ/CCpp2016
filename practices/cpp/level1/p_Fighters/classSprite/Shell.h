@@ -14,7 +14,7 @@ public:
   void setOwner(int owner);
   int getSpriteClass();
   void setPosition(int indexX, int indexY);
-  void setSpeedByVector(sf::Vector2f vector);
+  void setSpeedByVector(sf::Vector2f speedVector);
   void move();
   sf::Vertex getPositionByVertex();
   ShellGraphics *toDraw();
