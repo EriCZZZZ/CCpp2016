@@ -109,7 +109,6 @@
 
 #define COLLISION_KNOCK_DISTANCE 600
 
-
 // === interval ===
 #define INTERVAL_MAIN 5000
 
@@ -189,5 +188,6 @@
 // === sprite class ===
 #define SPRITE_SHELL_PLAYER 0
 #define SPRITE_SHELL_ENEMY 1
+#define SPRITE_WEAPON_SPREAD 2
 
 #endif

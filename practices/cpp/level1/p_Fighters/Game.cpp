@@ -70,6 +70,7 @@ int Game::play()
       {
         (*it)->operate();
       }
+      createAward();
       collisionJudge->judgeAll();
       //print info
       checkScoreAndSetGameStatus();
@@ -95,6 +96,13 @@ int Game::play()
     window->display();
     std::this_thread::sleep_for(std::chrono::microseconds(INTERVAL_MAIN));
   }
+}
+
+void Game::createAward()
+{
+  auto temp = new SpriteWeaponSpread;
+  temp->setPosition(200, 200);
+  spriteContainer->addSprite(temp);
 }
 void Game::addScore(int deltaScore)
 {

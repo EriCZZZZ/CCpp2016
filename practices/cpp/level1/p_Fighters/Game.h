@@ -12,6 +12,8 @@
 #include <thread>
 #include <vector>
 
+#include "./classSprite/SpriteWeaponSpread.h"
+
 class Player;
 class Game;
 
@@ -38,6 +40,8 @@ private:
   void initializeInfo();
   void initializeDifficulty();
   void checkScoreAndSetGameStatus();
+
+  void createAward();
 public:
   Game(int difficulty);
   ~Game();

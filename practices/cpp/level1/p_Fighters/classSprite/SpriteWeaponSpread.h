@@ -8,8 +8,8 @@ class SpriteWeaponSpread : public Sprite
 {
 private:
   WeaponSpreadSpriteGraphics weaponSprite;
-  int spriteClass;
-  sf::Vector2f speedVector;
+  int spriteClass = SPRITE_WEAPON_SPREAD;
+  sf::Vector2f speedVector = sf::Vector2f(0, 3);
 public:
   void setOwner(int owner);
   int getSpriteClass();
